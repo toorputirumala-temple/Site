@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import logo from "../images/navd.jpg";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Header = () => {
+  const { lang, toggleLang, t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -67,16 +69,16 @@ const Header = () => {
       </div>
 
       {/* Desktop Navigation */}
-      <div className="hidden md:block">
+      <div className="hidden md:flex items-center gap-6">
         <nav>
-          <ul className="flex gap-10 font-bold">
+          <ul className="flex gap-10 font-bold items-center">
             <li
               className={`nav-item text-white cursor-pointer ${
                 activeIndex === 0 ? "text-blue-900" : ""
               }`}
               onClick={() => handleClick(0, "history")}
             >
-              ಇತಿಹಾಸ
+              {t.nav.history}
             </li>
             <li
               className={`nav-item text-white cursor-pointer ${
@@ -84,31 +86,47 @@ const Header = () => {
               }`}
               onClick={() => handleClick(1, "events")}
             >
-              ಕಾರ್ಯಕ್ರಮಗಳು
+              {t.nav.events}
             </li>
             <li
               className={`nav-item text-white cursor-pointer ${
                 activeIndex === 2 ? "text-blue-900" : ""
               }`}
-              onClick={() => handleClick(2, "management")}
+              onClick={() => handleClick(2, "details")}
             >
-              ಆಡಳಿತ ಮಂಡಲಿ
+              {t.nav.details}
             </li>
             <li
               className={`nav-item text-white cursor-pointer ${
                 activeIndex === 3 ? "text-blue-900" : ""
               }`}
-              onClick={() => handleClick(3, "gallery")}
+              onClick={() => handleClick(3, "management")}
             >
-              ಗ್ಯಾಲರಿ
+              {t.nav.management}
             </li>
             <li
               className={`nav-item text-white cursor-pointer ${
                 activeIndex === 4 ? "text-blue-900" : ""
               }`}
-              onClick={() => handleClick(4, "contact")}
+              onClick={() => handleClick(4, "gallery")}
             >
-              ಸಂಪರ್ಕಿಸಿ
+              {t.nav.gallery}
+            </li>
+            <li
+              className={`nav-item text-white cursor-pointer ${
+                activeIndex === 5 ? "text-blue-900" : ""
+              }`}
+              onClick={() => handleClick(5, "contact")}
+            >
+              {t.nav.contact}
+            </li>
+            <li>
+              <button 
+                onClick={toggleLang}
+                className="bg-white text-orange-600 px-3 py-1 rounded-full text-sm font-bold border-2 border-orange-600 hover:bg-orange-50 transition-colors"
+              >
+                {lang === 'en' ? 'తెలుగు' : 'English'}
+              </button>
             </li>
           </ul>
         </nav>
@@ -142,7 +160,7 @@ const Header = () => {
             }`}
             onClick={() => handleClick(0, "history")}
           >
-            ಇತಿಹಾಸ
+            {t.nav.history}
           </li>
           <li
             className={`nav-item text-white cursor-pointer ${
@@ -150,31 +168,47 @@ const Header = () => {
             }`}
             onClick={() => handleClick(1, "events")}
           >
-            ಕಾರ್ಯಕ್ರಮಗಳು
+            {t.nav.events}
           </li>
           <li
             className={`nav-item text-white cursor-pointer ${
               activeIndex === 2 ? "text-blue-900" : ""
             }`}
-            onClick={() => handleClick(2, "management")}
+            onClick={() => handleClick(2, "details")}
           >
-            ಆಡಳಿತ ಮಂಡಲಿ
+            {t.nav.details}
           </li>
-          {/* <li
+          <li
             className={`nav-item text-white cursor-pointer ${
               activeIndex === 3 ? "text-blue-900" : ""
             }`}
-            onClick={() => handleClick(3, "gallery")}
+            onClick={() => handleClick(3, "management")}
           >
-            ಗ್ಯಾಲರಿ
-          </li> */}
+            {t.nav.management}
+          </li>
           <li
             className={`nav-item text-white cursor-pointer ${
               activeIndex === 4 ? "text-blue-900" : ""
             }`}
-            onClick={() => handleClick(4, "contact")}
+            onClick={() => handleClick(4, "gallery")}
           >
-            ಸಂಪರ್ಕಿಸಿ
+            {t.nav.gallery}
+          </li>
+          <li
+            className={`nav-item text-white cursor-pointer ${
+              activeIndex === 5 ? "text-blue-900" : ""
+            }`}
+            onClick={() => handleClick(5, "contact")}
+          >
+            {t.nav.contact}
+          </li>
+          <li>
+            <button 
+              onClick={toggleLang}
+              className="bg-white text-orange-600 px-4 py-2 rounded-full text-sm font-bold border-2 border-orange-600 mt-4"
+            >
+              {lang === 'en' ? 'తెలుగు' : 'English'}
+            </button>
           </li>
         </ul>
       </nav>

@@ -5,8 +5,11 @@ import devi from "../images/devii.png";
 import toranLeft from "../images/Toran-left.svg";
 import toranRight from "../images/Toran-right.svg";
 import diya from "../images/diya.gif";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const LandingPage = () => {
+  const { t } = useLanguage();
+  
   return (
     <div
       className="h-[100vh] w-[100vw] bg-[#fcf0d8] relative"
@@ -42,19 +45,22 @@ const LandingPage = () => {
 
         }}
       ></div>
-<h3
-  className="templename font-bold absolute top-[85px] left-1/2 transform -translate-x-1/2 text-center leading-none py-8"
-  style={{
-    fontSize: "2.75rem", /* Custom size between 4xl (2.25rem) and 5xl (3rem) */
-    lineHeight: "1.4em",
-    background: "linear-gradient(90deg, rgba(253, 190, 87, 1) 0%, rgba(252, 187, 88, 1) 10%, rgba(244, 119, 40, 1) 40%, rgba(244, 119, 40, 1) 100%)",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    zIndex: "100",
-  }}
->
-  ಶ್ರೀ ದುರ್ಗಾಪರಮೇಶ್ವರೀ ದೇವಸ್ಥಾನ, ಬಾಚಕೆರೆ
-</h3>
+<div className="absolute top-[85px] w-full text-center z-[100] px-4">
+  <h3
+    className="templename font-bold leading-tight"
+    style={{
+      fontSize: "2.75rem", /* Custom size between 4xl (2.25rem) and 5xl (3rem) */
+      background: "linear-gradient(90deg, rgba(253, 190, 87, 1) 0%, rgba(252, 187, 88, 1) 10%, rgba(244, 119, 40, 1) 40%, rgba(244, 119, 40, 1) 100%)",
+      WebkitBackgroundClip: "text",
+      WebkitTextFillColor: "transparent",
+    }}
+  >
+    {t.hero.title}
+  </h3>
+  <p className="text-xl md:text-2xl font-semibold mt-4 text-[#f47728]">
+    {t.hero.subtitle}
+  </p>
+</div>
       <div className="absolute top-[77px] right-[15%] xs:w-0 h-full md:w-full z-30">
         <div
           className="h-48 w-full"
@@ -116,37 +122,33 @@ const LandingPage = () => {
 
       {/* Aasan */}
       <div
-        className="absolute aasan md:left-[53%] bottom-[95px] w-[700px] h-[240px] transform -translate-x-1/2
-            xs:h-[200px] xs:w-[400px] xs:bottom-[62px] xs:left-1/2  md:w-[695px] md:h-[240px] md:bottom-[95px]
-            
-        "
+        className="absolute aasan bottom-[95px] md:bottom-[95px] w-[400px] md:w-[695px] h-[200px] md:h-[240px] left-0 right-0 mx-auto xs:bottom-[62px]"
         style={{
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
         }}
       ></div>
 
       {/* Middle Chakra */}
       <div
         className="absolute middle_chakra chakra animate-spin-slow
-        md:bottom-[250px] md:left-[43%] md:h-48 md:w-48
-        xs:h-36 xs:w-36 xs:bottom-[200px] xs:left-[32%]
-        "
+        bottom-[200px] md:bottom-[250px] w-36 h-36 md:w-48 md:h-48 left-0 right-0 mx-auto"
         style={{
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
         }}
       ></div>
 
       {/* Devi Pic */}
       <div
-        className="absolute md:bottom-[-8px] md:left-[36.5%] md:h-[420px] md:w-[420px] z-10 animate-slideInUp
-          xs:h-[250px] xs:w-[250px] xs:bottom-8 xs:left-[20%]
-        "
+        className="absolute bottom-8 md:bottom-[40px] w-[250px] md:w-[420px] h-[250px] md:h-[420px] left-0 right-0 mx-auto z-10 animate-slideInUp"
         style={{
           backgroundImage: `url(${devi})`,
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
         }}
       ></div>
     </div>

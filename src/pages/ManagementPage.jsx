@@ -1,17 +1,11 @@
 import React from "react";
 import bottomBorder from "../assets/title-img-orange.svg";
-import mainOwner from "../images/dejappa.jpg";
-import sanjeevaPoojary from "../images/sanjeevaPoojary.jpg";
-import sarapadiAshokShetty from "../images/sarapadiAshokShetty.jpg";
-import dayanandaShetty from "../images/dayanandShetty.jpg"
-import upadyaksha from '../images/upadyaksha.jpg';
-import girinath from "../images/girinath.jpg"
-import tantri from '../images/tantrii.jpg'
-import templeSwami from "../images/TempleOG.jpg"
-import sundar from "../images/sundar.jpg"
-import p17 from "../images/p17.jpg"
-import p18 from "../images/p18.jpg"
-import p19 from "../images/p19.jpg"
+import member1 from "../images/member1.jpeg"
+import member2 from "../images/member2.jpeg"
+import member3 from "../images/member3.jpeg"
+import member4 from "../images/member4.jpeg"
+import member5 from "../images/member5.jpeg"
+
 const TeamMember = ({ name, role, description, image }) => {
   return (
     <div className="w-64 m-4 flex flex-col items-center">
@@ -52,82 +46,45 @@ const TeamMember = ({ name, role, description, image }) => {
 };
 
 const ManagementPage = ({ id }) => {
-  const teamMembers = [
+  const committeeMembers = [
     {
-      name: "ದೇಜಪ್ಪ ಬಾಚಕೆರೆ",
-      role: "ಸ್ಥಾಪಕಾಧ್ಯಕ್ಷರು / ಧರ್ಮದರ್ಶಿಗಳು",
-      image: mainOwner
+      name: "",
+      role: "కమిటీ సభ్యులు",
+      image: member1
     },
     {
-      name: "ಶ್ರೀ ಶ್ರೀ ಮೋಹನದಾಸ ಪರಮಹಂಸ ಸ್ವಾಮೀಜಿ",
-      role: "ಶ್ರೀ ಧಾಮ ಮಣಿಲ ಸ್ವಾಮೀಜಿ",
-      image: templeSwami
+      name: "",
+      role: "కమిటీ సభ్యులు",
+      image: member2
     },
     {
-      name: " ಶ್ರೀ ಶಿವಪ್ರಸಾದ ಐತಾಳರು",
-      role: "ಕ್ಷೇತ್ರದ ಪ್ರಧಾನ ತಂತ್ರಿಗಳು",
-      image: tantri
+      name: "",
+      role: "కమిటీ సభ్యులు",
+      image: member3
     },
     {
-      name: "ಸಂಜೀವ ಪೂಜಾರಿ",
-      role: "ಅಧ್ಯಕ್ಷರು",
-      image: sanjeevaPoojary
+      name: "",
+      role: "కమిటీ సభ్యులు",
+      image: member4
     },
     {
-      name: "ಸಂಪತ್ ಕುಮಾರ್ ಶೆಟ್ಟಿ ",
-      role: "ಉಪಾಧ್ಯಕ್ಷರು",
-      image: upadyaksha
-    },
-    {
-      name: "ದಯಾನಂದ ಶೆಟ್ಟಿ",
-      role: "ಪ್ರಧಾನ ಕಾರ್ಯದರ್ಶಿ",
-      image: dayanandaShetty
-    },
-    {
-      name: "ಸರಪಾಡಿ ಅಶೋಕ್ ಶೆಟ್ಟಿ",
-      role: "ಕಾರ್ಯದರ್ಶಿ",
-      image: sarapadiAshokShetty
-    },
-   
-    {
-      name: "ಸುಂದರ್ ಬಾಚಕೆರೆ",
-      role: "ಕೋಶಾಧಿಕಾರಿ",
-      image: sundar
-    },
-    {
-      name: "ಗಿರಿನಾಥ ಬಾಚಕೆರೆ",
-      role: "ಪ್ರಧಾನ ಅರ್ಚಕರು",
-      image: girinath
-    },
-    {
-      name: "ಪುರುಷೋತ್ತಮ ಕಾಯರ್ಪಲ್ಕೆ",
-      role: "ಟ್ರಸ್ಟಿ",
-      image: p17
-    }
-    ,{
-      name: "ಭುವನೇಶ್ ಪಚ್ಚಿನಡ್ಕ",
-      role: "ಟ್ರಸ್ಟಿ",
-      image: p19
-    }
-    ,{
-      name: "ಮೋಹನ ಗೌಡ",
-      role: "ಟ್ರಸ್ಟಿ",
-      image: p18
+      name: "",
+      role: "కమిటీ సభ్యులు",
+      image: member5
     }
   ];
 
-
   return (
-    <div id={id} className="bg-[#fff7e7] w-full min-h-[100vh] pt-20">
+    <div id={id} className="bg-[#fff7e7] w-full min-h-[100vh] pt-20 pb-10">
       <h2 className="font-bold md:text-3xl xs:text-xl flex justify-center text-[#ef5521ff]">
-        ದೇವಾಲಯದ ಆಡಳಿತ ಮಂಡಲಿ
+        దేవాలయ పాలక మండలి
       </h2>
       <div className="flex justify-center mt-4">
         <img src={bottomBorder} alt="Bottom Border" className="md:w-1/4" />
       </div>
       <div className="flex flex-wrap justify-center mt-8">
-        {teamMembers.map((member, index) => (
-          <TeamMember key={index} {...member} />
+        {committeeMembers.map((member, index) => (
+          <TeamMember key={`committee-${index}`} {...member} />
         ))}
       </div>
     </div>

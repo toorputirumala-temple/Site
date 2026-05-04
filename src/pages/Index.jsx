@@ -8,17 +8,17 @@ import LandingPage from './LandingPage'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Events from './EventsPage'
+import DetailsPage from './DetailsPage'
 import ManagementPage from './ManagementPage'
-import VideoPage from './VideoPage'
 
 const Index = () => {
   return (
     <div>
       <Header/>
       <LandingPage/>
-      <VideoPage/>
       <HistoryPage id="history" />
       <Events id="events"/>
+      <DetailsPage id="details"/>
       <ManagementPage id="management"/>
       <SliderPage id="gallery">
         {images.map((image, index) => (
