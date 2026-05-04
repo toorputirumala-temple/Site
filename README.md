@@ -32,15 +32,4 @@ npm run dev
 ```bash
 http://localhost:5173/
 ```
-## Contributors
 
-This is a team project, and we are grateful for the contributions of all team members:
-
-<a href="https://github.com/Mini-Project2024/SOP-Temple_Website/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Mini-Project2024/SOP-Temple_Website&nocache=5" />
-</a>
-
-
-## Contact
-
-For questions, suggestions, or feedback, please contact any of the members.
