@@ -45,7 +45,7 @@ const LandingPage = () => {
 
         }}
       ></div>
-<div className="absolute top-[85px] w-full text-center z-[100] px-4">
+<div className="absolute top-[10%] w-full text-center z-[100] px-4">
   <h3
     className="templename font-bold leading-tight"
     style={{
@@ -57,7 +57,7 @@ const LandingPage = () => {
   >
     {t.hero.title}
   </h3>
-  <p className="text-xl md:text-2xl font-semibold mt-4 text-[#f47728]">
+  <p className="text-xl top-[20%] md:text-2xl font-semibold mt-4 text-[#f47728]">
     {t.hero.subtitle}
   </p>
 </div>

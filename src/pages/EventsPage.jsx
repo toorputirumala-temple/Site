@@ -60,7 +60,11 @@ const TempleEvent = ({ id }) => {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white border border-gray-200 rounded-3xl shadow-xl p-8 hover:bg-[#182856] hover:text-white transition-colors duration-300 group">
+            <div className="bg-white border border-gray-200 rounded-3xl shadow-xl p-8 
+hover:bg-[#ff840a] hover:text-white 
+hover:scale-105 hover:-translate-y-2 
+hover:shadow-[0_0_40px_rgba(255,132,10,0.6)] 
+transition-all duration-300 group">
               <img src="https://cdn-icons-png.flaticon.com/512/8574/8574987.png" alt="Events" className="h-16 w-16 mb-4 mx-auto" />
               <h3 className="text-2xl text-[#182856] mb-4 font-bold group-hover:text-white">
                 {t.nav.events}
@@ -70,7 +74,11 @@ const TempleEvent = ({ id }) => {
               </p>
             </div>
 
-            <div className="bg-white border border-gray-200 rounded-3xl shadow-xl p-8 hover:bg-[#182856] hover:text-white transition-colors duration-300 group">
+            <div className="bg-white border border-gray-200 rounded-3xl shadow-xl p-8 
+hover:bg-[#ff840a] hover:text-white 
+hover:scale-105 hover:-translate-y-2 
+hover:shadow-[0_0_40px_rgba(255,132,10,0.6)] 
+transition-all duration-300 group">
               <img src="https://cdn-icons-png.flaticon.com/512/4791/4791033.png" alt="Facilities" className="h-16 w-16 mb-4 mx-auto" />
               <h3 className="text-2xl text-[#182856] mb-4 font-bold group-hover:text-white">
                 {t.events.facilities}
