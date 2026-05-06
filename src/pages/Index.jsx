@@ -10,6 +10,7 @@ import Footer from '../components/Footer'
 import Events from './EventsPage'
 import DetailsPage from './DetailsPage'
 import ManagementPage from './ManagementPage'
+import DonateSection from '../components/DonateSection'
 
 const Index = () => {
   return (
@@ -33,6 +34,7 @@ const Index = () => {
       {/* <GalleryPage id="gallery" /> */}
       <ContactPage id="contact" />
       <Footer/>
+      <DonateSection />
     </div>
   )
 }
