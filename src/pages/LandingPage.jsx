@@ -12,7 +12,7 @@ const LandingPage = () => {
   
   return (
     <div
-      className="h-[100vh] w-[100vw] bg-[#fcf0d8] relative"
+      className="h-[100vh] w-full bg-[#fcf0d8] relative"
       // style={{
       //   backgroundImage: `url(${bgTemple})`,
       //   backgroundRepeat: "no-repeat",
@@ -45,7 +45,7 @@ const LandingPage = () => {
 
         }}
       ></div>
-<div className="absolute top-[85px] w-full text-center z-[100] px-4">
+<div className="absolute top-[10%] w-full text-center z-[100] px-4">
   <h3
     className="templename font-bold leading-tight"
     style={{
@@ -57,7 +57,7 @@ const LandingPage = () => {
   >
     {t.hero.title}
   </h3>
-  <p className="text-xl md:text-2xl font-semibold mt-4 text-[#f47728]">
+  <p className="text-xl top-[20%] md:text-2xl font-semibold mt-4 text-[#f47728]">
     {t.hero.subtitle}
   </p>
 </div>
@@ -122,7 +122,7 @@ const LandingPage = () => {
 
       {/* Aasan */}
       <div
-        className="absolute aasan bottom-[95px] md:bottom-[95px] w-[400px] md:w-[695px] h-[200px] md:h-[240px] left-0 right-0 mx-auto xs:bottom-[62px]"
+        className="absolute aasan bottom-[95px] md:bottom-[95px] w-full max-w-[400px] md:max-w-[695px] h-[200px] md:h-[240px] left-0 right-0 mx-auto xs:bottom-[62px]"
         style={{
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",

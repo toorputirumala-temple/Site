@@ -11,6 +11,7 @@ import Events from './EventsPage'
 import DetailsPage from './DetailsPage'
 import ManagementPage from './ManagementPage'
 import DonateSection from '../components/DonateSection'
+import MandapPage from './MandapPage'
 
 const Index = () => {
   return (
@@ -32,6 +33,7 @@ const Index = () => {
         ))}
       </SliderPage>
       {/* <GalleryPage id="gallery" /> */}
+      <MandapPage id="booking" />
       <ContactPage id="contact" />
       <Footer/>
       <DonateSection />

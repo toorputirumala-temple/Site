@@ -161,16 +161,16 @@ const TempleEvent = ({ id }) => {
                 <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#f47728]"></div>
               </div>
             ) : events.length > 0 ? (
-              <div className="max-w-4xl mx-auto px-10">
+              <div className="max-w-4xl mx-auto px-4 md:px-10">
                 <Slider {...cardSettings}>
                   {events.map((event) => (
                     <div key={event.id} className="px-4">
                       <div className="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col hover:shadow-orange-200 transition-shadow">
                         {/* Internal Image Slider */}
-                        <div className="h-[450px] overflow-hidden relative">
+                        <div className="h-64 md:h-[450px] overflow-hidden relative">
                           <Slider {...imageSettings}>
                             {event.images.map((img, idx) => (
-                              <div key={idx} className="h-[450px]">
+                              <div key={idx} className="h-64 md:h-[450px]">
                                 <img 
                                   src={getDirectDriveUrl(img)} 
                                   alt={`${event.name} ${idx}`} 
@@ -182,10 +182,10 @@ const TempleEvent = ({ id }) => {
                           </Slider>
                         </div>
 
-                        <div className="p-10 text-left">
-                          <div className="flex justify-between items-start mb-6">
-                            <h4 className="text-3xl font-bold text-[#182856]">{event.name}</h4>
-                            <span className="bg-orange-100 text-[#f47728] px-6 py-2 rounded-full text-base font-bold border border-orange-200">
+                        <div className="p-6 md:p-10 text-left">
+                          <div className="flex flex-col md:flex-row justify-between items-start gap-4 mb-6">
+                            <h4 className="text-xl md:text-3xl font-bold text-[#182856]">{event.name}</h4>
+                            <span className="bg-orange-100 text-[#f47728] px-4 md:px-6 py-2 rounded-full text-sm md:text-base font-bold border border-orange-200 w-fit">
                               {new Date(event.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
                             </span>
                           </div>

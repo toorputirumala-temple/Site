@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { auth, db } from '../firebase';
 import { signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
-import 'react-toastify/dist/ReactToastify.css';
 
 const AdminPage = () => {
   const [user, setUser] = useState(null);
@@ -100,7 +99,6 @@ const AdminPage = () => {
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-        <ToastContainer />
         <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl p-8">
           <h2 className="text-3xl font-bold text-center text-[#182856] mb-8">Admin Login</h2>
           <form onSubmit={handleLogin} className="space-y-6">
@@ -145,7 +143,6 @@ const AdminPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <ToastContainer />
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-12">
           <h1 className="text-4xl font-extrabold text-[#182856]">Event Management</h1>

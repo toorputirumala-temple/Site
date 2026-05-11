@@ -35,7 +35,7 @@ const Header = () => {
   
   const handleClick = (index, id) => {
     // If the gallery is clicked, force update
-    if (index === 3) { // Assuming index 3 corresponds to Gallery
+    if (index === 4) { // Assuming index 4 corresponds to Gallery
       forceUpdate();
     }
     setActiveIndex(index);
@@ -116,7 +116,15 @@ const Header = () => {
               className={`nav-item text-white cursor-pointer ${
                 activeIndex === 5 ? "text-blue-900" : ""
               }`}
-              onClick={() => handleClick(5, "contact")}
+              onClick={() => handleClick(5, "booking")}
+            >
+              {t.booking.navLink}
+            </li>
+            <li
+              className={`nav-item text-white cursor-pointer ${
+                activeIndex === 6 ? "text-blue-900" : ""
+              }`}
+              onClick={() => handleClick(6, "contact")}
             >
               {t.nav.contact}
             </li>
@@ -143,11 +151,10 @@ const Header = () => {
 
       {/* Mobile Navigation */}
       <nav
-        className={`fixed top-0 right-0 transform transition-transform duration-300 ease-in-out z-40 md:hidden ${
+        className={`fixed top-0 left-0 w-full transform transition-transform duration-300 ease-in-out z-40 md:hidden ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
         style={{
-          width: "100vw",
           top: "69px",
           background:
             "linear-gradient(90deg, rgba(253, 190, 87, 1) 0%, rgba(252, 187, 88, 1) 10%, rgba(244, 119, 40, 1) 40%, rgba(244, 119, 40, 1) 100%)",
@@ -198,7 +205,15 @@ const Header = () => {
             className={`nav-item text-white cursor-pointer ${
               activeIndex === 5 ? "text-blue-900" : ""
             }`}
-            onClick={() => handleClick(5, "contact")}
+            onClick={() => handleClick(5, "booking")}
+          >
+            {t.booking.navLink}
+          </li>
+          <li
+            className={`nav-item text-white cursor-pointer ${
+              activeIndex === 6 ? "text-blue-900" : ""
+            }`}
+            onClick={() => handleClick(6, "contact")}
           >
             {t.nav.contact}
           </li>

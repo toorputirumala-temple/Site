@@ -40,9 +40,31 @@ export const translations = {
     },
     events: {
       title: 'Events & Facilities',
-      eventsText: 'There are annual celebrations, especially on Saturdays, including annadanam (community meals) every week. Devotees reportedly walk long distances (7 Saturdays) for blessings.',
+      eventsText: 'There are annual celebrations. Every Saturday, there is a divine Annadanam Karyakram (holy community feast). Devotees reportedly walk long distances (7 Saturdays) for blessings.',
       facilities: 'Facilities',
       facilitiesText: 'The temple has parking and a hall for annadanam on Saturdays. The site is open to the public during stated hours and standard temple norms (dress code) apply. No commercial businesses are noted on-site.'
+    },
+    booking: {
+      navLink: 'Book Mandap',
+      mainTitle: 'Reserve the Mandap',
+      startBooking: 'Proceed to Book Now',
+      subTitle: 'Host your sacred events, marriages, pujas, and celebrations in our divine temple premises.',
+      step1: 'Fill out your booking request details',
+      step2: 'We will check the availability',
+      step3: 'Confirmation and payment guidance',
+      formHeading: 'Booking Details',
+      fullName: 'Full Name',
+      phone: 'Phone Number',
+      eventType: 'Event Type',
+      date: 'Preferred Date',
+      details: 'Message / Additional Info',
+      submit: 'Send Booking Request',
+      marriage: 'Marriage',
+      birthday: 'Birthday',
+      puja: 'Puja',
+      other: 'Other',
+      success: 'Booking request sent successfully! We will contact you.',
+      failure: 'Failed to send request. Please try again.'
     }
   },
   te: {
@@ -82,9 +104,31 @@ export const translations = {
     },
     events: {
       title: 'కార్యక్రమాలు & సౌకర్యాలు',
-      eventsText: 'ముఖ్యంగా శనివారాలలో వార్షిక ఉత్సవాలు జరుగుతాయి, ప్రతి వారం అన్నదానం ఉంటుంది. భక్తులు ఆశీర్వాదాల కోసం (7 శనివారాలు) కాలినడకన వస్తారు.',
+      eventsText: 'వార్షిక ఉత్సవాలు ఘనంగా జరుగుతాయి. ప్రతి శనివారం దేవాలయంలో అన్నదాన కార్యక్రమం నిర్వహించబడుతుంది. భక్తులు ఆశీర్వాదాల కోసం (7 శనివారాలు) కాలినడకన వస్తారు.',
       facilities: 'సౌకర్యాలు',
       facilitiesText: 'ఆలయంలో శనివారాల్లో అన్నదానం కోసం హాల్ మరియు పార్కింగ్ ఉంది. ఆలయం నిర్ణీత వేళల్లో ప్రజలకు తెరచి ఉంటుంది, సాంప్రదాయ దుస్తుల నియమాలు వర్తిస్తాయి.'
+    },
+    booking: {
+      navLink: 'మండపం బుకింగ్',
+      mainTitle: 'కళ్యాణ మండపం బుకింగ్',
+      startBooking: 'బుక్ చేయడానికి క్లిక్ చేయండి',
+      subTitle: 'మా పవిత్ర దేవాలయ ప్రాంగణంలో మీ పవిత్ర కార్యక్రమాలు, వివాహాలు, పూజలు మరియు వేడుకలను నిర్వహించుకోండి.',
+      step1: 'మీ బుకింగ్ అభ్యర్థన వివరాలను నింపండి',
+      step2: 'మేము లభ్యతను తనిఖీ చేస్తాము',
+      step3: 'నిర్ధారణ మరియు తదుపరి సహాయం',
+      formHeading: 'బుకింగ్ వివరాలు',
+      fullName: 'పూర్తి పేరు',
+      phone: 'ఫోన్ నంబర్',
+      eventType: 'వేడుక రకం',
+      date: 'కావలసిన తేదీ',
+      details: 'సందేశం / అదనపు సమాచారం',
+      submit: 'బుకింగ్ అభ్యర్థన పంపండి',
+      marriage: 'వివాహం',
+      birthday: 'పుట్టినరోజు',
+      puja: 'పూజ',
+      other: 'ఇతరాలు',
+      success: 'బుకింగ్ అభ్యర్థన విజయవంతంగా పంపబడింది! మేము మిమ్మల్ని సంప్రదిస్తాము.',
+      failure: 'అభ్యర్థన విఫలమైంది. దయచేసి మళ్లీ ప్రయత్నించండి.'
     }
   }
 };

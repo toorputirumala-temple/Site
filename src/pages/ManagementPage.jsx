@@ -1,14 +1,42 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import bottomBorder from "../assets/title-img-orange.svg";
-import member1 from "../images/member1.jpeg"
-import member2 from "../images/member2.jpeg"
-import member3 from "../images/member3.jpeg"
-import member4 from "../images/member4.jpeg"
-import member5 from "../images/member5.jpeg"
+import member1 from "../images/member1.jpeg";
+import member2 from "../images/member2.jpeg";
+import member3 from "../images/member3.jpeg";
+import member4 from "../images/member4.jpeg";
+import member5 from "../images/member5.jpeg";
 
-const TeamMember = ({ name, role, description, image }) => {
+const TeamMember = ({ name, role, image, delay }) => {
+  const ref = useRef();
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setVisible(true), delay);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  }, [delay]);
+
   return (
-    <div className="w-64 m-4 flex flex-col items-center">
+   <div
+  ref={ref}
+  className={`w-64 m-4 flex flex-col items-center transition-all duration-500 ease-out
+  hover:-translate-y-3 hover:scale-105 hover:shadow-2xl cursor-pointer
+  ${
+    visible
+      ? "opacity-100 translate-y-0 scale-100"
+      : "opacity-0 translate-y-10 scale-95"
+  }`}
+>
+      {/* IMAGE */}
       <div className="relative w-full h-80">
         <img
           src={image}
@@ -16,13 +44,9 @@ const TeamMember = ({ name, role, description, image }) => {
           className="w-full h-full object-cover rounded-lg"
         />
       </div>
-      <div
-        className="relative mt-2 text-center"
-        style={{
-          width: "100%",
-          paddingBottom: "0.5rem",
-        }}
-      >
+
+      {/* TEXT */}
+      <div className="relative mt-2 text-center w-full pb-2">
         <div className="border-t-2 border-orange-500 pt-2">
           <div
             className="absolute -bottom-2 left-1/2 transform -translate-x-1/2"
@@ -34,10 +58,10 @@ const TeamMember = ({ name, role, description, image }) => {
               borderBottomWidth: "0",
               width: "0",
               height: "0",
-              content: "",
             }}
           />
         </div>
+
         <p className="font-semibold text-[#ef5521ff]">{name}</p>
         <p className="text-sm">{role}</p>
       </div>
@@ -47,44 +71,33 @@ const TeamMember = ({ name, role, description, image }) => {
 
 const ManagementPage = ({ id }) => {
   const committeeMembers = [
-    {
-      name: "",
-      role: "కమిటీ సభ్యులు",
-      image: member1
-    },
-    {
-      name: "",
-      role: "కమిటీ సభ్యులు",
-      image: member2
-    },
-    {
-      name: "",
-      role: "కమిటీ సభ్యులు",
-      image: member3
-    },
-    {
-      name: "",
-      role: "కమిటీ సభ్యులు",
-      image: member4
-    },
-    {
-      name: "",
-      role: "కమిటీ సభ్యులు",
-      image: member5
-    }
+    { name: "", role: "కమిటీ సభ్యులు", image: member1 },
+    { name: "", role: "కమిటీ సభ్యులు", image: member2 },
+    { name: "", role: "కమిటీ సభ్యులు", image: member3 },
+    { name: "", role: "కమిటీ సభ్యులు", image: member4 },
+    { name: "", role: "కమిటీ సభ్యులు", image: member5 },
   ];
 
   return (
-    <div id={id} className="bg-[#fff7e7] w-full min-h-[100vh] pt-20 pb-10">
+    <div id={id} className="bg-gradient-to-b from-orange-50 to-[#F07A2A] w-full min-h-[100vh] pt-20 pb-10">
+      
+      {/* TITLE */}
       <h2 className="font-bold md:text-3xl xs:text-xl flex justify-center text-[#ef5521ff]">
         దేవాలయ పాలక మండలి
       </h2>
+
       <div className="flex justify-center mt-4">
         <img src={bottomBorder} alt="Bottom Border" className="md:w-1/4" />
       </div>
+
+      {/* MEMBERS */}
       <div className="flex flex-wrap justify-center mt-8">
         {committeeMembers.map((member, index) => (
-          <TeamMember key={`committee-${index}`} {...member} />
+          <TeamMember
+            key={`committee-${index}`}
+            {...member}
+            delay={index * 200} // 🔥 stagger animation
+          />
         ))}
       </div>
     </div>

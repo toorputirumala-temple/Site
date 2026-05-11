@@ -6,16 +6,38 @@ const ContactPage = ({ id }) => {
 
   return (
     <div
-      className="flex flex-col md:flex-row bg-orange-100 w-full min-h-[50vh] px-8 py-16"
+      className="flex flex-col md:flex-row bg-orange-200 w-full min-h-[50vh] px-8 py-16"
       id={id}
     >
-      <div className="left w-full md:w-1/2 flex flex-col align-center justify-center p-8">
-        <div className="flex flex-col align-center justify-center leading-9">
-          <h1 className="font-bold text-2xl text-red-900 underline mb-4">{t.nav.contact} & {t.details.location}</h1>
+      {/* LEFT → CONTACT (moved here) */}
+      <div className="left bg-white rounded-3xl shadow-lg w-full md:w-1/2 p-8 flex flex-col justify-center">
+        <h2 className="mb-6 text-4xl tracking-tight font-extrabold text-center text-red-900">
+          {t.nav.contact}
+        </h2>
+        <p className="text-lg text-center text-gray-700 font-medium">
+          Sridevi Bhoodevi Sametha Sri Prasanna Venkateswara Swamy Devasthanam<br/>
+          (Toorpu Tirumala)<br/><br/>
+          Balabhadrapuram village, Biccavolu mandal<br/>
+          East Godavari district, Andhra Pradesh, India<br/>
+          PIN: 533343<br/><br/>
+        </p>
+      </div>
+
+      {/* RIGHT → MAP (moved here) */}
+      <div className="right w-full md:w-1/2 flex flex-col justify-center p-8">
+        <div className="flex flex-col justify-center leading-9">
+          <h1 className="font-bold text-2xl text-red-900 underline mb-4">
+            {t.nav.contact} & {t.details.location}
+          </h1>
+
           <h1 className="font-bold text-xl text-red-900 leading-9 mb-8">
             {t.details.locationVal}
           </h1>
-          <h1 className="font-bold text-2xl text-red-900 underline mb-4">Map Location:</h1>
+
+          <h1 className="font-bold text-2xl text-red-900 underline mb-4">
+            Map Location:
+          </h1>
+
           <iframe
             title="Temple Map Location"
             width="100%"
@@ -26,19 +48,6 @@ const ContactPage = ({ id }) => {
             src="https://maps.google.com/maps?q=16.9583,82.0056&hl=en&z=14&output=embed"
           ></iframe>
         </div>
-      </div>
-      <div className="right bg-white rounded-3xl shadow-lg w-full md:w-1/2 p-8 flex flex-col justify-center">
-        <h2 className="mb-6 text-4xl tracking-tight font-extrabold text-center text-red-900">
-          {t.nav.contact}
-        </h2>
-        <p className="text-lg text-center text-gray-700 font-medium">
-          Sridevi Bhoodevi Sametha Sri Prasanna Venkateswara Swamy Devasthanam<br/>
-          (Toorpu Tirumala)<br/><br/>
-          Balabhadrapuram village, Biccavolu mandal<br/>
-          East Godavari district, Andhra Pradesh, India<br/>
-          PIN: 533343<br/><br/>
-          <em>Note: No official temple trust or government registration contact details are available online.</em>
-        </p>
       </div>
     </div>
   );
