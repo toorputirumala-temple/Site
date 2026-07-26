@@ -6,13 +6,14 @@ import toranLeft from "../images/Toran-left.svg";
 import toranRight from "../images/Toran-right.svg";
 import diya from "../images/diya.gif";
 import { useLanguage } from "../contexts/LanguageContext";
+import RotatingFlowers from "../components/RotatingFlowers";
 
 const LandingPage = () => {
   const { t } = useLanguage();
   
   return (
     <div
-      className="h-[100vh] w-full bg-[#fcf0d8] relative"
+      className="h-[100vh] w-full bg-[#fcf0d8] relative overflow-hidden"
       // style={{
       //   backgroundImage: `url(${bgTemple})`,
       //   backgroundRepeat: "no-repeat",
@@ -20,6 +21,8 @@ const LandingPage = () => {
       //   backgroundPosition: "center",
       // }}
     >
+      {/* Rotating flower background */}
+      <RotatingFlowers tintColor="rgba(212,175,55,0.7)" />
       {/* Left Toran */}
       <div
         className="absolute top-[75px] left-0 md:h-[450px] w-[50vw] bg-no-repeat bg-left bg-contain sm:h-[250px] xs:h-[250px] animate-slideInLeft"
@@ -45,19 +48,27 @@ const LandingPage = () => {
 
         }}
       ></div>
-<div className="absolute top-[10%] w-full text-center z-[100] px-4">
+<div className="absolute top-[120px] md:top-[160px] w-full text-center z-[100] px-4 md:px-12 flex flex-col items-center justify-center">
   <h3
-    className="templename font-bold leading-tight"
+    className="templename font-extrabold leading-tight tracking-wide"
     style={{
-      fontSize: "2.75rem", /* Custom size between 4xl (2.25rem) and 5xl (3rem) */
-      background: "linear-gradient(90deg, rgba(253, 190, 87, 1) 0%, rgba(252, 187, 88, 1) 10%, rgba(244, 119, 40, 1) 40%, rgba(244, 119, 40, 1) 100%)",
-      WebkitBackgroundClip: "text",
-      WebkitTextFillColor: "transparent",
+      fontSize: "clamp(1.50rem, 3.5vw, 3.25rem)",
+      fontFamily: "'Yatra One', sans-serif",
+      color: "#800808",
+      textShadow: "1px 1px 0px #fff, 2px 2px 5px rgba(212, 175, 55, 0.5)",
+      letterSpacing: "0.03em",
     }}
   >
     {t.hero.title}
   </h3>
-  <p className="text-xl top-[20%] md:text-2xl font-semibold mt-4 text-[#f47728]">
+  <div className="w-24 md:w-36 h-[2px] bg-gradient-to-r from-transparent via-[#f47728] to-transparent my-3 md:my-4"></div>
+  <p 
+    className="text-base md:text-xl font-bold tracking-widest text-[#f47728] uppercase"
+    style={{
+      fontFamily: "'Outfit', sans-serif",
+      textShadow: "1px 1px 0px rgba(255, 255, 255, 0.5)",
+    }}
+  >
     {t.hero.subtitle}
   </p>
 </div>
@@ -114,26 +125,27 @@ const LandingPage = () => {
 
       {/* Base */}
       <div
-        className="absolute base bottom-0 w-full h-24"
+        className="absolute base bottom-0 w-full h-20 md:h-24 z-10"
         style={{
-          backgroundSize: "contain",
+          backgroundSize: "100% 100%",
+          backgroundRepeat: "no-repeat",
         }}
       ></div>
 
       {/* Aasan */}
       <div
-        className="absolute aasan bottom-[95px] md:bottom-[95px] w-full max-w-[400px] md:max-w-[695px] h-[200px] md:h-[240px] left-0 right-0 mx-auto xs:bottom-[62px]"
+        className="absolute aasan bottom-0 w-[320px] sm:w-[360px] md:w-[560px] lg:w-[620px] h-[90px] md:h-[130px] lg:h-[150px] left-0 right-0 mx-auto z-[15]"
         style={{
-          backgroundSize: "contain",
+          backgroundSize: "100% 100%",
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
+          backgroundPosition: "center bottom",
         }}
       ></div>
 
       {/* Middle Chakra */}
       <div
         className="absolute middle_chakra chakra animate-spin-slow
-        bottom-[200px] md:bottom-[250px] w-36 h-36 md:w-48 md:h-48 left-0 right-0 mx-auto"
+        bottom-[90px] sm:bottom-[110px] md:bottom-[150px] lg:bottom-[180px] w-40 h-40 sm:w-48 sm:h-48 md:w-72 md:h-72 lg:w-80 lg:h-80 left-0 right-0 mx-auto opacity-20 z-0"
         style={{
           backgroundSize: "contain",
           backgroundRepeat: "no-repeat",
@@ -143,14 +155,22 @@ const LandingPage = () => {
 
       {/* Devi Pic */}
       <div
-        className="absolute bottom-8 md:bottom-[40px] w-[250px] md:w-[420px] h-[250px] md:h-[420px] left-0 right-0 mx-auto z-10 animate-slideInUp"
+        className="absolute bottom-0 w-[300px] sm:w-[350px] md:w-[480px] lg:w-[540px] h-[320px] sm:h-[370px] md:h-[490px] lg:h-[550px] left-0 right-0 mx-auto z-20 animate-slideInUp overflow-hidden"
         style={{
-          backgroundImage: `url(${devi})`,
-          backgroundSize: "contain",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
+          borderRadius: "50% 50% 0 0",
+          border: "6px double #D4AF37",
+          boxShadow: "0 0 25px rgba(212, 175, 55, 0.6), inset 0 0 30px rgba(0,0,0,0.8)",
         }}
-      ></div>
+      >
+        <img
+          src={devi}
+          alt="Deities"
+          className="w-full h-full object-cover"
+          style={{
+            objectPosition: "center top",
+          }}
+        />
+      </div>
     </div>
   );
 };

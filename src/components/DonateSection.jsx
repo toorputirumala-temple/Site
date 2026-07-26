@@ -3,25 +3,29 @@ import { db } from '../firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import CloseIcon from '@mui/icons-material/Close';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useLanguage } from '../contexts/LanguageContext';
+
+const TEMPLE_UPI_ID  = "Q539768773@ybl";
+const TEMPLE_NAME    = "Sri Prasanna Venkateswara Swamy Temple";
+
+/* Quick-amount presets */
+const PRESETS = [51, 101, 251, 501, 1001];
+
+/* Detect mobile device */
+const isMobile = () =>
+  /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
+    typeof navigator !== 'undefined' ? navigator.userAgent : ''
+  );
 
 const DonateSection = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [step, setStep] = useState(1); // 1: Form, 2: QR Code
-  const [formData, setFormData] = useState({
-    name: '',
-    mobile: '',
-    amount: ''
-  });
-  const [loading, setLoading] = useState(false);
+  const { t } = useLanguage();
+  const [isOpen,   setIsOpen]   = useState(false);
+  const [step,     setStep]     = useState(1);
+  const [loading,  setLoading]  = useState(false);
+  const [formData, setFormData] = useState({ name: '', mobile: '', amount: '' });
 
-  // REPLACE THIS WITH THE ACTUAL TEMPLE UPI ID
-  const TEMPLE_UPI_ID = "kiranreddy0101-2@okaxis"; 
-  const TEMPLE_NAME = "Sri Prasanna Venkateswara Swamy Temple";
-
-  const handleInputChange = (e) => {
+  const handleInputChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,126 +34,319 @@ const DonateSection = () => {
       await addDoc(collection(db, 'donations'), {
         ...formData,
         amount: parseFloat(formData.amount),
-        timestamp: serverTimestamp()
+        timestamp: serverTimestamp(),
       });
       setStep(2);
-      toast.success("Details saved! Please scan the QR to pay.");
-    } catch (error) {
-      console.error("Error saving donation:", error);
-      toast.error("Failed to process. Please try again.");
+      toast.success(t.donate.successMsg);
+    } catch (err) {
+      console.error(err);
+      toast.error(t.donate.failMsg);
     } finally {
       setLoading(false);
     }
   };
 
-  const upiUrl = `upi://pay?pa=${TEMPLE_UPI_ID}&pn=${encodeURIComponent(TEMPLE_NAME)}&am=${formData.amount}&cu=INR`;
+  const upiUrl    = `upi://pay?pa=${TEMPLE_UPI_ID}&pn=${encodeURIComponent(TEMPLE_NAME)}&am=${formData.amount}&cu=INR`;
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(upiUrl)}`;
+
+  const openModal = () => { setIsOpen(true); setStep(1); };
+  const closeModal = () => setIsOpen(false);
 
   return (
     <>
-      {/* Floating Donate Button */}
+      {/* ── FLOATING BUTTON ──────────────────────────────── */}
       <button
-        onClick={() => { setIsOpen(true); setStep(1); }}
-        className="fixed bottom-8 right-8 z-[100] bg-red-600 text-white px-6 py-4 rounded-full font-bold shadow-2xl hover:bg-red-700 transition-all transform hover:scale-110 flex items-center gap-2 animate-bounce"
+        onClick={openModal}
+        className="fixed bottom-8 right-8 z-[100] flex items-center gap-2 px-5 py-3 rounded-full font-bold transition-all duration-300 hover:scale-110"
+        style={{
+          background:   'linear-gradient(135deg, #c8860a, #f5c842, #f47728)',
+          color:        '#1a0a00',
+          boxShadow:    '0 8px 30px rgba(244,119,40,0.55)',
+          fontFamily:   "'Outfit', sans-serif",
+          fontSize:     '0.95rem',
+          letterSpacing:'0.03em',
+          animation:    'pulse-glow 2.5s ease-in-out infinite',
+        }}
       >
-        <FavoriteIcon />
-        Donate Now
+        {/* Diya SVG icon */}
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C11.4 2 11 2.6 11 3C11 3.8 11.3 4.5 11.8 5H10C8.3 5 7 6.3 7 8V9H17V8C17 6.3 15.7 5 14 5H12.2C12.7 4.5 13 3.8 13 3C13 2.6 12.6 2 12 2Z" fill="#1a0a00"/>
+          <path d="M6 10L5 19C5 20.1 5.9 21 7 21H17C18.1 21 19 20.1 19 19L18 10H6Z" fill="#1a0a00" opacity="0.8"/>
+          <ellipse cx="12" cy="8.5" rx="5" ry="1.5" fill="#1a0a00" opacity="0.4"/>
+        </svg>
+        {t.donate.buttonLabel}
       </button>
 
-      {/* Modal Overlay */}
+      {/* Pulse animation */}
+      <style>{`
+        @keyframes pulse-glow {
+          0%, 100% { box-shadow: 0 8px 30px rgba(244,119,40,0.55); }
+          50%       { box-shadow: 0 8px 45px rgba(245,200,66,0.8); }
+        }
+      `}</style>
+
+      {/* ── MODAL ────────────────────────────────────────── */}
       {isOpen && (
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center px-4 bg-black/60 backdrop-blur-sm">
-          <div className="bg-white w-full max-w-md rounded-[2.5rem] shadow-2xl overflow-hidden relative">
-            <button 
-              onClick={() => setIsOpen(false)}
-              className="absolute top-6 right-6 text-gray-400 hover:text-gray-600 transition-colors"
+        <div
+          className="fixed inset-0 z-[1000] flex items-center justify-center px-4"
+          style={{ background: 'rgba(15,5,0,0.75)', backdropFilter: 'blur(6px)' }}
+          onClick={closeModal}
+        >
+          <div
+            className="w-full max-w-md relative overflow-hidden rounded-3xl"
+            onClick={e => e.stopPropagation()}
+            style={{
+              background:  'linear-gradient(160deg, #1a0a00 0%, #2d1200 100%)',
+              border:      '1px solid rgba(245,200,66,0.35)',
+              boxShadow:   '0 30px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(245,200,66,0.1) inset',
+            }}
+          >
+            {/* Top gold stripe */}
+            <div className="h-1.5 w-full" style={{ background: 'linear-gradient(90deg, #c8860a, #f5c842, #f47728, #f5c842, #c8860a)' }} />
+
+            {/* Close */}
+            <button
+              onClick={closeModal}
+              className="absolute top-5 right-5 w-8 h-8 flex items-center justify-center rounded-full transition-all"
+              style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,240,200,0.6)' }}
             >
-              <CloseIcon />
+              <CloseIcon fontSize="small" />
             </button>
 
             {step === 1 ? (
               <div className="p-8">
-                <div className="text-center mb-8">
-                  <div className="bg-red-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <FavoriteIcon className="text-red-500" fontSize="large" />
+                {/* Header */}
+                <div className="text-center mb-7">
+                  {/* Gold divider */}
+                  <div className="flex items-center justify-center gap-2 mb-4">
+                    <div className="h-px w-12" style={{ background: 'linear-gradient(to right, transparent, #f5c842)' }} />
+                    <span style={{ color: '#f5c842', fontSize: '0.7rem', letterSpacing: '0.2em' }}>✦</span>
+                    <div className="h-px w-24" style={{ background: 'linear-gradient(90deg, #f5c842, #f47728, #f5c842)' }} />
+                    <span style={{ color: '#f5c842', fontSize: '0.7rem', letterSpacing: '0.2em' }}>✦</span>
+                    <div className="h-px w-12" style={{ background: 'linear-gradient(to left, transparent, #f5c842)' }} />
                   </div>
-                  <h2 className="text-3xl font-bold text-[#182856]">Temple Donation</h2>
-                  <p className="text-gray-500 mt-2">Support our temple's growth and activities</p>
+
+                  <p className="text-xs font-semibold tracking-[0.25em] uppercase mb-1"
+                    style={{ color: '#f5c842', fontFamily: "'Outfit', sans-serif" }}>
+                    ॐ నమో వేంకటేశాయ
+                  </p>
+                  <h2 className="text-2xl font-black mb-1"
+                    style={{
+                      fontFamily: "'Yatra One', sans-serif",
+                      background: 'linear-gradient(135deg, #f5c842, #f47728)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                    }}>
+                    {t.donate.modalTitle}
+                  </h2>
+                  <p className="text-sm" style={{ color: 'rgba(255,240,200,0.6)', fontFamily: "'Outfit', sans-serif" }}>
+                    {t.donate.modalSubtitle}
+                  </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Name */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Full Name</label>
+                    <label className="block text-xs font-bold tracking-widest uppercase mb-1.5"
+                      style={{ color: '#f5c842' }}>
+                      {t.donate.fullName}
+                    </label>
                     <input
-                      required
-                      type="text"
-                      name="name"
-                      placeholder="Enter your name"
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none"
-                      value={formData.name}
-                      onChange={handleInputChange}
+                      required type="text" name="name"
+                      placeholder={t.donate.namePlaceholder}
+                      value={formData.name} onChange={handleInputChange}
+                      className="w-full rounded-xl px-4 py-3 text-sm outline-none"
+                      style={{
+                        background: 'rgba(255,255,255,0.07)',
+                        border: '1px solid rgba(245,200,66,0.25)',
+                        color: '#fff',
+                      }}
+                      onFocus={e => e.target.style.borderColor = '#f5c842'}
+                      onBlur={e  => e.target.style.borderColor = 'rgba(245,200,66,0.25)'}
                     />
                   </div>
+
+                  {/* Mobile */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Mobile Number</label>
+                    <label className="block text-xs font-bold tracking-widest uppercase mb-1.5"
+                      style={{ color: '#f5c842' }}>
+                      {t.donate.mobile}
+                    </label>
                     <input
-                      required
-                      type="tel"
-                      name="mobile"
-                      placeholder="10-digit mobile number"
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none"
-                      value={formData.mobile}
-                      onChange={handleInputChange}
+                      required type="tel" name="mobile"
+                      placeholder={t.donate.mobilePlaceholder}
+                      value={formData.mobile} onChange={handleInputChange}
+                      className="w-full rounded-xl px-4 py-3 text-sm outline-none"
+                      style={{
+                        background: 'rgba(255,255,255,0.07)',
+                        border: '1px solid rgba(245,200,66,0.25)',
+                        color: '#fff',
+                      }}
+                      onFocus={e => e.target.style.borderColor = '#f5c842'}
+                      onBlur={e  => e.target.style.borderColor = 'rgba(245,200,66,0.25)'}
                     />
                   </div>
+
+                  {/* Amount presets */}
                   <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-1">Amount (₹)</label>
+                    <label className="block text-xs font-bold tracking-widest uppercase mb-1.5"
+                      style={{ color: '#f5c842' }}>
+                      {t.donate.amount}
+                    </label>
+                    <div className="flex flex-wrap gap-2 mb-2">
+                      {PRESETS.map(p => (
+                        <button
+                          key={p} type="button"
+                          onClick={() => setFormData({ ...formData, amount: String(p) })}
+                          className="px-3 py-1.5 rounded-lg text-xs font-bold transition-all"
+                          style={{
+                            background: formData.amount === String(p)
+                              ? 'linear-gradient(135deg, #f47728, #c45c00)'
+                              : 'rgba(255,255,255,0.07)',
+                            border: formData.amount === String(p)
+                              ? '1px solid #f5c842'
+                              : '1px solid rgba(245,200,66,0.2)',
+                            color: formData.amount === String(p) ? '#fff' : 'rgba(255,240,200,0.7)',
+                          }}
+                        >
+                          ₹{p}
+                        </button>
+                      ))}
+                    </div>
                     <input
-                      required
-                      type="number"
-                      name="amount"
-                      min="1"
-                      placeholder="Enter amount"
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500 outline-none font-bold text-xl"
-                      value={formData.amount}
-                      onChange={handleInputChange}
+                      required type="number" name="amount" min="1"
+                      placeholder={t.donate.amountPlaceholder}
+                      value={formData.amount} onChange={handleInputChange}
+                      className="w-full rounded-xl px-4 py-3 text-sm font-bold outline-none"
+                      style={{
+                        background: 'rgba(255,255,255,0.07)',
+                        border: '1px solid rgba(245,200,66,0.25)',
+                        color: '#fff',
+                        colorScheme: 'dark',
+                      }}
+                      onFocus={e => e.target.style.borderColor = '#f5c842'}
+                      onBlur={e  => e.target.style.borderColor = 'rgba(245,200,66,0.25)'}
                     />
                   </div>
+
+                  {/* Submit */}
                   <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-red-600 text-white py-4 rounded-xl font-bold text-lg hover:bg-red-700 transition-colors shadow-lg mt-4 disabled:bg-gray-400"
+                    type="submit" disabled={loading}
+                    className="w-full py-3.5 rounded-2xl font-bold text-base transition-all duration-300 disabled:opacity-60 mt-2"
+                    style={{
+                      background: 'linear-gradient(135deg, #f5c842 0%, #f47728 60%, #c45c00 100%)',
+                      color: '#1a0a00',
+                      fontFamily: "'Outfit', sans-serif",
+                      boxShadow: '0 6px 24px rgba(244,119,40,0.5)',
+                    }}
                   >
-                    {loading ? "Processing..." : "Continue to Pay"}
+                    {loading ? t.donate.processing : t.donate.continuePay}
                   </button>
                 </form>
               </div>
             ) : (
-              <div className="p-10 text-center">
-                <h3 className="text-2xl font-bold text-[#182856] mb-2">Scan & Pay</h3>
-                <p className="text-gray-500 mb-8 font-semibold">Amount: ₹{formData.amount}</p>
-                
-                <div className="bg-gray-50 p-6 rounded-3xl border-2 border-dashed border-gray-200 mb-8">
-                  <img 
-                    src={qrCodeUrl} 
-                    alt="UPI QR Code" 
-                    className="mx-auto w-64 h-64 shadow-inner"
-                  />
-                </div>
+              /* ── QR STEP ── */
+              <div className="p-8 text-center">
+                <p className="text-xs font-semibold tracking-[0.25em] uppercase mb-1"
+                  style={{ color: '#f5c842', fontFamily: "'Outfit', sans-serif" }}>
+                  ఓం నమో వేంకటేశాయ
+                </p>
+                <h3 className="text-2xl font-black mb-1"
+                  style={{
+                    fontFamily: "'Yatra One', sans-serif",
+                    background: 'linear-gradient(135deg, #f5c842, #f47728)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}>
+                  {t.donate.scanPay}
+                </h3>
+                <p className="text-sm mb-6" style={{ color: 'rgba(255,240,200,0.6)' }}>
+                  {t.donate.amountLabel}: <span className="font-bold text-white">₹{formData.amount}</span>
+                </p>
 
-                <div className="space-y-4">
-                  <p className="text-xs text-gray-400 px-6">
-                    Scanning this QR will open your preferred UPI app (PhonePe, GPay, Paytm) with the amount pre-filled.
-                  </p>
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="w-full bg-[#182856] text-white py-3 rounded-xl font-bold hover:bg-opacity-90 transition-all"
-                  >
-                    Done
-                  </button>
-                </div>
+                {isMobile() ? (
+                  /* ── MOBILE: Pay button ── */
+                  <div className="space-y-4 mb-6">
+                    <p className="text-sm" style={{ color: 'rgba(255,240,200,0.55)' }}>
+                      Tap below to pay via Paytm or any UPI app
+                    </p>
+
+                    {/* Primary — Paytm deep-link */}
+                    <a
+                      href={`paytmmp://pay?pa=${TEMPLE_UPI_ID}&pn=${encodeURIComponent(TEMPLE_NAME)}&am=${formData.amount}&cu=INR`}
+                      className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-bold text-base transition-all"
+                      style={{
+                        background: 'linear-gradient(135deg, #002970, #00BAF2)',
+                        color: '#fff',
+                        boxShadow: '0 6px 24px rgba(0,186,242,0.35)',
+                        fontFamily: "'Outfit', sans-serif",
+                        textDecoration: 'none',
+                      }}
+                    >
+                      {/* Paytm-style P icon */}
+                      <span className="font-black text-xl" style={{ fontFamily: 'serif', color: '#00BAF2', background: '#fff', borderRadius: '50%', width: 28, height: 28, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem' }}>
+                        P
+                      </span>
+                      Pay ₹{formData.amount} via Paytm
+                    </a>
+
+                    {/* Fallback — generic UPI deep-link (PhonePe / GPay / etc.) */}
+                    <a
+                      href={`upi://pay?pa=${TEMPLE_UPI_ID}&pn=${encodeURIComponent(TEMPLE_NAME)}&am=${formData.amount}&cu=INR`}
+                      className="flex items-center justify-center gap-2 w-full py-3 rounded-2xl font-semibold text-sm transition-all"
+                      style={{
+                        background: 'rgba(255,255,255,0.07)',
+                        border: '1px solid rgba(245,200,66,0.3)',
+                        color: '#f5c842',
+                        textDecoration: 'none',
+                        fontFamily: "'Outfit', sans-serif",
+                      }}
+                    >
+                      Open in any UPI App
+                    </a>
+                  </div>
+                ) : (
+                  /* ── DESKTOP: QR code ── */
+                  <div className="relative mx-auto w-fit mb-6">
+                    <div
+                      className="p-4 rounded-2xl"
+                      style={{
+                        background: '#fff',
+                        border: '3px solid #f5c842',
+                        boxShadow: '0 0 30px rgba(245,200,66,0.3)',
+                      }}
+                    >
+                      <img src={qrCodeUrl} alt="UPI QR Code" className="w-56 h-56 block" />
+                    </div>
+                    {/* Corner accents */}
+                    {['top-0 left-0', 'top-0 right-0', 'bottom-0 left-0', 'bottom-0 right-0'].map((pos, i) => (
+                      <div key={i} className={`absolute ${pos} w-4 h-4 rounded-sm`}
+                        style={{ background: '#f47728', opacity: 0.8 }} />
+                    ))}
+                  </div>
+                )}
+
+                <p className="text-xs mb-6 px-4" style={{ color: 'rgba(255,240,200,0.5)' }}>
+                  {t.donate.qrNote}
+                </p>
+
+                <button
+                  onClick={closeModal}
+                  className="w-full py-3 rounded-2xl font-bold transition-all"
+                  style={{
+                    background: 'rgba(255,255,255,0.08)',
+                    border: '1px solid rgba(245,200,66,0.3)',
+                    color: '#f5c842',
+                    fontFamily: "'Outfit', sans-serif",
+                  }}
+                >
+                  {t.donate.done}
+                </button>
               </div>
             )}
+
+            {/* Bottom gold stripe */}
+            <div className="h-1.5 w-full" style={{ background: 'linear-gradient(90deg, #c8860a, #f5c842, #f47728, #f5c842, #c8860a)' }} />
           </div>
         </div>
       )}

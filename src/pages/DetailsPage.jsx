@@ -1,5 +1,6 @@
 import React from "react";
 import { useLanguage } from "../contexts/LanguageContext";
+import RotatingFlowers from "../components/RotatingFlowers";
 
 const DetailsPage = ({ id }) => {
   const { t } = useLanguage();
@@ -7,8 +8,10 @@ const DetailsPage = ({ id }) => {
   return (
     <div
       id={id}
-      className="w-full min-h-[50vh] flex flex-col md:flex-row py-16 px-4 bg-gradient-to-b from-white to-orange-50"
+      className="w-full min-h-[50vh] flex flex-col md:flex-row py-16 px-4 bg-gradient-to-b from-white to-orange-50 relative overflow-hidden"
     >
+      {/* Rotating flower background */}
+      <RotatingFlowers tintColor="rgba(244,119,40,0.6)" />
       {/* 🔥 LEFT → IMAGE AREA (Now set to relative) */}
       <div className="w-full md:w-2/5 flex justify-center items-center mb-8 md:mb-0 relative">
         

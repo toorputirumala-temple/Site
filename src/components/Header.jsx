@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-import logo from "../images/navd.jpg";
+// Logo is served from the public folder — no import needed
 import { useLanguage } from "../contexts/LanguageContext";
 
 const Header = () => {
@@ -35,7 +35,7 @@ const Header = () => {
   
   const handleClick = (index, id) => {
     // If the gallery is clicked, force update
-    if (index === 4) { // Assuming index 4 corresponds to Gallery
+    if (id === "gallery") {
       forceUpdate();
     }
     setActiveIndex(index);
@@ -54,7 +54,7 @@ const Header = () => {
 
   return (
     <div
-      className="flex items-center justify-between px-8 pt-5 pb-2 fixed w-full z-50"
+      className="flex items-center justify-between px-6 pt-2 pb-1 fixed w-full z-50"
       style={{
         background:
           "linear-gradient(90deg, rgba(253, 190, 87, 1) 0%, rgba(252, 187, 88, 1) 10%, rgba(244, 119, 40, 1) 40%, rgba(244, 119, 40, 1) 100%)",
@@ -64,11 +64,15 @@ const Header = () => {
       }}
     >
       <div className="nav-pattern"></div>
-      <div className="logo h-12 w-12 rounded-full">
-        <img src={logo} alt="Logo" className="h-12 w-12 rounded-full" />
-      </div>
 
       {/* Desktop Navigation */}
+      <div className="logo h-16 w-16 rounded-full overflow-hidden flex-shrink-0">
+        <img
+          src="/templedata/WhatsApp_Image_2026-05-23_at_4.12.41_PM-removebg-preview.png"
+          alt="Temple Logo"
+          className="h-full w-full object-contain"
+        />
+      </div>
       <div className="hidden md:flex items-center gap-6">
         <nav>
           <ul className="flex gap-10 font-bold items-center">
@@ -76,55 +80,47 @@ const Header = () => {
               className={`nav-item text-white cursor-pointer ${
                 activeIndex === 0 ? "text-blue-900" : ""
               }`}
-              onClick={() => handleClick(0, "history")}
-            >
-              {t.nav.history}
-            </li>
-            <li
-              className={`nav-item text-white cursor-pointer ${
-                activeIndex === 1 ? "text-blue-900" : ""
-              }`}
-              onClick={() => handleClick(1, "events")}
+              onClick={() => handleClick(0, "events")}
             >
               {t.nav.events}
             </li>
             <li
               className={`nav-item text-white cursor-pointer ${
-                activeIndex === 2 ? "text-blue-900" : ""
+                activeIndex === 1 ? "text-blue-900" : ""
               }`}
-              onClick={() => handleClick(2, "details")}
+              onClick={() => handleClick(1, "details")}
             >
               {t.nav.details}
             </li>
             <li
               className={`nav-item text-white cursor-pointer ${
-                activeIndex === 3 ? "text-blue-900" : ""
+                activeIndex === 2 ? "text-blue-900" : ""
               }`}
-              onClick={() => handleClick(3, "management")}
+              onClick={() => handleClick(2, "management")}
             >
               {t.nav.management}
             </li>
             <li
               className={`nav-item text-white cursor-pointer ${
-                activeIndex === 4 ? "text-blue-900" : ""
+                activeIndex === 3 ? "text-blue-900" : ""
               }`}
-              onClick={() => handleClick(4, "gallery")}
+              onClick={() => handleClick(3, "gallery")}
             >
               {t.nav.gallery}
             </li>
             <li
               className={`nav-item text-white cursor-pointer ${
-                activeIndex === 5 ? "text-blue-900" : ""
+                activeIndex === 4 ? "text-blue-900" : ""
               }`}
-              onClick={() => handleClick(5, "booking")}
+              onClick={() => handleClick(4, "booking")}
             >
               {t.booking.navLink}
             </li>
             <li
               className={`nav-item text-white cursor-pointer ${
-                activeIndex === 6 ? "text-blue-900" : ""
+                activeIndex === 5 ? "text-blue-900" : ""
               }`}
-              onClick={() => handleClick(6, "contact")}
+              onClick={() => handleClick(5, "contact")}
             >
               {t.nav.contact}
             </li>
@@ -165,55 +161,47 @@ const Header = () => {
             className={`nav-item text-white cursor-pointer ${
               activeIndex === 0 ? "text-blue-900" : ""
             }`}
-            onClick={() => handleClick(0, "history")}
-          >
-            {t.nav.history}
-          </li>
-          <li
-            className={`nav-item text-white cursor-pointer ${
-              activeIndex === 1 ? "text-blue-900" : ""
-            }`}
-            onClick={() => handleClick(1, "events")}
+            onClick={() => handleClick(0, "events")}
           >
             {t.nav.events}
           </li>
           <li
             className={`nav-item text-white cursor-pointer ${
-              activeIndex === 2 ? "text-blue-900" : ""
+              activeIndex === 1 ? "text-blue-900" : ""
             }`}
-            onClick={() => handleClick(2, "details")}
+            onClick={() => handleClick(1, "details")}
           >
             {t.nav.details}
           </li>
           <li
             className={`nav-item text-white cursor-pointer ${
-              activeIndex === 3 ? "text-blue-900" : ""
+              activeIndex === 2 ? "text-blue-900" : ""
             }`}
-            onClick={() => handleClick(3, "management")}
+            onClick={() => handleClick(2, "management")}
           >
             {t.nav.management}
           </li>
           <li
             className={`nav-item text-white cursor-pointer ${
-              activeIndex === 4 ? "text-blue-900" : ""
+              activeIndex === 3 ? "text-blue-900" : ""
             }`}
-            onClick={() => handleClick(4, "gallery")}
+            onClick={() => handleClick(3, "gallery")}
           >
             {t.nav.gallery}
           </li>
           <li
             className={`nav-item text-white cursor-pointer ${
-              activeIndex === 5 ? "text-blue-900" : ""
+              activeIndex === 4 ? "text-blue-900" : ""
             }`}
-            onClick={() => handleClick(5, "booking")}
+            onClick={() => handleClick(4, "booking")}
           >
             {t.booking.navLink}
           </li>
           <li
             className={`nav-item text-white cursor-pointer ${
-              activeIndex === 6 ? "text-blue-900" : ""
+              activeIndex === 5 ? "text-blue-900" : ""
             }`}
-            onClick={() => handleClick(6, "contact")}
+            onClick={() => handleClick(5, "contact")}
           >
             {t.nav.contact}
           </li>

@@ -40,9 +40,11 @@ export const translations = {
     },
     events: {
       title: 'Events & Facilities',
+      recentUpcoming: 'Recent & Upcoming Events',
       eventsText: 'There are annual celebrations. Every Saturday, there is a divine Annadanam Karyakram (holy community feast). Devotees reportedly walk long distances (7 Saturdays) for blessings.',
       facilities: 'Facilities',
-      facilitiesText: 'The temple has parking and a hall for annadanam on Saturdays. The site is open to the public during stated hours and standard temple norms (dress code) apply. No commercial businesses are noted on-site.'
+      facilitiesText: 'The temple has parking and a hall for annadanam on Saturdays. The site is open to the public during stated hours and standard temple norms (dress code) apply. No commercial businesses are noted on-site.',
+      noEvents: 'No upcoming events scheduled at the moment.'
     },
     booking: {
       navLink: 'Book Mandap',
@@ -65,6 +67,37 @@ export const translations = {
       other: 'Other',
       success: 'Booking request sent successfully! We will contact you.',
       failure: 'Failed to send request. Please try again.'
+    },
+    contact: {
+      heading: 'Contact & Location',
+      mapLabel: 'Map Location:',
+      address: 'Sridevi Bhoodevi Sametha Sri Prasanna Venkateswara Swamy Devasthanam (Toorpu Tirumala), Balabhadrapuram village, Biccavolu mandal, East Godavari district, Andhra Pradesh, India. PIN: 533343'
+    },
+    management: {
+      title: 'Temple Management Committee',
+      role: 'Committee Member'
+    },
+    footer: {
+      copyright: 'Sridevi Bhoodevi Sametha Sri Prasanna Venkateswara Swamy Devasthanam, Balabhadrapuram.'
+    },
+    donate: {
+      buttonLabel: 'Donate Now',
+      modalTitle: 'Temple Donation',
+      modalSubtitle: "Support our temple's growth and activities",
+      fullName: 'Full Name',
+      namePlaceholder: 'Enter your name',
+      mobile: 'Mobile Number',
+      mobilePlaceholder: '10-digit mobile number',
+      amount: 'Amount (₹)',
+      amountPlaceholder: 'Enter amount',
+      processing: 'Processing...',
+      continuePay: 'Continue to Pay',
+      scanPay: 'Scan & Pay',
+      amountLabel: 'Amount',
+      qrNote: 'Scanning this QR will open your preferred UPI app (PhonePe, GPay, Paytm) with the amount pre-filled.',
+      done: 'Done',
+      successMsg: 'Details saved! Please scan the QR to pay.',
+      failMsg: 'Failed to process. Please try again.'
     }
   },
   te: {
@@ -72,7 +105,7 @@ export const translations = {
       history: 'చరిత్ర',
       details: 'వివరాలు',
       events: 'కార్యక్రమాలు',
-      management: 'ఆడಳಿತ మಂಡలి',
+      management: 'పాలక మండలి',
       gallery: 'గ్యాలరీ',
       contact: 'సంప్రదించండి'
     },
@@ -104,9 +137,11 @@ export const translations = {
     },
     events: {
       title: 'కార్యక్రమాలు & సౌకర్యాలు',
+      recentUpcoming: 'తాజా & రాబోయే కార్యక్రమాలు',
       eventsText: 'వార్షిక ఉత్సవాలు ఘనంగా జరుగుతాయి. ప్రతి శనివారం దేవాలయంలో అన్నదాన కార్యక్రమం నిర్వహించబడుతుంది. భక్తులు ఆశీర్వాదాల కోసం (7 శనివారాలు) కాలినడకన వస్తారు.',
       facilities: 'సౌకర్యాలు',
-      facilitiesText: 'ఆలయంలో శనివారాల్లో అన్నదానం కోసం హాల్ మరియు పార్కింగ్ ఉంది. ఆలయం నిర్ణీత వేళల్లో ప్రజలకు తెరచి ఉంటుంది, సాంప్రదాయ దుస్తుల నియమాలు వర్తిస్తాయి.'
+      facilitiesText: 'ఆలయంలో శనివారాల్లో అన్నదానం కోసం హాల్ మరియు పార్కింగ్ ఉంది. ఆలయం నిర్ణీత వేళల్లో ప్రజలకు తెరచి ఉంటుంది, సాంప్రదాయ దుస్తుల నియమాలు వర్తిస్తాయి.',
+      noEvents: 'ప్రస్తుతం ఏ కార్యక్రమాలు నిర్ణయించబడలేదు.'
     },
     booking: {
       navLink: 'మండపం బుకింగ్',
@@ -129,6 +164,37 @@ export const translations = {
       other: 'ఇతరాలు',
       success: 'బుకింగ్ అభ్యర్థన విజయవంతంగా పంపబడింది! మేము మిమ్మల్ని సంప్రదిస్తాము.',
       failure: 'అభ్యర్థన విఫలమైంది. దయచేసి మళ్లీ ప్రయత్నించండి.'
+    },
+    contact: {
+      heading: 'సంప్రదింపు & స్థానం',
+      mapLabel: 'మ్యాప్ స్థానం:',
+      address: 'శ్రీదేవి భూదేవి సమేత శ్రీ ప్రసన్న వేంకటేశ్వర స్వామి దేవస్థానం (తూర్పు తిరుమల), బలభద్రపురం గ్రామం, బిక్కవోలు మండలం, తూర్పు గోదావరి జిల్లా, ఆంధ్రప్రదేశ్, భారతదేశం. PIN: 533343'
+    },
+    management: {
+      title: 'దేవాలయ పాలక మండలి',
+      role: 'కమిటీ సభ్యుడు'
+    },
+    footer: {
+      copyright: 'శ్రీదేవి భూదేవి సమేత శ్రీ ప్రసన్న వేంకటేశ్వర స్వామి దేవస్థానం, బలభద్రపురం.'
+    },
+    donate: {
+      buttonLabel: 'విరాళం ఇవ్వండి',
+      modalTitle: 'దేవాలయ విరాళం',
+      modalSubtitle: 'మా దేవాలయ వృద్ధికి మరియు కార్యక్రమాలకు మద్దతు ఇవ్వండి',
+      fullName: 'పూర్తి పేరు',
+      namePlaceholder: 'మీ పేరు నమోదు చేయండి',
+      mobile: 'మొబైల్ నంబర్',
+      mobilePlaceholder: '10 అంకెల మొబైల్ నంబర్',
+      amount: 'మొత్తం (₹)',
+      amountPlaceholder: 'మొత్తం నమోదు చేయండి',
+      processing: 'ప్రాసెస్ అవుతోంది...',
+      continuePay: 'చెల్లింపుకు కొనసాగండి',
+      scanPay: 'స్కాన్ & చెల్లించండి',
+      amountLabel: 'మొత్తం',
+      qrNote: 'ఈ QR స్కాన్ చేయడం ద్వారా మీకు ఇష్టమైన UPI యాప్ (PhonePe, GPay, Paytm) తెరుచుకుంటుంది.',
+      done: 'పూర్తయింది',
+      successMsg: 'వివరాలు సేవ్ అయ్యాయి! చెల్లించడానికి QR స్కాన్ చేయండి.',
+      failMsg: 'విఫలమైంది. దయచేసి మళ్లీ ప్రయత్నించండి.'
     }
   }
 };

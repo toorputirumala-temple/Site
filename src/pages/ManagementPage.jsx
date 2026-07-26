@@ -5,6 +5,8 @@ import member2 from "../images/member2.jpeg";
 import member3 from "../images/member3.jpeg";
 import member4 from "../images/member4.jpeg";
 import member5 from "../images/member5.jpeg";
+import RotatingFlowers from "../components/RotatingFlowers";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const TeamMember = ({ name, role, image, delay }) => {
   const ref = useRef();
@@ -70,20 +72,23 @@ const TeamMember = ({ name, role, image, delay }) => {
 };
 
 const ManagementPage = ({ id }) => {
+  const { t } = useLanguage();
   const committeeMembers = [
-    { name: "", role: "కమిటీ సభ్యులు", image: member1 },
-    { name: "", role: "కమిటీ సభ్యులు", image: member2 },
-    { name: "", role: "కమిటీ సభ్యులు", image: member3 },
-    { name: "", role: "కమిటీ సభ్యులు", image: member4 },
-    { name: "", role: "కమిటీ సభ్యులు", image: member5 },
+    { name: "", role: t.management.role, image: member1 },
+    { name: "", role: t.management.role, image: member2 },
+    { name: "", role: t.management.role, image: member3 },
+    { name: "", role: t.management.role, image: member4 },
+    { name: "", role: t.management.role, image: member5 },
   ];
 
   return (
-    <div id={id} className="bg-gradient-to-b from-orange-50 to-[#F07A2A] w-full min-h-[100vh] pt-20 pb-10">
+    <div id={id} className="bg-gradient-to-b from-orange-50 to-[#F07A2A] w-full min-h-[100vh] pt-20 pb-10 relative overflow-hidden">
+      {/* Rotating flower background */}
+      <RotatingFlowers tintColor="rgba(255,255,255,0.5)" />
       
       {/* TITLE */}
       <h2 className="font-bold md:text-3xl xs:text-xl flex justify-center text-[#ef5521ff]">
-        దేవాలయ పాలక మండలి
+        {t.management.title}
       </h2>
 
       <div className="flex justify-center mt-4">
