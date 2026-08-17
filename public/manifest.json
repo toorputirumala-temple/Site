@@ -1,0 +1,20 @@
+{
+  "name": "Sridevi Bhoodevi Sametha Sri Prasanna Venkateswara Swamy Devasthanam",
+  "short_name": "Sri Prasanna Venkateswara Swamy Temple",
+  "icons": [
+    {
+      "src": "/templedata/WhatsApp_Image_2026-05-23_at_4.12.41_PM-removebg-preview.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#f47728",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}

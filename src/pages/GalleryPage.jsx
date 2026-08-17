@@ -248,9 +248,9 @@ const GalleryPage = ({ id }) => {
         .track-right-42 { animation: marqueeRight 42s linear infinite; }
         .track-left-30  { animation: marqueeLeft  30s linear infinite; }
 
-        .gallery-rows:hover .track-left-35  { animation-duration: 140s; }
-        .gallery-rows:hover .track-right-42 { animation-duration: 168s; }
-        .gallery-rows:hover .track-left-30  { animation-duration: 120s; }
+        .gallery-rows:hover .marquee-track {
+          animation-play-state: paused;
+        }
 
         .gallery-card {
           flex-shrink: 0;
