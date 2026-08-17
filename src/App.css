@@ -194,35 +194,7 @@
 /* Custom responsive styles */
 @media (max-width: 1024px) {
   .events-section {
-      padding: 3rem 1rem;
-  }
-  .events-section h2 {
-      font-size: 2.5rem;
-  }
-  .events-section .box {
-      width: 50%;
-  }
-  .absolute.left-0.md\:h-\[300px\].w-\[50vw\] {
-      top: 60px;
-      height: 200px;
-      width: 50vw;
-  }
-  .absolute.left-\[730px\].md\:h-\[300px\].w-\[50vw\] {
-      top: 60px;
-      height: 200px;
-      left: 50vw;
-      transform: rotate(180deg) scaleY(-1);
-  }
-  h3.text-xl{
-    font-size: 16px;
-  }
-
-  .text-gray-700.group-hover\:text-gray-300{
-    font-size: 12px;
-  }
-  .h-12.w-12.mb-2{
-    height: 20px;
-    width: 20px;
+      padding: 2rem 1rem;
   }
 }
 
@@ -230,94 +202,6 @@
   .events-section h2 {
       font-size: 2rem;
   }
-  .events-section .box {
-      width: 100%;
-  }
-  .events-section{
-    padding: 0;
-  }
-  .w-screen {
-      padding: 0 1rem;
-  }
-  .absolute.left-0.md\:h-\[300px\].w-\[50vw\] {
-      top: 40px;
-      height: 150px;
-  }
-  .absolute.left-\[730px\].md\:h-\[300px\].w-\[50vw\] {
-      top: 40px;
-      height: 150px;
-  }
-
-  .flex.transition-transform.duration-500.ease-in-out{
-    width: 100%;
-  }
-}
-/* contact page media queryyyyyyyyyyyy */
-@media  (max-width:450px) {
-  #contact{
-    flex-direction: column;
-  }
-
-  .forms{
-    width: 100%;
-    padding: 0;
-  }
-  .right{
-    margin: 0.1rem;
-}
-}
-@media (max-width: 640px) {
-  .events-section h2 {
-      font-size: 1.75rem;
-  }
-  .events-section .box {
-      width: 100%;
-      padding: 1rem;
-  }
-  .w-screen {
-      padding: 0 0.5rem;
-  }
-  .absolute.left-0.md\:h-\[300px\].w-\[50vw\] {
-      top: 20px;
-      height: 100px;
-  }
-  .absolute.left-\[730px\].md\:h-\[300px\].w-\[50vw\] {
-      top: 20px;
-      height: 100px;
-  }
-  h3.text-xl{
-    font-size: 20px;
-  }
-
-  .text-gray-700.group-hover\:text-gray-300{
-    font-size:12px;
-  }
-  .h-12.w-12.mb-2{
-    height: 30px;
-    width: 30px;
-  }
-
-}
-
-@media (max-width: 480px) {
-  .events-section h2 {
-      font-size: 1.5rem;
-  }
-  .events-section .box {
-      padding: 0.5rem;
-  }
-  h3.text-xl{
-    font-size: 25px;
-  }
-
-  .text-gray-700.group-hover\:text-gray-300{
-    font-size:15px;
-  }
-  .h-12.w-12.mb-2{
-    height: 30px;
-    width: 30px;
-  }
-
 }
 /* History page */
 

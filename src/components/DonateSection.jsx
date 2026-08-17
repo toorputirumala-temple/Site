@@ -93,7 +93,7 @@ const DonateSection = () => {
           onClick={closeModal}
         >
           <div
-            className="w-full max-w-md relative overflow-hidden rounded-3xl"
+            className="w-full max-w-md relative overflow-hidden rounded-3xl max-h-[90vh] overflow-y-auto"
             onClick={e => e.stopPropagation()}
             style={{
               background:  'linear-gradient(160deg, #1a0a00 0%, #2d1200 100%)',

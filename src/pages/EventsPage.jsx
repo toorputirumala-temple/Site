@@ -144,7 +144,7 @@ const TempleEvent = ({ id }) => {
       </div>
 
       {/* ── MERGED EVENTS HIGHLIGHT CARD (overlaps the banner) ── */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4" style={{ marginTop: "-56px" }}>
+      <div className="relative z-10 max-w-4xl mx-auto px-4 mt-[-36px] sm:mt-[-48px] md:mt-[-56px]">
         <div
           className="group relative rounded-3xl overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-1"
           style={{ background: "#fff" }}
