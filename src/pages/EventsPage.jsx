@@ -27,7 +27,7 @@ const getDirectDriveUrl = (url) => {
 };
 
 const TempleEvent = ({ id }) => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -143,111 +143,59 @@ const TempleEvent = ({ id }) => {
         </div>
       </div>
 
-      {/* ── INFO CARDS (overlap the banner) ────────────────────── */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4" style={{ marginTop: "-56px" }}>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-
-          {/* Events Card */}
+      {/* ── MERGED EVENTS HIGHLIGHT CARD (overlaps the banner) ── */}
+      <div className="relative z-10 max-w-4xl mx-auto px-4" style={{ marginTop: "-56px" }}>
+        <div
+          className="group relative rounded-3xl overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-1"
+          style={{ background: "#fff" }}
+        >
+          {/* Top accent stripe */}
           <div
-            className="group relative rounded-3xl overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2"
-            style={{ background: "#fff" }}
-          >
-            {/* Top accent stripe */}
+            className="h-1.5 w-full"
+            style={{ background: "linear-gradient(90deg, #f47728, #fdb261, #c45c00)" }}
+          />
+          <div className="p-8 md:p-10 text-center">
+            {/* Icon circle */}
             <div
-              className="h-1.5 w-full"
-              style={{ background: "linear-gradient(90deg, #f47728, #fdb261, #f47728)" }}
-            />
-            <div className="p-8">
-              {/* Icon circle */}
-              <div
-                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md mx-auto transition-transform duration-300 group-hover:scale-110"
-                style={{
-                  background: "linear-gradient(135deg, #fff3e0, #ffe0b2)",
-                  border: "2px solid #f47728",
-                }}
-              >
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/8574/8574987.png"
-                  alt="Events"
-                  className="h-9 w-9"
-                />
-              </div>
-
-              <h3
-                className="text-center text-2xl font-extrabold mb-1"
-                style={{ color: "#182856", fontFamily: "'Outfit', sans-serif" }}
-              >
-                {t.nav.events}
-              </h3>
-              {/* Underline */}
-              <div className="w-12 h-1 rounded-full mx-auto mb-4" style={{ background: "#f47728" }} />
-
-              <p className="text-gray-600 leading-relaxed text-base text-justify">
-                {t.events.eventsText}
-              </p>
-
-              {/* Highlight badge */}
-              <div className="mt-5 flex justify-center">
-                <div
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold"
-                  style={{ background: "#fff3e0", color: "#f47728", border: "1px solid #f47728" }}
-                >
-                  Every Saturday · Annadanam
-                </div>
-              </div>
+              className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md mx-auto transition-transform duration-300 group-hover:scale-110"
+              style={{
+                background: "linear-gradient(135deg, #fff3e0, #ffe0b2)",
+                border: "2px solid #f47728",
+              }}
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/8574/8574987.png"
+                alt="Events"
+                className="h-9 w-9"
+              />
             </div>
-          </div>
 
-          {/* Facilities Card */}
-          <div
-            className="group relative rounded-3xl overflow-hidden shadow-2xl transition-transform duration-500 hover:-translate-y-2"
-            style={{ background: "#fff" }}
-          >
-            {/* Top accent stripe */}
-            <div
-              className="h-1.5 w-full"
-              style={{ background: "linear-gradient(90deg, #182856, #2e4a9e, #182856)" }}
-            />
-            <div className="p-8">
-              {/* Icon circle */}
+            <h3
+              className="text-2xl md:text-3xl font-extrabold mb-2"
+              style={{ color: "#182856", fontFamily: "'Outfit', sans-serif" }}
+            >
+              {t.events.recentUpcoming}
+            </h3>
+            {/* Underline */}
+            <div className="w-16 h-1 rounded-full mx-auto mb-5" style={{ background: "#f47728" }} />
+
+            <p className="text-gray-700 leading-relaxed text-base md:text-lg max-w-3xl mx-auto text-center font-medium">
+              {t.events.eventsText}
+            </p>
+
+            {/* Highlight badges */}
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
               <div
-                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-5 shadow-md mx-auto transition-transform duration-300 group-hover:scale-110"
-                style={{
-                  background: "linear-gradient(135deg, #e8eaf6, #c5cae9)",
-                  border: "2px solid #182856",
-                }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold shadow-sm"
+                style={{ background: "#fff3e0", color: "#c45c00", border: "1px solid #f47728" }}
               >
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/4791/4791033.png"
-                  alt="Facilities"
-                  className="h-9 w-9"
-                />
+                🍲 {t.events.saturdayBadge}
               </div>
-
-              <h3
-                className="text-center text-2xl font-extrabold mb-1"
-                style={{ color: "#182856", fontFamily: "'Outfit', sans-serif" }}
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold shadow-sm"
+                style={{ background: "#fff8e1", color: "#b78103", border: "1px solid #f5c842" }}
               >
-                {t.events.facilities}
-              </h3>
-              {/* Underline */}
-              <div className="w-12 h-1 rounded-full mx-auto mb-4" style={{ background: "#182856" }} />
-
-              <p className="text-gray-600 leading-relaxed text-base text-justify">
-                {t.events.facilitiesText}
-              </p>
-
-              {/* Highlight badges */}
-              <div className="mt-5 flex flex-wrap justify-center gap-2">
-                {["Parking", "Function Hall", "Open Daily"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 rounded-xl text-xs font-bold"
-                    style={{ background: "#e8eaf6", color: "#182856", border: "1px solid #c5cae9" }}
-                  >
-                    {tag}
-                  </span>
-                ))}
+                🪔 {t.events.festivalsBadge}
               </div>
             </div>
           </div>
@@ -255,22 +203,7 @@ const TempleEvent = ({ id }) => {
       </div>
 
       {/* ── DYNAMIC EVENTS SLIDER ──────────────────────────────── */}
-      <div className="relative z-10 max-w-5xl mx-auto px-4 py-16">
-        {/* Section sub-heading */}
-        <div className="text-center mb-12">
-          <h3
-            className="text-3xl md:text-4xl font-extrabold"
-            style={{ color: "#182856", fontFamily: "'Outfit', sans-serif" }}
-          >
-            {t.events.recentUpcoming}
-          </h3>
-          <div className="flex items-center justify-center gap-3 mt-3">
-            <div className="h-px w-16 bg-[#f47728]" />
-            <span className="text-[#f47728] text-xl">✦</span>
-            <div className="h-px w-16 bg-[#f47728]" />
-          </div>
-        </div>
-
+      <div className="relative z-10 max-w-5xl mx-auto px-4 py-12">
         {loading ? (
           <div className="flex justify-center py-20">
             <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#f47728]" />
@@ -321,7 +254,7 @@ const TempleEvent = ({ id }) => {
                           className="text-xl md:text-2xl font-extrabold"
                           style={{ color: "#182856", fontFamily: "'Outfit', sans-serif" }}
                         >
-                          {event.name}
+                          {lang === 'te' && event.name_te ? event.name_te : event.name}
                         </h4>
                         <span
                           className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold whitespace-nowrap"
@@ -332,7 +265,7 @@ const TempleEvent = ({ id }) => {
                           }}
                         >
                           📅{" "}
-                          {new Date(event.date).toLocaleDateString("en-IN", {
+                          {new Date(event.date).toLocaleDateString(lang === 'te' ? 'te-IN' : 'en-IN', {
                             day: "numeric",
                             month: "long",
                             year: "numeric",
@@ -340,7 +273,7 @@ const TempleEvent = ({ id }) => {
                         </span>
                       </div>
                       <p className="text-gray-600 leading-relaxed text-base md:text-lg text-justify">
-                        {event.details}
+                        {lang === 'te' && event.details_te ? event.details_te : event.details}
                       </p>
                     </div>
                   </div>
@@ -350,7 +283,7 @@ const TempleEvent = ({ id }) => {
           </div>
         ) : (
           <div
-            className="rounded-3xl p-14 text-center shadow-inner"
+            className="rounded-3xl p-10 text-center shadow-inner"
             style={{
               background: "linear-gradient(135deg, #fff8f0, #fff3e0)",
               border: "2px dashed #f47728",

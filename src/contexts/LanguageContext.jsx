@@ -34,39 +34,24 @@ export const translations = {
       transport: 'Transport Links',
       transportVal: 'Road: Connected to NH16 via Biccavolu. State-run APSRTC buses serve nearby Balabhadrapuram from Rajahmundry and Kakinada. Nearest major railway station is Rajahmundry (~30 km away). Nearest airport is Rajahmundry Airport (~30 km NW).',
       geography: 'Geography & Demographics',
-      geographyVal: 'Flat Godavari delta plain. Balabhadrapuram village population was about 14,000 (2014). The region is predominantly agricultural.',
+      geographyVal: 'Flat Godavari delta plain. Balabhadrapuram village population was about 14,000. The region is predominantly agricultural.',
       admin: 'Administrative Hierarchy',
       adminVal: 'Country: India, State: Andhra Pradesh, District: East Godavari, Mandal: Biccavolu'
     },
     events: {
-      title: 'Events & Facilities',
+      title: 'Events & Celebrations',
       recentUpcoming: 'Recent & Upcoming Events',
-      eventsText: 'There are annual celebrations. Every Saturday, there is a divine Annadanam Karyakram (holy community feast). Devotees reportedly walk long distances (7 Saturdays) for blessings.',
-      facilities: 'Facilities',
-      facilitiesText: 'The temple has parking and a hall for annadanam on Saturdays. The site is open to the public during stated hours and standard temple norms (dress code) apply. No commercial businesses are noted on-site.',
-      noEvents: 'No upcoming events scheduled at the moment.'
+      eventsText: 'Annual celebrations are performed with grand devotion. Every Saturday, a divine Annadanam Karyakram (holy community feast) is organized for devotees. Devotees reportedly walk long distances across 7 Saturdays for divine blessings.',
+      facilities: 'Temple Facilities',
+      facilitiesText: 'The temple premises feature ample parking space and a dedicated hall for Saturday Annadanam. The site is open daily during designated hours, adhering to standard temple decorum and dress code.',
+      noEvents: 'No upcoming events scheduled at the moment.',
+      saturdayBadge: 'Every Saturday · Annadanam Karyakram',
+      festivalsBadge: 'Annual Grand Festivals'
     },
-    booking: {
-      navLink: 'Book Mandap',
-      mainTitle: 'Reserve the Mandap',
-      startBooking: 'Proceed to Book Now',
-      subTitle: 'Host your sacred events, marriages, pujas, and celebrations in our divine temple premises.',
-      step1: 'Fill out your booking request details',
-      step2: 'We will check the availability',
-      step3: 'Confirmation and payment guidance',
-      formHeading: 'Booking Details',
-      fullName: 'Full Name',
-      phone: 'Phone Number',
-      eventType: 'Event Type',
-      date: 'Preferred Date',
-      details: 'Message / Additional Info',
-      submit: 'Send Booking Request',
-      marriage: 'Marriage',
-      birthday: 'Birthday',
-      puja: 'Puja',
-      other: 'Other',
-      success: 'Booking request sent successfully! We will contact you.',
-      failure: 'Failed to send request. Please try again.'
+    gallery: {
+      title: 'Sacred Gallery',
+      subtitle: 'Glimpses of divine celebrations & sacred moments',
+      teluguTag: 'ఆలయ చిత్రమాలిక'
     },
     contact: {
       heading: 'Contact & Location',
@@ -78,12 +63,12 @@ export const translations = {
       role: 'Committee Member'
     },
     footer: {
-      copyright: 'Sridevi Bhoodevi Sametha Sri Prasanna Venkateswara Swamy Devasthanam, Balabhadrapuram.'
+      copyright: 'Sridevi Bhoodevi Sametha Sri Prasanna Venkateswara Swamy Devasthanam, Balabhadrapuram. All rights reserved.'
     },
     donate: {
       buttonLabel: 'Donate Now',
       modalTitle: 'Temple Donation',
-      modalSubtitle: "Support our temple's growth and activities",
+      modalSubtitle: "Support our temple's growth and sacred activities",
       fullName: 'Full Name',
       namePlaceholder: 'Enter your name',
       mobile: 'Mobile Number',
@@ -95,6 +80,8 @@ export const translations = {
       scanPay: 'Scan & Pay',
       amountLabel: 'Amount',
       qrNote: 'Scanning this QR will open your preferred UPI app (PhonePe, GPay, Paytm) with the amount pre-filled.',
+      payViaPaytm: 'Pay via Paytm',
+      openUpiApp: 'Open in any UPI App',
       done: 'Done',
       successMsg: 'Details saved! Please scan the QR to pay.',
       failMsg: 'Failed to process. Please try again.'
@@ -106,7 +93,7 @@ export const translations = {
       details: 'వివరాలు',
       events: 'కార్యక్రమాలు',
       management: 'పాలక మండలి',
-      gallery: 'గ్యాలరీ',
+      gallery: 'చిత్రమాలిక',
       contact: 'సంప్రదించండి'
     },
     hero: {
@@ -115,86 +102,73 @@ export const translations = {
     },
     history: {
       title: 'ఆలయ చరిత్ర',
-      timeline: 'ఆలయ అభివృద్ధి సమయపాలన',
+      timeline: 'ఆలయ అభివృద్ధి ఘట్టాలు',
       year2012: '2012: వేంకటేశ్వర స్వామి ఆలయ నిర్మాణం ప్రారంభమైంది',
       year2014: '2014: ఆలయ ప్రాణప్రతిష్ఠ (5 మే 2014 ఉదయం 9:57 గంటలకు)',
-      year2014_2026: '2014-2026: నిత్య పూజలు మరియు స్థానిక ఉత్సవాలు (ప్రతి శనివారం అన్నదానం)',
-      details: 'ప్రధాన నిర్మాణం ఆధునిక వేంకటేశ్వర స్వామి ఆలయం, ఇది 81 అడుగుల గోపురం మరియు స్వామి పుష్కరిణి (ఆలయ కోనేరు) కలిగి ఉంది. గర్భగుడిలో 9.17 అడుగుల వేంకటేశ్వర స్వామి విగ్రహం ఉంది. ఈ సముదాయంలో వరాహ స్వామి ఉప ఆలయం మరియు ఫంక్షన్ హాల్ కూడా ఉన్నాయి.',
-      nickname: 'స్థానిక సంప్రదాయంలో ఈ ఆలయాన్ని "తూర్పు తిరుమల" అని పిలుస్తారు. ఇది ప్రసిద్ధ సాయిబాబా ఆలయం (ఆంధ్ర షిర్డీ) పక్కన నిర్మించబడింది.'
+      year2014_2026: '2014-2026: నిత్య పూజలు మరియు విశేష ఉత్సవాలు (ప్రతి శనివారం అన్నదానం)',
+      details: 'ప్రధాన నిర్మాణం ఆధునిక వేంకటేశ్వర స్వామి ఆలయం, ఇది 81 అడుగుల గోపురం మరియు స్వామి పుష్కరిణి (ఆలయ కోనేరు) కలిగి ఉంది. గర్భగుడిలో 9.17 అడుగుల వేంకటేశ్వర స్వామి దివ్య మంగళ విగ్రహం కలదు. ఈ సముదాయంలో వరాహ స్వామి ఉప ఆలయం మరియు కళ్యాణ మండపం కూడా ఉన్నాయి.',
+      nickname: 'స్థానిక సంప్రదాయంలో ఈ ఆలయాన్ని "తూర్పు తిరుమల" అని పిలుస్తారు. ఇది ప్రసిద్ధ సాయిబాబా ఆలయం (ఆంధ్ర షిర్డీ) సమీపంలో నిర్మించబడింది.'
     },
     details: {
-      title: 'ప్రధాన వివరాలు',
-      location: 'స్థానం',
-      locationVal: 'బలభద్రపురం గ్రామం, బిక్కవోలు మండలం, తూర్పు గోదావరి జిల్లా, ఆంధ్రప్రదేశ్, భారతదేశం. (PIN 533343)',
+      title: 'ఆలయ ప్రధాన వివరాలు',
+      location: 'స్థాన వివరాలు',
+      locationVal: 'బలభద్రపురం గ్రామం, బిక్కవోలు మండలం, తూర్పు గోదావరి జిల్లా, ఆంధ్రప్రదేశ్, భారతదేశం. (పిన్ 533343)',
       coords: 'అక్షాంశ రేఖాంశాలు',
-      coordsVal: 'సుమారుగా 16°57′30″ N, 82°00′20″ E',
-      transport: 'రవాణా సౌకర్యాలు',
-      transportVal: 'రోడ్డు: బిక్కవోలు మీదుగా NH16 కి అనుసంధానించబడింది. రాజమండ్రి మరియు కాకినాడ నుండి ఏపీఎస్‌ఆర్టీసీ బస్సులు అందుబాటులో ఉన్నాయి. సమీప ప్రధాన రైల్వే స్టేషన్ రాజమండ్రి (~30 కి.మీ దూరంలో). సమీప విమానాశ్రయం రాజమండ్రి విమానాశ్రయం (~30 కి.మీ వాయువ్యంగా).',
-      geography: 'భౌగోళిక & జనాభా',
-      geographyVal: 'చదునైన గోదావరి డెల్టా మైదానం. బలభద్రపురం గ్రామ జనాభా సుమారు 14,000 (2014). ఈ ప్రాంతం ప్రధానంగా వ్యవసాయ ఆధారితమైనది.',
-      admin: 'పరిపాలనా సోపానక్రమం',
+      coordsVal: 'సుమారుగా 16°57′30″ ఉత్తరం, 82°00′20″ తూర్పు',
+      transport: 'రవాణా మార్గాలు',
+      transportVal: 'రోడ్డు మార్గం: బిక్కవోలు మీదుగా NH16కి అనుసంధానించబడింది. రాజమండ్రి మరియు కాకినాడ నుండి బలభద్రపురానికి APSRTC బస్సులు నిరంతరం అందుబాటులో ఉంటాయి. సమీప ప్రధాన రైల్వే స్టేషన్: రాజమండ్రి (~30 కి.మీ). సమీప విమానాశ్రయం: రాజమండ్రి విమానాశ్రయం (~30 కి.మీ).',
+      geography: 'భౌగోళిక & జనాభా వివరాలు',
+      geographyVal: 'సారవంతమైన గోదావరి డెల్టా మైదాన ప్రాంతం. బలభద్రపురం గ్రామ జనాభా సుమారు 14,000. ఈ ప్రాంతం ప్రధానంగా వ్యవసాయ ఆధారితమైనది.',
+      admin: 'పరిపాలనా వివరాలు',
       adminVal: 'దేశం: భారతదేశం, రాష్ట్రం: ఆంధ్రప్రదేశ్, జిల్లా: తూర్పు గోదావరి, మండలం: బిక్కవోలు'
     },
     events: {
-      title: 'కార్యక్రమాలు & సౌకర్యాలు',
+      title: 'విశేష కార్యక్రమాలు & వేడుకలు',
       recentUpcoming: 'తాజా & రాబోయే కార్యక్రమాలు',
-      eventsText: 'వార్షిక ఉత్సవాలు ఘనంగా జరుగుతాయి. ప్రతి శనివారం దేవాలయంలో అన్నదాన కార్యక్రమం నిర్వహించబడుతుంది. భక్తులు ఆశీర్వాదాల కోసం (7 శనివారాలు) కాలినడకన వస్తారు.',
-      facilities: 'సౌకర్యాలు',
-      facilitiesText: 'ఆలయంలో శనివారాల్లో అన్నదానం కోసం హాల్ మరియు పార్కింగ్ ఉంది. ఆలయం నిర్ణీత వేళల్లో ప్రజలకు తెరచి ఉంటుంది, సాంప్రదాయ దుస్తుల నియమాలు వర్తిస్తాయి.',
-      noEvents: 'ప్రస్తుతం ఏ కార్యక్రమాలు నిర్ణయించబడలేదు.'
+      eventsText: 'ఆలయంలో ప్రతి సంవత్సరం వార్షిక ఉత్సవాలు అత్యంత వైభవంగా జరుగుతాయి. ప్రతి శనివారం భక్తుల కోసం పవిత్ర అన్నదాన కార్యక్రమం నిర్వహించబడుతుంది. స్వామివారి దివ్య ఆశీస్సుల కోసం భక్తులు 7 శనివారాలు నడకదారిన వచ్చి స్వామివారిని దర్శించుకుంటారు.',
+      facilities: 'ఆలయ సౌకర్యాలు',
+      facilitiesText: 'ఆలయ ప్రాంగణంలో విశాలమైన పార్కింగ్ స్థలం మరియు శనివారపు అన్నదానం కోసం ప్రత్యేక హాల్ సౌకర్యం ఉంది. ఆలయం నిర్ణీత సమయాల్లో భక్తుల దర్శనం కోసం తెరిచి ఉంటుంది మరియు సంప్రదాయ వస్త్రధారణ నియమాలు వర్తిస్తాయి.',
+      noEvents: 'ప్రస్తుతం ఏ కార్యక్రమాలు నిర్ణయించబడలేదు.',
+      saturdayBadge: 'ప్రతి శనివారం · అన్నదాన కార్యక్రమం',
+      festivalsBadge: 'వార్షిక మహోత్సవాలు'
     },
-    booking: {
-      navLink: 'మండపం బుకింగ్',
-      mainTitle: 'కళ్యాణ మండపం బుకింగ్',
-      startBooking: 'బుక్ చేయడానికి క్లిక్ చేయండి',
-      subTitle: 'మా పవిత్ర దేవాలయ ప్రాంగణంలో మీ పవిత్ర కార్యక్రమాలు, వివాహాలు, పూజలు మరియు వేడుకలను నిర్వహించుకోండి.',
-      step1: 'మీ బుకింగ్ అభ్యర్థన వివరాలను నింపండి',
-      step2: 'మేము లభ్యతను తనిఖీ చేస్తాము',
-      step3: 'నిర్ధారణ మరియు తదుపరి సహాయం',
-      formHeading: 'బుకింగ్ వివరాలు',
-      fullName: 'పూర్తి పేరు',
-      phone: 'ఫోన్ నంబర్',
-      eventType: 'వేడుక రకం',
-      date: 'కావలసిన తేదీ',
-      details: 'సందేశం / అదనపు సమాచారం',
-      submit: 'బుకింగ్ అభ్యర్థన పంపండి',
-      marriage: 'వివాహం',
-      birthday: 'పుట్టినరోజు',
-      puja: 'పూజ',
-      other: 'ఇతరాలు',
-      success: 'బుకింగ్ అభ్యర్థన విజయవంతంగా పంపబడింది! మేము మిమ్మల్ని సంప్రదిస్తాము.',
-      failure: 'అభ్యర్థన విఫలమైంది. దయచేసి మళ్లీ ప్రయత్నించండి.'
+    gallery: {
+      title: 'దివ్య చిత్రమాలిక',
+      subtitle: 'ఆలయ శోభ, విశేష ఉత్సవాలు & పవిత్ర ఘట్టాలు',
+      teluguTag: 'ఆలయ చిత్రమాలిక'
     },
     contact: {
-      heading: 'సంప్రదింపు & స్థానం',
+      heading: 'సంప్రదింపు వివరాలు & స్థానం',
       mapLabel: 'మ్యాప్ స్థానం:',
-      address: 'శ్రీదేవి భూదేవి సమేత శ్రీ ప్రసన్న వేంకటేశ్వర స్వామి దేవస్థానం (తూర్పు తిరుమల), బలభద్రపురం గ్రామం, బిక్కవోలు మండలం, తూర్పు గోదావరి జిల్లా, ఆంధ్రప్రదేశ్, భారతదేశం. PIN: 533343'
+      address: 'శ్రీదేవి భూదేవి సమేత శ్రీ ప్రసన్న వేంకటేశ్వర స్వామి దేవస్థానం (తూర్పు తిరుమల), బలభద్రపురం గ్రామం, బిక్కవోలు మండలం, తూర్పు గోదావరి జిల్లా, ఆంధ్రప్రదేశ్, భారతదేశం. పిన్: 533343'
     },
     management: {
-      title: 'దేవాలయ పాలక మండలి',
+      title: 'ఆలయ పాలక మండలి',
       role: 'కమిటీ సభ్యుడు'
     },
     footer: {
-      copyright: 'శ్రీదేవి భూదేవి సమేత శ్రీ ప్రసన్న వేంకటేశ్వర స్వామి దేవస్థానం, బలభద్రపురం.'
+      copyright: 'శ్రీదేవి భూదేవి సమేత శ్రీ ప్రసన్న వేంకటేశ్వర స్వామి దేవస్థానం, బలభద్రపురం. సర్వహక్కులూ ప్రత్యేకించబడ్డాయి.'
     },
     donate: {
       buttonLabel: 'విరాళం ఇవ్వండి',
       modalTitle: 'దేవాలయ విరాళం',
-      modalSubtitle: 'మా దేవాలయ వృద్ధికి మరియు కార్యక్రమాలకు మద్దతు ఇవ్వండి',
+      modalSubtitle: 'మా దేవాలయ అభివృద్ధికి మరియు పవిత్ర సేవలకు మద్దతు ఇవ్వండి',
       fullName: 'పూర్తి పేరు',
       namePlaceholder: 'మీ పేరు నమోదు చేయండి',
       mobile: 'మొబైల్ నంబర్',
       mobilePlaceholder: '10 అంకెల మొబైల్ నంబర్',
-      amount: 'మొత్తం (₹)',
+      amount: 'విరాళం మొత్తం (₹)',
       amountPlaceholder: 'మొత్తం నమోదు చేయండి',
       processing: 'ప్రాసెస్ అవుతోంది...',
       continuePay: 'చెల్లింపుకు కొనసాగండి',
-      scanPay: 'స్కాన్ & చెల్లించండి',
+      scanPay: 'స్కాన్ చేసి చెల్లించండి',
       amountLabel: 'మొత్తం',
-      qrNote: 'ఈ QR స్కాన్ చేయడం ద్వారా మీకు ఇష్టమైన UPI యాప్ (PhonePe, GPay, Paytm) తెరుచుకుంటుంది.',
+      qrNote: 'ఈ QR స్కాన్ చేయడం ద్వారా మీ ఫోన్లోని UPI యాప్ (PhonePe, GPay, Paytm) తెరుచుకుంటుంది.',
+      payViaPaytm: 'Paytm ద్వారా చెల్లించండి',
+      openUpiApp: 'ఏదైనా UPI యాప్‌లో తెరవండి',
       done: 'పూర్తయింది',
-      successMsg: 'వివరాలు సేవ్ అయ్యాయి! చెల్లించడానికి QR స్కాన్ చేయండి.',
-      failMsg: 'విఫలమైంది. దయచేసి మళ్లీ ప్రయత్నించండి.'
+      successMsg: 'వివరాలు భద్రపరచబడ్డాయి! దయచేసి QR స్కాన్ చేసి చెల్లించండి.',
+      failMsg: 'ప్రయత్నం విఫలమైంది. దయచేసి మళ్లీ ప్రయత్నించండి.'
     }
   }
 };

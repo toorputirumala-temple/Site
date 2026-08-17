@@ -1,33 +1,85 @@
-import React from 'react';
+import React, { useState, useRef, useCallback } from 'react';
+
+const VIDEOS = [
+  '/videos/video1.mp4',
+  '/videos/video2.mp4',
+  '/videos/video3.mp4',
+  '/videos/video4.mp4',
+  '/videos/video5.mp4',
+  '/videos/video6.mp4',
+  '/videos/video7.mp4',
+  '/videos/video8.mp4',
+];
 
 const VideoPage = ({ id }) => {
+  const [current, setCurrent] = useState(0);
+  const [poster, setPoster] = useState('');
+  const videoRef = useRef(null);
+
+  // Force muted as a property (React's `muted` prop doesn't render the
+  // attribute, and Chrome blocks autoplay unless the element is muted).
+  const setVideoRef = useCallback((el) => {
+    videoRef.current = el;
+    if (el) el.muted = true;
+  }, []);
+
+  const playNext = useCallback(() => {
+    // Capture the last frame of the finished video to show while the
+    // next one loads.
+    const v = videoRef.current;
+    if (v && v.videoWidth) {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = v.videoWidth;
+        canvas.height = v.videoHeight;
+        canvas.getContext('2d').drawImage(v, 0, 0);
+        setPoster(canvas.toDataURL('image/jpeg', 0.7));
+      } catch {
+        setPoster('');
+      }
+    }
+    setCurrent((prev) => (prev + 1) % VIDEOS.length);
+  }, []);
+
+  const handleCanPlay = useCallback(() => {
+    videoRef.current?.play().catch(() => {});
+  }, []);
+
   return (
     <div
       id={id}
-      className="relative w-full"
+      className="relative w-full overflow-hidden bg-black"
       style={{ height: '100vh' }}
     >
-      {/* Fullscreen Video */}
+      {/* Native video — fills the whole page, plays one after another,
+          no controls, and shows the previous video's last frame while the
+          next one loads */}
       <video
+        key={current}
+        ref={setVideoRef}
         className="absolute inset-0 w-full h-full object-cover"
-        src="/templedata/WhatsApp Video 2026-07-04 at 7.03.15 PM.mp4"
+        src={VIDEOS[current]}
+        poster={poster}
         autoPlay
-        loop
         muted
         playsInline
+        preload="auto"
+        onEnded={playNext}
+        onError={playNext}
+        onCanPlay={handleCanPlay}
       />
 
       {/* Subtle dark overlay for readability */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.5) 100%)',
+            'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 45%)',
         }}
       />
 
       {/* Spiritual overlay text — centered */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10">
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-10 pointer-events-none">
         {/* Decorative divider top */}
         <div className="flex items-center gap-4 mb-6">
           <div className="h-[1px] w-16 md:w-28 bg-gradient-to-r from-transparent to-[#f47728]" />
@@ -76,14 +128,6 @@ const VideoPage = ({ id }) => {
           <div className="h-[1px] w-16 md:w-28 bg-gradient-to-l from-transparent to-[#f47728]" />
         </div>
       </div>
-
-      {/* Bottom fade into next section */}
-      <div
-        className="absolute bottom-0 left-0 w-full h-24 pointer-events-none"
-        style={{
-          background: 'linear-gradient(to bottom, transparent, rgba(252,240,216,1))',
-        }}
-      />
     </div>
   );
 };

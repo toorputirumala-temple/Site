@@ -176,13 +176,6 @@
     text-align: center;
   }
 }
-@media (max-width: 480px) {
-  .templename {
-    text-align: center !important;
-    font-size: 25px !important;
-    top: 200px !important;
-  }
-}
 
 
 /* Events page */
@@ -254,24 +247,7 @@
       top: 40px;
       height: 150px;
   }
-  .absolute.top-\[80px\].left-0.md\:h-\[300px\].w-\[50vw\].bg-no-repeat.bg-left.bg-contain.sm\:h-\[250px\].xs\:h-\[250px\].animate-slideInLeft{
-display: none;
-    
-  }
-  .absolute.top-\[80px\].left-\[730px\].md\:h-\[300px\].w-\[50vw\].bg-no-repeat.bg-left.bg-contain.sm\:h-\[250px\].xs\:h-\[250px\].animate-slideInLeft{
-   display: none;
-  }
-  .absolute.md\:top-0.md\:left-0.xs\:w-0.h-48.md\:w-full.z-20{
-    width: 50%;
-    /* height: 200px; */
-    top:0;
-    left:0;
-  }
-  .absolute.top-0.right-0.xs\:w-0.h-full.md\:w-full.z-20{
-    width: 50%;
-    /* height: 200px; */
-    top:0
-  }
+
   .flex.transition-transform.duration-500.ease-in-out{
     width: 100%;
   }

@@ -57,7 +57,7 @@ const DonateSection = () => {
       {/* ── FLOATING BUTTON ──────────────────────────────── */}
       <button
         onClick={openModal}
-        className="fixed bottom-8 right-8 z-[100] flex items-center gap-2 px-5 py-3 rounded-full font-bold transition-all duration-300 hover:scale-110"
+        className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-[100] flex items-center gap-1.5 sm:gap-2 px-3.5 py-2 sm:px-5 sm:py-3 rounded-full font-bold transition-all duration-300 hover:scale-110 text-xs sm:text-sm"
         style={{
           background:   'linear-gradient(135deg, #c8860a, #f5c842, #f47728)',
           color:        '#1a0a00',
@@ -287,7 +287,7 @@ const DonateSection = () => {
                       <span className="font-black text-xl" style={{ fontFamily: 'serif', color: '#00BAF2', background: '#fff', borderRadius: '50%', width: 28, height: 28, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.9rem' }}>
                         P
                       </span>
-                      Pay ₹{formData.amount} via Paytm
+                      {t.donate.payViaPaytm} (₹{formData.amount})
                     </a>
 
                     {/* Fallback — generic UPI deep-link (PhonePe / GPay / etc.) */}
@@ -302,7 +302,7 @@ const DonateSection = () => {
                         fontFamily: "'Outfit', sans-serif",
                       }}
                     >
-                      Open in any UPI App
+                      {t.donate.openUpiApp}
                     </a>
                   </div>
                 ) : (

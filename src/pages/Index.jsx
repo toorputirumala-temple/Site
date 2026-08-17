@@ -8,7 +8,6 @@ import Events from './EventsPage'
 import DetailsPage from './DetailsPage'
 import ManagementPage from './ManagementPage'
 import DonateSection from '../components/DonateSection'
-import MandapPage from './MandapPage'
 import VideoPage from './VideoPage'
 
 const Index = () => {
@@ -21,7 +20,6 @@ const Index = () => {
       <DetailsPage id="details"/>
       <ManagementPage id="management"/>
       <GalleryPage id="gallery" />
-      <MandapPage id="booking" />
       <ContactPage id="contact" />
       <Footer/>
       <DonateSection />

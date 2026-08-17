@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-// Logo is served from the public folder — no import needed
 import { useLanguage } from "../contexts/LanguageContext";
 
 const Header = () => {
@@ -9,32 +8,9 @@ const Header = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [open, setOpen] = useState(false);
 
-  // Scroll to the section and return a Promise that resolves after the scroll is completed
-  // const scrollToSection = (id) => {
-  //   return new Promise((resolve) => {
-  //     const element = document.getElementById(id);
-  //     if (element) {
-  //       element.scrollIntoView({ behavior: "smooth" });
-  //       // Wait for a short time to ensure the scroll is complete
-  //       setTimeout(resolve, 500); // Adjust timing if necessary
-  //     } else {
-  //       resolve(); // Resolve immediately if the element is not found
-  //     }
-  //   });
-  // };
-
-  // const handleClick = (index, id) => {
-  //   // console.log(index + ":" + id);
-  //   setActiveIndex(index);
-  //   scrollToSection(id).then(() => {
-  //     setTimeout(() => setOpen(false), 500); // Close the menu after scrolling
-  //   });
-  // };
-
   const forceUpdate = () => setActiveIndex(null);
-  
+
   const handleClick = (index, id) => {
-    // If the gallery is clicked, force update
     if (id === "gallery") {
       forceUpdate();
     }
@@ -43,14 +19,20 @@ const Header = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-    setOpen(false); // Close the menu immediately
+    setOpen(false);
   };
-  
-
 
   const toggleMenu = () => {
     setOpen(!open);
   };
+
+  const navItems = [
+    { id: "events", label: t.nav.events },
+    { id: "details", label: t.nav.details },
+    { id: "management", label: t.nav.management },
+    { id: "gallery", label: t.nav.gallery },
+    { id: "contact", label: t.nav.contact },
+  ];
 
   return (
     <div
@@ -76,60 +58,23 @@ const Header = () => {
       <div className="hidden md:flex items-center gap-6">
         <nav>
           <ul className="flex gap-10 font-bold items-center">
-            <li
-              className={`nav-item text-white cursor-pointer ${
-                activeIndex === 0 ? "text-blue-900" : ""
-              }`}
-              onClick={() => handleClick(0, "events")}
-            >
-              {t.nav.events}
-            </li>
-            <li
-              className={`nav-item text-white cursor-pointer ${
-                activeIndex === 1 ? "text-blue-900" : ""
-              }`}
-              onClick={() => handleClick(1, "details")}
-            >
-              {t.nav.details}
-            </li>
-            <li
-              className={`nav-item text-white cursor-pointer ${
-                activeIndex === 2 ? "text-blue-900" : ""
-              }`}
-              onClick={() => handleClick(2, "management")}
-            >
-              {t.nav.management}
-            </li>
-            <li
-              className={`nav-item text-white cursor-pointer ${
-                activeIndex === 3 ? "text-blue-900" : ""
-              }`}
-              onClick={() => handleClick(3, "gallery")}
-            >
-              {t.nav.gallery}
-            </li>
-            <li
-              className={`nav-item text-white cursor-pointer ${
-                activeIndex === 4 ? "text-blue-900" : ""
-              }`}
-              onClick={() => handleClick(4, "booking")}
-            >
-              {t.booking.navLink}
-            </li>
-            <li
-              className={`nav-item text-white cursor-pointer ${
-                activeIndex === 5 ? "text-blue-900" : ""
-              }`}
-              onClick={() => handleClick(5, "contact")}
-            >
-              {t.nav.contact}
-            </li>
+            {navItems.map((item, index) => (
+              <li
+                key={item.id}
+                className={`nav-item text-white cursor-pointer ${
+                  activeIndex === index ? "text-blue-900" : ""
+                }`}
+                onClick={() => handleClick(index, item.id)}
+              >
+                {item.label}
+              </li>
+            ))}
             <li>
-              <button 
+              <button
                 onClick={toggleLang}
                 className="bg-white text-orange-600 px-3 py-1 rounded-full text-sm font-bold border-2 border-orange-600 hover:bg-orange-50 transition-colors"
               >
-                {lang === 'en' ? 'తెలుగు' : 'English'}
+                {lang === "en" ? "తెలుగు" : "English"}
               </button>
             </li>
           </ul>
@@ -139,9 +84,9 @@ const Header = () => {
       {/* Mobile Menu Icon */}
       <div className="md:hidden z-50">
         {open ? (
-          <CloseIcon onClick={toggleMenu} className="cursor-pointer text-3xl" />
+          <CloseIcon onClick={toggleMenu} className="cursor-pointer text-3xl text-white" />
         ) : (
-          <MenuIcon onClick={toggleMenu} className="cursor-pointer text-3xl" />
+          <MenuIcon onClick={toggleMenu} className="cursor-pointer text-3xl text-white" />
         )}
       </div>
 
@@ -156,61 +101,24 @@ const Header = () => {
             "linear-gradient(90deg, rgba(253, 190, 87, 1) 0%, rgba(252, 187, 88, 1) 10%, rgba(244, 119, 40, 1) 40%, rgba(244, 119, 40, 1) 100%)",
         }}
       >
-        <ul className="flex flex-col gap-10 p-8 font-bold h-full">
-          <li
-            className={`nav-item text-white cursor-pointer ${
-              activeIndex === 0 ? "text-blue-900" : ""
-            }`}
-            onClick={() => handleClick(0, "events")}
-          >
-            {t.nav.events}
-          </li>
-          <li
-            className={`nav-item text-white cursor-pointer ${
-              activeIndex === 1 ? "text-blue-900" : ""
-            }`}
-            onClick={() => handleClick(1, "details")}
-          >
-            {t.nav.details}
-          </li>
-          <li
-            className={`nav-item text-white cursor-pointer ${
-              activeIndex === 2 ? "text-blue-900" : ""
-            }`}
-            onClick={() => handleClick(2, "management")}
-          >
-            {t.nav.management}
-          </li>
-          <li
-            className={`nav-item text-white cursor-pointer ${
-              activeIndex === 3 ? "text-blue-900" : ""
-            }`}
-            onClick={() => handleClick(3, "gallery")}
-          >
-            {t.nav.gallery}
-          </li>
-          <li
-            className={`nav-item text-white cursor-pointer ${
-              activeIndex === 4 ? "text-blue-900" : ""
-            }`}
-            onClick={() => handleClick(4, "booking")}
-          >
-            {t.booking.navLink}
-          </li>
-          <li
-            className={`nav-item text-white cursor-pointer ${
-              activeIndex === 5 ? "text-blue-900" : ""
-            }`}
-            onClick={() => handleClick(5, "contact")}
-          >
-            {t.nav.contact}
-          </li>
-          <li>
-            <button 
-              onClick={toggleLang}
-              className="bg-white text-orange-600 px-4 py-2 rounded-full text-sm font-bold border-2 border-orange-600 mt-4"
+        <ul className="flex flex-col gap-8 p-8 font-bold h-full">
+          {navItems.map((item, index) => (
+            <li
+              key={item.id}
+              className={`nav-item text-white cursor-pointer ${
+                activeIndex === index ? "text-blue-900" : ""
+              }`}
+              onClick={() => handleClick(index, item.id)}
             >
-              {lang === 'en' ? 'తెలుగు' : 'English'}
+              {item.label}
+            </li>
+          ))}
+          <li>
+            <button
+              onClick={toggleLang}
+              className="bg-white text-orange-600 px-4 py-2 rounded-full text-sm font-bold border-2 border-orange-600 mt-2"
+            >
+              {lang === "en" ? "తెలుగు" : "English"}
             </button>
           </li>
         </ul>
