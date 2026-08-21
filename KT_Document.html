@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KT Document – Toorpu Tirumala Temple Website</title>
+  <style>
+    /* ── Google Fonts ── */
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Yatra+One&display=swap');
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    /* ── Print ── */
+    @media print {
+      .no-print { display: none !important; }
+      body { font-size: 12px; }
+      .page-break { page-break-before: always; }
+      header { background: #f47728 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .section-card { border: 1px solid #ddd; }
+      .badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .toc { display: none; }
+    }
+
+    /* ── Cover / Header ── */
+    header {
+      background: linear-gradient(135deg, #c8860a 0%, #f5c842 30%, #f47728 70%, #c45c00 100%);
+      color: #1a0a00;
+      padding: 48px 60px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: 'ॐ';
+      position: absolute;
+      right: 40px;
+      top: 20px;
+      font-size: 140px;
+      opacity: 0.08;
+      font-family: serif;
+      line-height: 1;
+    }
+    header .subtitle-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 12px;
+    }
+    header h1 {
+      font-family: 'Yatra One', serif;
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    header .doc-meta {
+      margin-top: 24px;
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      font-weight: 600;
+      opacity: 0.8;
+    }
+    header .doc-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ── Container ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 40px 60px; }
+
+    /* ── TOC ── */
+    .toc {
+      background: #fffbf0;
+      border: 1.5px solid #f5c842;
+      border-radius: 16px;
+      padding: 28px 36px;
+      margin: 36px 0;
+    }
+    .toc h2 { font-size: 16px; font-weight: 900; color: #c45c00; margin-bottom: 16px; letter-spacing: 0.05em; text-transform: uppercase; }
+    .toc ol { padding-left: 20px; }
+    .toc li { margin-bottom: 6px; }
+    .toc a { color: #c45c00; text-decoration: none; font-weight: 600; }
+    .toc a:hover { text-decoration: underline; }
+
+    /* ── Section Heading ── */
+    .section-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 48px 0 20px;
+    }
+    .section-heading .num {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f47728, #c8860a);
+      color: #fff;
+      font-weight: 900;
+      font-size: 15px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-heading h2 {
+      font-size: 22px;
+      font-weight: 900;
+      color: #c45c00;
+    }
+    .section-divider {
+      height: 2px;
+      background: linear-gradient(90deg, #f5c842, #f47728, transparent);
+      margin-bottom: 24px;
+      border-radius: 2px;
+    }
+
+    /* ── Cards ── */
+    .section-card {
+      background: #fff;
+      border: 1px solid #ffe8c0;
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 12px rgba(244,119,40,0.07);
+    }
+    .section-card h3 {
+      font-size: 15px;
+      font-weight: 800;
+      color: #800808;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px solid #ffe8c0;
+    }
+    .section-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #c45c00;
+      margin: 14px 0 6px;
+    }
+    .section-card p { color: #333; margin-bottom: 8px; }
+    .section-card ul { padding-left: 18px; }
+    .section-card li { margin-bottom: 5px; color: #333; }
+
+    /* ── Info Table ── */
+    table.info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    table.info-table th {
+      background: #fff7e6;
+      color: #c45c00;
+      font-weight: 800;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid #f5c842;
+    }
+    table.info-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #ffe8c0;
+      color: #333;
+      vertical-align: top;
+    }
+    table.info-table tr:last-child td { border-bottom: none; }
+    table.info-table tr:nth-child(even) td { background: #fffbf5; }
+
+    /* ── Code Block ── */
+    .code-block {
+      background: #1a1a2e;
+      color: #e2e2e2;
+      border-radius: 12px;
+      padding: 18px 22px;
+      font-family: 'Courier New', monospace;
+      font-size: 12.5px;
+      line-height: 1.8;
+      overflow-x: auto;
+      margin: 12px 0;
+      border-left: 4px solid #f47728;
+      white-space: pre;
+      word-break: break-word;
+      display: block;
+    }
+    .code-block .comment { color: #6c7a89; }
+    .code-block .key { color: #f5c842; }
+    .code-block .val { color: #98d8a0; }
+
+    /* ── Badges ── */
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      margin: 3px 3px 3px 0;
+    }
+    .badge-orange { background: #fff3e0; color: #c45c00; border: 1px solid #f5c842; }
+    .badge-blue   { background: #e8f0fe; color: #1a5aaa; border: 1px solid #adc8ff; }
+    .badge-green  { background: #e6f4ea; color: #1e6b35; border: 1px solid #a8d5b5; }
+    .badge-red    { background: #fce8e6; color: #9a1f1f; border: 1px solid #f5a9a9; }
+    .badge-purple { background: #f3e8fd; color: #6b2fa0; border: 1px solid #d0a8f5; }
+
+    /* ── Architecture Diagram ── */
+    .arch-diagram {
+      background: #0f0c1a;
+      border-radius: 16px;
+      padding: 30px;
+      margin: 16px 0;
+      text-align: center;
+      font-family: monospace;
+      color: #e2e2e2;
+      font-size: 13px;
+      line-height: 2;
+      border: 1px solid #333;
+    }
+    .arch-diagram .arch-layer {
+      background: rgba(245,200,66,0.08);
+      border: 1px solid rgba(245,200,66,0.3);
+      border-radius: 10px;
+      padding: 10px 20px;
+      margin: 6px auto;
+      max-width: 600px;
+    }
+    .arch-diagram .arch-label {
+      color: #f5c842;
+      font-weight: 700;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .arch-diagram .arch-items { color: #ccc; font-size: 12px; }
+    .arch-diagram .arch-arrow { color: #f47728; font-size: 18px; margin: 4px 0; display: block; }
+
+    /* ── Step cards ── */
+    .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 14px; }
+    .step-card {
+      border: 1.5px solid #ffe8c0;
+      border-radius: 14px;
+      padding: 16px 18px;
+      position: relative;
+    }
+    .step-card .step-num {
+      font-size: 28px;
+      font-weight: 900;
+      color: #f47728;
+      opacity: 0.3;
+      line-height: 1;
+    }
+    .step-card h4 { font-size: 13px; font-weight: 800; color: #800808; margin: 4px 0 6px; }
+    .step-card p { font-size: 12px; color: #555; }
+
+    /* ── Callout ── */
+    .callout {
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 14px 0;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .callout-warn { background: #fff8e1; border-left: 4px solid #f5c842; }
+    .callout-info  { background: #e8f4fd; border-left: 4px solid #4aabdb; }
+    .callout-danger{ background: #fce8e6; border-left: 4px solid #e53935; }
+    .callout-success{ background: #e6f4ea; border-left: 4px solid #34a853; }
+    .callout .callout-icon { font-size: 20px; flex-shrink: 0; }
+    .callout .callout-text { font-size: 13px; color: #333; }
+    .callout .callout-text strong { display: block; margin-bottom: 4px; font-size: 13px; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 11px;
+      color: #888;
+      border-top: 1px solid #ffe8c0;
+      margin-top: 40px;
+    }
+
+    /* ── Print button ── */
+    .print-btn {
+      display: flex;
+      justify-content: flex-end;
+      padding: 16px 40px 0;
+    }
+    .print-btn button {
+      background: linear-gradient(135deg, #f47728, #c8860a);
+      color: #fff;
+      border: none;
+      padding: 10px 28px;
+      border-radius: 30px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(244,119,40,0.4);
+      transition: all 0.2s;
+    }
+    .print-btn button:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(244,119,40,0.5); }
+
+    /* two-col */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+    .highlight-box {
+      background: linear-gradient(135deg, #fffbf0, #fff7e6);
+      border: 1.5px solid #f5c842;
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 10px 0;
+    }
+    .highlight-box p { margin: 0; font-weight: 600; color: #4a2c00; font-size: 13px; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════ COVER HEADER ══════════════════════ -->
+<header>
+  <div class="subtitle-tag">🪔 Knowledge Transfer Document</div>
+  <h1>Sridevi Bhoodevi Sametha Sri Prasanna<br>Venkateswara Swamy Devasthanam<br>— Temple Website</h1>
+  <p style="font-size:13px;font-weight:600;opacity:0.7;margin-top:6px;">Toorpu Tirumala · Balabhadrapuram, East Godavari, Andhra Pradesh</p>
+  <div class="doc-meta">
+    <span>📅 Date: August 2026</span>
+    <span>📁 Project: TEMPLE-UI</span>
+    <span>⚙️ Stack: React + Vite + Firebase</span>
+    <span>🚀 Deployed on: Vercel</span>
+  </div>
+</header>
+
+<!-- ══════════════════════ PRINT BUTTON ══════════════════════ -->
+<div class="print-btn no-print">
+  <button onclick="window.print()">🖨️ Save / Print as PDF</button>
+</div>
+
+<div class="container">
+
+  <!-- ══════════════════════ TABLE OF CONTENTS ══════════════════════ -->
+  <div class="toc no-print">
+    <h2>📋 Table of Contents</h2>
+    <ol>
+      <li><a href="#s1">Project Overview</a></li>
+      <li><a href="#s2">Temple Information</a></li>
+      <li><a href="#s3">Tech Stack & Architecture</a></li>
+      <li><a href="#s4">Project Structure</a></li>
+      <li><a href="#s5">Pages & Components</a></li>
+      <li><a href="#s6">Firebase Integration</a></li>
+      <li><a href="#s7">Email / Notification System</a></li>
+      <li><a href="#s8">Multilingual Support</a></li>
+      <li><a href="#s9">UPI / Donation System</a></li>
+      <li><a href="#s10">Admin Panel</a></li>
+      <li><a href="#s11">Environment Configuration</a></li>
+      <li><a href="#s12">Running the Project Locally</a></li>
+      <li><a href="#s13">Deployment</a></li>
+      <li><a href="#s14">Key Design Decisions</a></li>
+      <li><a href="#s15">Known Issues & Future Improvements</a></li>
+    </ol>
+  </div>
+
+  <!-- ══════════ S1: PROJECT OVERVIEW ══════════ -->
+  <div id="s1" class="section-heading">
+    <div class="num">1</div>
+    <h2>Project Overview</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>Purpose</h3>
+    <p>This is the official temple website for <strong>Sridevi Bhoodevi Sametha Sri Prasanna Venkateswara Swamy Devasthanam</strong>, locally known as <em>Toorpu Tirumala</em> (Eastern Tirumala). The website serves as a digital presence for the temple, enabling devotees to:</p>
+    <ul>
+      <li>Learn about the temple's history, divine deity, and management</li>
+      <li>View upcoming and recent events (Brahmotsavams, festivals)</li>
+      <li>Book the temple's <strong>Kalyana Mandapam</strong> (function hall) online</li>
+      <li>Make UPI-based donations directly to the temple</li>
+      <li>Browse the sacred photo gallery</li>
+      <li>Find the temple's location via an embedded Google Map</li>
+    </ul>
+  </div>
+
+  <div class="section-card">
+    <h3>Project Identity</h3>
+    <table class="info-table">
+      <tr><th>Field</th><th>Value</th></tr>
+      <tr><td>Project Folder</td><td><code>TEMPLE-UI</code></td></tr>
+      <tr><td>npm Package Name</td><td><code>sop</code> (in package.json)</td></tr>
+      <tr><td>Version</td><td>0.0.0 (pre-release)</td></tr>
+      <tr><td>Module Type</td><td>ES Modules (<code>"type": "module"</code>)</td></tr>
+      <tr><td>Temple Email</td><td>toorputirumala@gmail.com</td></tr>
+      <tr><td>UPI ID</td><td>Q539768773@ybl</td></tr>
+      <tr><td>PIN Code</td><td>533343</td></tr>
+    </table>
+  </div>
+
+  <!-- ══════════ S2: TEMPLE INFORMATION ══════════ -->
+  <div id="s2" class="section-heading">
+    <div class="num">2</div>
+    <h2>Temple Information</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>About the Temple</h3>
+    <table class="info-table">
+      <tr><th>Attribute</th><th>Details</th></tr>
+      <tr><td>Full Name</td><td>Sridevi Bhoodevi Sametha Sri Prasanna Venkateswara Swamy Devasthanam</td></tr>
+      <tr><td>Nickname</td><td>"Toorpu Tirumala" (Eastern Tirumala)</td></tr>
+      <tr><td>Location</td><td>Balabhadrapuram village, Biccavolu mandal, East Godavari district, Andhra Pradesh – PIN 533343</td></tr>
+      <tr><td>GPS Coordinates</td><td>~16°57′30″ N, 82°00′20″ E</td></tr>
+      <tr><td>Construction Started</td><td>2012</td></tr>
+      <tr><td>Consecration (Pranapratishta)</td><td>5 May 2014 at 9:57 AM</td></tr>
+      <tr><td>Deity Statue Height</td><td>9.17 feet (Lord Venkateswara)</td></tr>
+      <tr><td>Gopuram Height</td><td>81 feet</td></tr>
+      <tr><td>Sub-Temple</td><td>Varaha Swamy Temple within complex</td></tr>
+      <tr><td>Weekly Service</td><td>Annadanam every Saturday</td></tr>
+      <tr><td>Nearby Landmark</td><td>Famous Sai Baba temple (Andhra Shirdi)</td></tr>
+      <tr><td>Nearest Railway</td><td>Rajahmundry (~30 km)</td></tr>
+      <tr><td>Nearest Airport</td><td>Rajahmundry Airport (~30 km NW)</td></tr>
+    </table>
+  </div>
+
+  <!-- ══════════ S3: TECH STACK ══════════ -->
+  <div id="s3" class="section-heading">
+    <div class="num">3</div>
+    <h2>Tech Stack & Architecture</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>Technology Stack</h3>
+    <table class="info-table">
+      <tr><th>Layer</th><th>Technology</th><th>Version</th><th>Purpose</th></tr>
+      <tr><td>UI Framework</td><td>React</td><td>^18.3.1</td><td>Component-based UI</td></tr>
+      <tr><td>Build Tool</td><td>Vite</td><td>^5.4.2</td><td>Fast dev server & bundler</td></tr>
+      <tr><td>Styling</td><td>Tailwind CSS</td><td>^3.4.10</td><td>Utility-first CSS</td></tr>
+      <tr><td>Routing</td><td>React Router DOM</td><td>^6.26.1</td><td>Client-side navigation</td></tr>
+      <tr><td>Backend DB</td><td>Firebase Firestore</td><td>^12.12.1</td><td>NoSQL real-time database</td></tr>
+      <tr><td>Auth</td><td>Firebase Auth</td><td>^12.12.1</td><td>Admin email/password login</td></tr>
+      <tr><td>Email (SMTP)</td><td>Nodemailer + Express</td><td>^6.9.14</td><td>Server-side email notifications</td></tr>
+      <tr><td>Email (Browser)</td><td>EmailJS</td><td>^4.4.1</td><td>Client-side email (configured)</td></tr>
+      <tr><td>Animations</td><td>GSAP</td><td>^3.12.5</td><td>Animation library (available)</td></tr>
+      <tr><td>UI Components</td><td>MUI (Material UI)</td><td>^6.0.0</td><td>Icon components (Close, Menu, Arrow)</td></tr>
+      <tr><td>Notifications</td><td>React Toastify</td><td>^10.0.5</td><td>In-app toast messages</td></tr>
+      <tr><td>Particles</td><td>react-tsparticles</td><td>^2.12.2</td><td>Particle effects (available)</td></tr>
+      <tr><td>Carousel</td><td>react-slick</td><td>^0.30.2</td><td>Slider component (available)</td></tr>
+      <tr><td>Backend Runtime</td><td>Node.js / Express</td><td>–</td><td>Local mail relay server</td></tr>
+      <tr><td>Deployment</td><td>Vercel</td><td>–</td><td>Frontend hosting</td></tr>
+      <tr><td>Tunneling</td><td>ngrok</td><td>(exe included)</td><td>Local dev exposure</td></tr>
+    </table>
+  </div>
+
+  <div class="section-card">
+    <h3>High-Level Architecture</h3>
+    <div class="arch-diagram">
+      <div class="arch-layer">
+        <div class="arch-label">Browser / Client (React + Vite)</div>
+        <div class="arch-items">Landing · Events · Gallery · Mandap Booking · Donate · Admin · Contact</div>
+      </div>
+      <span class="arch-arrow">↕</span>
+      <div class="arch-layer">
+        <div class="arch-label">Firebase (Cloud Services)</div>
+        <div class="arch-items">Firestore DB (events, mandap_bookings, donations) | Firebase Auth (admin)</div>
+      </div>
+      <span class="arch-arrow">↕</span>
+      <div class="arch-layer">
+        <div class="arch-label">Node.js Express Server (Local / Serverless)</div>
+        <div class="arch-items">POST /api/send-mail → Nodemailer → Gmail SMTP</div>
+      </div>
+      <span class="arch-arrow">↕</span>
+      <div class="arch-layer">
+        <div class="arch-label">Vercel (Production Hosting)</div>
+        <div class="arch-items">Static frontend + API rewrites → /api/* routes</div>
+      </div></pre>
+  </div>
+
+  <!-- ══════════ S4: PROJECT STRUCTURE ══════════ -->
+  <div id="s4" class="section-heading">
+    <div class="num">4</div>
+    <h2>Project Structure</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>Directory Layout</h3>
+    <pre class="code-block"><span class="key">TEMPLE-UI/</span>
+├── <span class="key">src/</span>                        <span class="comment"># React application source</span>
+│   ├── <span class="key">pages/</span>                  <span class="comment"># Full-page section components</span>
+│   │   ├── <span class="val">Index.jsx</span>           <span class="comment"># Main page assembler (all sections)</span>
+│   │   ├── <span class="val">LandingPage.jsx</span>     <span class="comment"># Hero section with deity image</span>
+│   │   ├── <span class="val">VideoPage.jsx</span>       <span class="comment"># Temple video section</span>
+│   │   ├── <span class="val">EventsPage.jsx</span>      <span class="comment"># Events & festivals (Firestore)</span>
+│   │   ├── <span class="val">DetailsPage.jsx</span>     <span class="comment"># Temple info & history</span>
+│   │   ├── <span class="val">ManagementPage.jsx</span>  <span class="comment"># Committee members</span>
+│   │   ├── <span class="val">GalleryPage.jsx</span>     <span class="comment"># Marquee photo gallery + lightbox</span>
+│   │   ├── <span class="val">MandapPage.jsx</span>      <span class="comment"># Kalyana Mandap booking form</span>
+│   │   ├── <span class="val">ContactPage.jsx</span>     <span class="comment"># Contact info + Google Map embed</span>
+│   │   ├── <span class="val">SliderPage.jsx</span>      <span class="comment"># Additional slider component</span>
+│   │   └── <span class="val">AdminPage.jsx</span>       <span class="comment"># Protected admin dashboard</span>
+│   ├── <span class="key">components/</span>             <span class="comment"># Shared reusable components</span>
+│   │   ├── <span class="val">Header.jsx</span>          <span class="comment"># Sticky nav + language toggle</span>
+│   │   ├── <span class="val">Footer.jsx</span>          <span class="comment"># Site footer</span>
+│   │   ├── <span class="val">DonateSection.jsx</span>   <span class="comment"># Floating donate button + UPI modal</span>
+│   │   └── <span class="val">RotatingFlowers.jsx</span> <span class="comment"># Decorative mandala background</span>
+│   ├── <span class="key">contexts/</span>
+│   │   └── <span class="val">LanguageContext.jsx</span> <span class="comment"># EN/TE bilingual context + all strings</span>
+│   ├── <span class="key">images/</span>                 <span class="comment"># Static decorative images (SVGs, GIFs)</span>
+│   ├── <span class="key">css/</span>                    <span class="comment"># Additional CSS files</span>
+│   ├── <span class="val">App.jsx</span>                 <span class="comment"># Root router (/ and /admin)</span>
+│   ├── <span class="val">App.css</span>                 <span class="comment"># Global styles & animations</span>
+│   ├── <span class="val">firebase.js</span>             <span class="comment"># Firebase SDK init (auth, db, analytics)</span>
+│   └── <span class="val">emailjsConfig.js</span>        <span class="comment"># EmailJS service IDs (configure before use)</span>
+├── <span class="key">server/</span>
+│   └── <span class="val">index.js</span>                <span class="comment"># Express SMTP mail relay (port 3001)</span>
+├── <span class="key">api/</span>
+│   └── <span class="val">send-mail.js</span>            <span class="comment"># Vercel serverless function for email</span>
+├── <span class="key">public/</span>                     <span class="comment"># Static assets served at root</span>
+│   ├── <span class="val">templedata/</span>             <span class="comment"># Temple photos (gallery images)</span>
+│   ├── <span class="val">videos/</span>                 <span class="comment"># Temple videos</span>
+│   ├── <span class="val">logo.png</span>                <span class="comment"># Favicon / Apple touch icon</span>
+│   └── <span class="val">manifest.json</span>           <span class="comment"># PWA manifest</span>
+├── <span class="val">.env</span>                        <span class="comment"># Secret env vars (NOT committed)</span>
+├── <span class="val">.env.example</span>               <span class="comment"># Template for env vars</span>
+├── <span class="val">vite.config.js</span>             <span class="comment"># Vite config with API proxy</span>
+├── <span class="val">tailwind.config.js</span>         <span class="comment"># Tailwind configuration</span>
+├── <span class="val">vercel.json</span>                <span class="comment"># Vercel deployment config</span>
+├── <span class="val">index.html</span>                 <span class="comment"># HTML entry point (Google Fonts, SEO)</span>
+└── <span class="val">package.json</span>               <span class="comment"># Dependencies & npm scripts</span></pre>
+  </div>
+
+  <!-- ══════════ S5: PAGES & COMPONENTS ══════════ -->
+  <div id="s5" class="section-heading">
+    <div class="num">5</div>
+    <h2>Pages & Components</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>App Routing (App.jsx)</h3>
+    <p>The app uses <strong>React Router v6</strong> with two routes:</p>
+    <table class="info-table">
+      <tr><th>Route</th><th>Component</th><th>Description</th></tr>
+      <tr><td><code>/</code></td><td>Index</td><td>Single-page app — all sections assembled in one scroll</td></tr>
+      <tr><td><code>/admin</code></td><td>AdminPage</td><td>Protected admin panel (Firebase Auth gated)</td></tr>
+    </table>
+  </div>
+
+  <div class="section-card">
+    <h3>Page Sections (Index.jsx assembly order)</h3>
+    <table class="info-table">
+      <tr><th>#</th><th>Component</th><th>ID Anchor</th><th>Key Features</th></tr>
+      <tr><td>1</td><td>Header</td><td>–</td><td>Sticky top nav, language toggle EN/TE, smooth scroll to sections, mobile hamburger drawer</td></tr>
+      <tr><td>2</td><td>LandingPage</td><td>–</td><td>Hero: deity image, spinning chakra, animated torans (SVG), gold radial aura, responsive diya GIFs</td></tr>
+      <tr><td>3</td><td>VideoPage</td><td><code>video</code></td><td>Temple video embed section</td></tr>
+      <tr><td>4</td><td>EventsPage</td><td><code>events</code></td><td>Firestore-backed event cards (fetched in real-time), Saturday Annadanam badge, upcoming events list</td></tr>
+      <tr><td>5</td><td>DetailsPage</td><td><code>details</code></td><td>Temple history timeline (2012→2026), key info (coordinates, transport, geography, admin hierarchy)</td></tr>
+      <tr><td>6</td><td>ManagementPage</td><td><code>management</code></td><td>Temple committee member listing</td></tr>
+      <tr><td>7</td><td>GalleryPage</td><td><code>gallery</code></td><td>3-row infinite auto-scrolling marquee gallery, hover-pause, click-to-lightbox with keyboard nav</td></tr>
+      <tr><td>8</td><td>MandapPage</td><td><code>mandap</code></td><td>Kalyana Mandapam booking form with animated greeting card reveal</td></tr>
+      <tr><td>9</td><td>ContactPage</td><td><code>contact</code></td><td>Address card, facilities card, embedded Google Map iframe</td></tr>
+      <tr><td>10</td><td>Footer</td><td>–</td><td>Copyright notice with bilingual support</td></tr>
+      <tr><td>11</td><td>DonateSection</td><td>–</td><td>Floating "Donate" button (fixed bottom-right), UPI donation modal</td></tr>
+    </table>
+  </div>
+
+  <div class="section-card">
+    <h3>GalleryPage – Marquee Gallery Detail</h3>
+    <p>The gallery uses <strong>pure CSS animation</strong> (no library) to create 3 infinite-scrolling rows:</p>
+    <ul>
+      <li><strong>Row 1</strong> — scrolls LEFT at 35s duration</li>
+      <li><strong>Row 2</strong> — scrolls RIGHT at 42s duration (reversed image order)</li>
+      <li><strong>Row 3</strong> — scrolls LEFT at 30s duration (offset slice)</li>
+    </ul>
+    <p>Images are duplicated (<code>[...images, ...images]</code>) for seamless looping. The entire <code>.gallery-rows</code> pauses on hover via <code>animation-play-state: paused</code>.</p>
+    <p>Clicking any card opens a <strong>fullscreen lightbox modal</strong> with keyboard navigation (← → Escape).</p>
+    <p>Currently, 9 static images are hardcoded in the <code>images</code> array inside <code>GalleryPage.jsx</code>. They are loaded from <code>/public/templedata/</code>.</p>
+    <div class="callout callout-warn">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-text"><strong>Note:</strong> Gallery images are hardcoded. Adding new photos requires editing the <code>images</code> array in <code>GalleryPage.jsx</code> and placing files in <code>public/templedata/</code>.</div></pre>
+  </div>
+
+  <div class="section-card">
+    <h3>MandapPage – Booking Flow</h3>
+    <p>The Mandap booking feature has an <strong>animated greeting card reveal</strong> UX:</p>
+    <div class="step-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h4>Greeting Card</h4>
+        <p>User sees an animated 3D card sticker. Tap to open with a flip animation + sparkle burst.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h4>Event Type Selector</h4>
+        <p>Choose from: Marriage 💍, Birthday 🎂, Puja 🪔, Other ✨</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h4>Fill Booking Form</h4>
+        <p>Name, phone (10-digit), event type, preferred date, additional details.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <h4>Submit → Save + Email</h4>
+        <p>Saves to Firestore <code>mandap_bookings</code> collection + sends HTML email via <code>/api/send-mail</code>.</p>
+      </div></pre>
+    <br>
+    <p><strong>Firestore Collection:</strong> <code>mandap_bookings</code></p>
+    <pre class="code-block"><span class="comment">// Document structure saved per booking:</span>
+{
+  <span class="key">name</span>:       <span class="val">"Rama Rao"</span>,
+  <span class="key">phone</span>:      <span class="val">"9876543210"</span>,
+  <span class="key">eventType</span>: <span class="val">"Marriage"</span>,
+  <span class="key">date</span>:       <span class="val">"2026-10-15"</span>,
+  <span class="key">details</span>:   <span class="val">"Reception + Muhurtham"</span>,
+  <span class="key">status</span>:    <span class="val">"pending"</span>,
+  <span class="key">timestamp</span>: <span class="val">serverTimestamp()</span>
+}</pre>
+  </div>
+
+  <!-- ══════════ S6: FIREBASE ══════════ -->
+  <div id="s6" class="section-heading">
+    <div class="num">6</div>
+    <h2>Firebase Integration</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>Firebase Services Used</h3>
+    <table class="info-table">
+      <tr><th>Service</th><th>Usage</th><th>Collections</th></tr>
+      <tr><td>Firestore</td><td>NoSQL database for all app data</td><td><code>events</code>, <code>mandap_bookings</code>, <code>donations</code></td></tr>
+      <tr><td>Firebase Auth</td><td>Admin login (email + password)</td><td>–</td></tr>
+      <tr><td>Firebase Analytics</td><td>Page usage analytics (initialized)</td><td>–</td></tr>
+    </table>
+  </div>
+
+  <div class="section-card">
+    <h3>Firestore Collections Schema</h3>
+    <h4>Collection: <code>events</code> (Admin-created via AdminPage)</h4>
+    <pre class="code-block">{
+  <span class="key">name</span>:       <span class="val">"Maha Shivaratri 2026"</span>,
+  <span class="key">date</span>:       <span class="val">"2026-02-26"</span>,
+  <span class="key">details</span>:   <span class="val">"Special abishekam and bhajans from 6 PM..."</span>,
+  <span class="key">images</span>:    <span class="val">["https://drive.google.com/...", "..."]</span>,
+  <span class="key">createdAt</span>: <span class="val">serverTimestamp()</span>
+}</pre>
+
+    <h4>Collection: <code>mandap_bookings</code></h4>
+    <pre class="code-block">{
+  <span class="key">name</span>, <span class="key">phone</span>, <span class="key">eventType</span>, <span class="key">date</span>, <span class="key">details</span>,
+  <span class="key">status</span>:    <span class="val">"pending"</span>,
+  <span class="key">timestamp</span>: serverTimestamp()
+}</pre>
+
+    <h4>Collection: <code>donations</code></h4>
+    <pre class="code-block">{
+  <span class="key">name</span>:      <span class="val">"Devotee Name"</span>,
+  <span class="key">mobile</span>:   <span class="val">"9876543210"</span>,
+  <span class="key">amount</span>:   <span class="val">501.00</span>,           <span class="comment">// parsed as float</span>
+  <span class="key">timestamp</span>: serverTimestamp()
+}</pre>
+  </div>
+
+  <div class="section-card">
+    <h3>Firebase Config File</h3>
+    <p>File: <code>src/firebase.js</code> — reads all credentials from environment variables:</p>
+    <pre class="code-block"><span class="comment">// src/firebase.js</span>
+import { initializeApp } from <span class="val">"firebase/app"</span>;
+import { getAuth } from <span class="val">"firebase/auth"</span>;
+import { getFirestore } from <span class="val">"firebase/firestore"</span>;
+
+const firebaseConfig = {
+  <span class="key">apiKey</span>:            import.meta.env.VITE_FIREBASE_API_KEY,
+  <span class="key">authDomain</span>:        import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  <span class="key">projectId</span>:         import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  <span class="key">storageBucket</span>:     import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  <span class="key">messagingSenderId</span>: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  <span class="key">appId</span>:             import.meta.env.VITE_FIREBASE_APP_ID,
+  <span class="key">measurementId</span>:     import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
+};
+
+export { auth, db, analytics };</pre>
+  </div>
+
+  <!-- ══════════ S7: EMAIL ══════════ -->
+  <div id="s7" class="section-heading">
+    <div class="num">7</div>
+    <h2>Email / Notification System</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>Two Email Mechanisms</h3>
+    <div class="two-col">
+      <div class="highlight-box">
+        <p>📧 <strong>Nodemailer (SMTP) — Primary, Active</strong><br>
+        Express server at <code>server/index.js</code> (port 3001) + Vercel serverless function at <code>api/send-mail.js</code>. Used for Mandap booking notifications. Sends branded HTML emails.</p>
+      </div>
+      <div class="highlight-box">
+        <p>✉️ <strong>EmailJS — Configured, Not Yet Active</strong><br>
+        Client-side config in <code>src/emailjsConfig.js</code> with placeholder IDs. Requires setup at emailjs.com before use.</p>
+      </div></pre>
+  </div>
+
+  <div class="section-card">
+    <h3>SMTP Server Details (server/index.js)</h3>
+    <table class="info-table">
+      <tr><th>Property</th><th>Value</th></tr>
+      <tr><td>Port</td><td>3001</td></tr>
+      <tr><td>SMTP Host</td><td>smtp.gmail.com</td></tr>
+      <tr><td>SMTP Port</td><td>587 (STARTTLS)</td></tr>
+      <tr><td>Sender</td><td><code>SMTP_USER</code> env var (Gmail account)</td></tr>
+      <tr><td>Password</td><td><code>SMTP_PASS</code> env var (Gmail App Password)</td></tr>
+      <tr><td>Recipient</td><td><code>SMTP_TO</code> env var (temple email)</td></tr>
+      <tr><td>API Endpoint</td><td>POST <code>/api/send-mail</code></td></tr>
+      <tr><td>CORS Origin</td><td>http://localhost:5173 (dev)</td></tr>
+    </table>
+    <div class="callout callout-info">
+      <span class="callout-icon">ℹ️</span>
+      <div class="callout-text"><strong>Gmail App Password:</strong> The <code>SMTP_PASS</code> must be a Gmail "App Password" (not the account password). Generate at <em>Google Account → Security → 2-Step Verification → App Passwords</em>.</div></pre>
+  </div>
+
+  <!-- ══════════ S8: MULTILINGUAL ══════════ -->
+  <div id="s8" class="section-heading">
+    <div class="num">8</div>
+    <h2>Multilingual Support</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>Language Context (src/contexts/LanguageContext.jsx)</h3>
+    <p>The app supports <strong>English (en)</strong> and <strong>Telugu (te)</strong> with a global React Context. All UI strings are centralized in this file.</p>
+    <table class="info-table">
+      <tr><th>Export</th><th>Description</th></tr>
+      <tr><td><code>LanguageProvider</code></td><td>Wrap the app; provides <code>lang</code>, <code>toggleLang</code>, <code>t</code></td></tr>
+      <tr><td><code>useLanguage()</code></td><td>Hook — returns <code>{ lang, toggleLang, t }</code></td></tr>
+      <tr><td><code>translations</code></td><td>Object with <code>en</code> and <code>te</code> keys, each containing all sections</td></tr>
+    </table>
+    <h4>String Sections Available</h4>
+    <div>
+      <span class="badge badge-orange">nav</span>
+      <span class="badge badge-orange">hero</span>
+      <span class="badge badge-orange">history</span>
+      <span class="badge badge-orange">details</span>
+      <span class="badge badge-orange">events</span>
+      <span class="badge badge-orange">gallery</span>
+      <span class="badge badge-orange">contact</span>
+      <span class="badge badge-orange">management</span>
+      <span class="badge badge-orange">footer</span>
+      <span class="badge badge-orange">donate</span>
+      <span class="badge badge-orange">booking</span></pre>
+    <h4>Usage in Components</h4>
+    <pre class="code-block"><span class="comment">// In any component:</span>
+import { useLanguage } from <span class="val">"../contexts/LanguageContext"</span>;
+
+const { t, lang, toggleLang } = useLanguage();
+<span class="comment">// Use t.nav.events, t.hero.title, etc.</span>
+<span class="comment">// lang is "en" or "te"</span>
+<span class="comment">// toggleLang() switches between the two</span></pre>
+    <p>The language toggle button is in the <strong>Header</strong> (desktop nav and mobile menu). It shows "తెలుగు" when in English, and "English" when in Telugu.</p>
+  </div>
+
+  <!-- ══════════ S9: DONATION ══════════ -->
+  <div id="s9" class="section-heading">
+    <div class="num">9</div>
+    <h2>UPI / Donation System</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>DonateSection Component</h3>
+    <p>A <strong>floating golden button</strong> (fixed, bottom-right) opens a two-step donation modal:</p>
+
+    <h4>Step 1 — Donor Details Form</h4>
+    <ul>
+      <li>Full Name, Mobile Number, Donation Amount</li>
+      <li>Quick-amount preset buttons: ₹51, ₹101, ₹251, ₹501, ₹1001</li>
+      <li>On submit → saves to Firestore <code>donations</code> collection → advances to Step 2</li>
+    </ul>
+
+    <h4>Step 2 — Payment (Device-Aware)</h4>
+    <table class="info-table">
+      <tr><th>Device</th><th>Behavior</th></tr>
+      <tr><td>Mobile</td><td>Shows Paytm deep-link button (<code>paytmmp://pay?...</code>) + fallback generic UPI link (<code>upi://pay?...</code>)</td></tr>
+      <tr><td>Desktop</td><td>Shows a QR code generated via <code>api.qrserver.com</code> containing the UPI payment URL</td></tr>
+    </table>
+
+    <h4>UPI Configuration</h4>
+    <pre class="code-block">const TEMPLE_UPI_ID = <span class="val">"Q539768773@ybl"</span>;
+const TEMPLE_NAME   = <span class="val">"Sri Prasanna Venkateswara Swamy Temple"</span>;
+
+<span class="comment">// UPI URL format:</span>
+<span class="val">`upi://pay?pa=${TEMPLE_UPI_ID}&pn=${TEMPLE_NAME}&am=${amount}&cu=INR`</span></pre>
+
+    <div class="callout callout-warn">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-text"><strong>Payment Flow:</strong> The website only collects donor info and generates the UPI QR/link. Actual payment processing happens inside the user's UPI app (PhonePe, GPay, Paytm). There is no payment gateway SDK integrated — this is a UPI deep-link pattern.</div></pre>
+  </div>
+
+  <!-- ══════════ S10: ADMIN ══════════ -->
+  <div id="s10" class="section-heading">
+    <div class="num">10</div>
+    <h2>Admin Panel</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>Route: /admin</h3>
+    <p>The admin panel is accessible at <code>/admin</code>. It requires <strong>Firebase email/password authentication</strong>.</p>
+
+    <h4>Authentication Flow</h4>
+    <ol style="padding-left:18px; margin-bottom:12px;">
+      <li>User visits <code>/admin</code></li>
+      <li>If not logged in → shows Login form (email + password)</li>
+      <li>Calls <code>signInWithEmailAndPassword(auth, email, password)</code></li>
+      <li>On success → shows Event Management dashboard</li>
+      <li>Logout via <code>signOut(auth)</code></li>
+    </ol>
+
+    <div class="callout callout-danger">
+      <span class="callout-icon">🔐</span>
+      <div class="callout-text"><strong>Admin User Setup:</strong> The admin email/password must be created manually in the <em>Firebase Console → Authentication → Users</em>. It is not created via the website itself.</div></pre>
+
+    <h4>Event Management (Add New Event)</h4>
+    <p>The admin can add new temple events with:</p>
+    <ul>
+      <li><strong>Event Name</strong> (e.g., "Maha Shivaratri 2026")</li>
+      <li><strong>Event Date</strong> (date picker)</li>
+      <li><strong>Event Details</strong> (textarea)</li>
+      <li><strong>Google Drive Image Links</strong> — minimum 2 required. Links must have "Anyone with the link" sharing access. The image URL is converted to display format for rendering.</li>
+    </ul>
+    <p>Data is written to Firestore <code>events</code> collection with <code>serverTimestamp()</code>. The EventsPage reads this collection in real-time.</p>
+  </div>
+
+  <!-- ══════════ S11: ENV CONFIG ══════════ -->
+  <div id="s11" class="section-heading">
+    <div class="num">11</div>
+    <h2>Environment Configuration</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>Required Environment Variables (.env)</h3>
+    <div class="callout callout-danger">
+      <span class="callout-icon">🚫</span>
+      <div class="callout-text"><strong>Security:</strong> The <code>.env</code> file contains real secrets. It is listed in <code>.gitignore</code> and must NEVER be committed to version control.</div></pre>
+    <table class="info-table">
+      <tr><th>Variable</th><th>Source</th><th>Purpose</th></tr>
+      <tr><td><code>VITE_FIREBASE_API_KEY</code></td><td>Firebase Console → Project Settings</td><td>Firebase SDK authentication</td></tr>
+      <tr><td><code>VITE_FIREBASE_AUTH_DOMAIN</code></td><td>Firebase Console</td><td>Firebase Auth domain</td></tr>
+      <tr><td><code>VITE_FIREBASE_PROJECT_ID</code></td><td>Firebase Console</td><td>Project identifier</td></tr>
+      <tr><td><code>VITE_FIREBASE_STORAGE_BUCKET</code></td><td>Firebase Console</td><td>Storage bucket URL</td></tr>
+      <tr><td><code>VITE_FIREBASE_MESSAGING_SENDER_ID</code></td><td>Firebase Console</td><td>Cloud Messaging</td></tr>
+      <tr><td><code>VITE_FIREBASE_APP_ID</code></td><td>Firebase Console</td><td>App identifier</td></tr>
+      <tr><td><code>VITE_FIREBASE_MEASUREMENT_ID</code></td><td>Firebase Console</td><td>Analytics measurement</td></tr>
+      <tr><td><code>SMTP_USER</code></td><td>Gmail account email</td><td>SMTP sender address</td></tr>
+      <tr><td><code>SMTP_PASS</code></td><td>Gmail App Password (16 chars)</td><td>SMTP authentication</td></tr>
+      <tr><td><code>SMTP_TO</code></td><td>toorputirumala@gmail.com</td><td>Email notification recipient</td></tr>
+    </table>
+    <div class="callout callout-info">
+      <span class="callout-icon">ℹ️</span>
+      <div class="callout-text"><strong>VITE_ prefix:</strong> All variables exposed to the browser must start with <code>VITE_</code>. The server-side SMTP vars (<code>SMTP_USER</code>, <code>SMTP_PASS</code>, <code>SMTP_TO</code>) do NOT need this prefix as they are only used by Node.js.</div></pre>
+  </div>
+
+  <!-- ══════════ S12: LOCAL DEV ══════════ -->
+  <div id="s12" class="section-heading">
+    <div class="num">12</div>
+    <h2>Running the Project Locally</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>Prerequisites</h3>
+    <ul>
+      <li>Node.js 18+ installed</li>
+      <li><code>.env</code> file filled with valid Firebase + SMTP credentials</li>
+      <li>Firebase project created and Firestore database initialized</li>
+    </ul>
+
+    <h3 style="margin-top:16px;">Setup & Start</h3>
+    <pre class="code-block"><span class="comment"># 1. Install dependencies (root project)</span>
+npm install
+
+<span class="comment"># 2. Install server dependencies</span>
+cd server && npm install && cd ..
+
+<span class="comment"># 3. Start both Vite dev server AND Express mail server concurrently</span>
+npm run dev
+
+<span class="comment"># This runs: "concurrently \"vite\" \"node server/index.js\""</span>
+<span class="comment"># Vite → http://localhost:5173</span>
+<span class="comment"># Express → http://localhost:3001</span></pre>
+
+    <h3 style="margin-top:16px;">Available npm Scripts</h3>
+    <table class="info-table">
+      <tr><th>Script</th><th>Command</th><th>Purpose</th></tr>
+      <tr><td><code>npm run dev</code></td><td>concurrently vite + node server</td><td>Development (Vite + Express)</td></tr>
+      <tr><td><code>npm run build</code></td><td>vite build</td><td>Production bundle → <code>dist/</code></td></tr>
+      <tr><td><code>npm run preview</code></td><td>vite preview</td><td>Preview production build locally</td></tr>
+      <tr><td><code>npm run lint</code></td><td>eslint .</td><td>Code linting</td></tr>
+    </table>
+
+    <h3 style="margin-top:16px;">Vite Dev Server Proxy</h3>
+    <p>The <code>vite.config.js</code> proxies <code>/api/*</code> requests to the Express server:</p>
+    <pre class="code-block"><span class="comment">// vite.config.js</span>
+server: {
+  proxy: {
+    <span class="key">'/api'</span>: {
+      target: <span class="val">'http://localhost:3001'</span>,
+      changeOrigin: true,
+    }
+  }
+}</pre>
+    <p>This means in development, <code>fetch('/api/send-mail')</code> in the browser is transparently forwarded to <code>http://localhost:3001/api/send-mail</code>.</p>
+  </div>
+
+  <!-- ══════════ S13: DEPLOYMENT ══════════ -->
+  <div id="s13" class="section-heading">
+    <div class="num">13</div>
+    <h2>Deployment</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>Vercel Deployment</h3>
+    <p>The project is configured for <strong>Vercel</strong> deployment via <code>vercel.json</code>:</p>
+    <pre class="code-block">{
+  <span class="key">"buildCommand"</span>:   <span class="val">"vite build"</span>,
+  <span class="key">"outputDirectory"</span>: <span class="val">"dist"</span>,
+  <span class="key">"rewrites"</span>: [
+    { <span class="key">"source"</span>: <span class="val">"/api/(.*)"</span>,  <span class="key">"destination"</span>: <span class="val">"/api/$1"</span>   },
+    { <span class="key">"source"</span>: <span class="val">"/(.*)"</span>,      <span class="key">"destination"</span>: <span class="val">"/index.html"</span> }
+  ]
+}</pre>
+    <table class="info-table">
+      <tr><th>Rewrite</th><th>Explanation</th></tr>
+      <tr><td><code>/api/*</code></td><td>Routes to Vercel serverless functions in the <code>api/</code> folder (e.g., <code>api/send-mail.js</code>)</td></tr>
+      <tr><td><code>/*</code></td><td>All other routes → <code>index.html</code> (enables React Router client-side routing)</td></tr>
+    </table>
+
+    <div class="callout callout-warn">
+      <span class="callout-icon">⚠️</span>
+      <div class="callout-text"><strong>Environment Variables on Vercel:</strong> All <code>.env</code> variables must be added to Vercel project settings under <em>Settings → Environment Variables</em>. They are NOT read from the local <code>.env</code> file in production.</div></pre>
+
+    <h4>Serverless Email on Vercel</h4>
+    <p>The file <code>api/send-mail.js</code> is the Vercel serverless equivalent of the Express server. In production, Mandap booking email requests go to this serverless function instead of the local Express server.</p>
+  </div>
+
+  <!-- ══════════ S14: DESIGN DECISIONS ══════════ -->
+  <div id="s14" class="section-heading">
+    <div class="num">14</div>
+    <h2>Key Design Decisions</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>Visual Design System</h3>
+    <table class="info-table">
+      <tr><th>Element</th><th>Details</th></tr>
+      <tr><td>Primary Color</td><td><code>#f47728</code> — Saffron orange (sacred color)</td></tr>
+      <tr><td>Gold Accent</td><td><code>#f5c842</code> — Gold (divine symbolism)</td></tr>
+      <tr><td>Deep Gold</td><td><code>#c8860a</code>, <code>#c45c00</code> — Dark gold tones</td></tr>
+      <tr><td>Sacred Red</td><td><code>#800808</code> — Used for temple name headings</td></tr>
+      <tr><td>Dark Background</td><td><code>#1a0a00</code>, <code>#2d1200</code> — Gallery/Mandap dark sections</td></tr>
+      <tr><td>Light Background</td><td><code>#fcf0d8</code>, <code>#faebd0</code> — Landing, Contact sections</td></tr>
+      <tr><td>Primary Font</td><td><code>Outfit</code> — Modern, clean (Google Fonts)</td></tr>
+      <tr><td>Display Font</td><td><code>Yatra One</code> — Traditional Telugu/Sanskrit feel</td></tr>
+      <tr><td>Secondary Fonts</td><td>Noto Sans Telugu, Tiro Devanagari Hindi (for Telugu/Sanskrit text)</td></tr>
+    </table>
+  </div>
+
+  <div class="section-card">
+    <h3>Architecture Decisions</h3>
+    <ul>
+      <li><strong>Single-page scroll layout</strong> — All sections on <code>/</code>, navigated via smooth scroll anchors. No multi-page routing for public sections.</li>
+      <li><strong>Firebase Firestore (NoSQL)</strong> — Chosen for real-time data, easy admin-side event publishing, and zero backend infrastructure needed for reads.</li>
+      <li><strong>Pure CSS animations</strong> — Gallery marquee and most animations use CSS <code>@keyframes</code> without GSAP, for lightweight performance.</li>
+      <li><strong>Tailwind CSS</strong> — Utility classes for rapid layout; custom animations are in <code>App.css</code> and inline <code>&lt;style&gt;</code> tags for component-scoped CSS.</li>
+      <li><strong>Google Drive image links</strong> — Events gallery uses Google Drive shareable links (converted to direct CDN URLs) to avoid Firebase Storage costs.</li>
+      <li><strong>Device-aware donation UX</strong> — QR code on desktop, deep-links on mobile, for the best UPI payment experience on each platform.</li>
+      <li><strong>Bilingual architecture</strong> — All strings in one central file enables easy translation updates and Telugu language support without code changes.</li>
+    </ul>
+  </div>
+
+  <!-- ══════════ S15: KNOWN ISSUES ══════════ -->
+  <div id="s15" class="section-heading">
+    <div class="num">15</div>
+    <h2>Known Issues & Future Improvements</h2>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="section-card">
+    <h3>Known Issues / Limitations</h3>
+    <table class="info-table">
+      <tr><th>Issue</th><th>Details</th><th>Severity</th></tr>
+      <tr>
+        <td>Gallery images hardcoded</td>
+        <td>New temple photos require editing <code>GalleryPage.jsx</code> source code and redeploying</td>
+        <td><span class="badge badge-orange">Medium</span></td>
+      </tr>
+      <tr>
+        <td>EmailJS not configured</td>
+        <td><code>emailjsConfig.js</code> has placeholder IDs — must be configured on emailjs.com before use</td>
+        <td><span class="badge badge-orange">Medium</span></td>
+      </tr>
+      <tr>
+        <td>Admin panel lacks event listing/deletion</td>
+        <td>Admins can only add events; there is no UI to view, edit, or delete existing events</td>
+        <td><span class="badge badge-orange">Medium</span></td>
+      </tr>
+      <tr>
+        <td>Mandap booking — no availability check</td>
+        <td>Multiple bookings can be submitted for the same date; no conflict detection</td>
+        <td><span class="badge badge-orange">Medium</span></td>
+      </tr>
+      <tr>
+        <td>No booking confirmation to customer</td>
+        <td>Email notifications go to temple admin only; no acknowledgement email sent to the devotee who booked</td>
+        <td><span class="badge badge-orange">Medium</span></td>
+      </tr>
+      <tr>
+        <td>CORS limitation on Express server</td>
+        <td>Server allows only <code>localhost:5173</code>. Needs update for production domain after Vercel deploy.</td>
+        <td><span class="badge badge-red">High (Prod)</span></td>
+      </tr>
+      <tr>
+        <td>SliderPage component unused</td>
+        <td><code>SliderPage.jsx</code> exists but is not imported/used in <code>Index.jsx</code></td>
+        <td><span class="badge badge-green">Low</span></td>
+      </tr>
+      <tr>
+        <td>No PWA offline support</td>
+        <td>PWA manifest exists but no service worker is registered</td>
+        <td><span class="badge badge-green">Low</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="section-card">
+    <h3>Suggested Future Enhancements</h3>
+    <ul>
+      <li>🖼️ <strong>Dynamic gallery</strong> — Store images in Firebase Storage and fetch dynamically from Firestore so admins can add photos without code changes</li>
+      <li>📅 <strong>Mandap booking calendar</strong> — Show availability calendar with blocked dates to prevent double-bookings</li>
+      <li>📩 <strong>Customer confirmation email</strong> — Send a booking confirmation email back to the devotee who submitted the Mandap request</li>
+      <li>🛠️ <strong>Event management in admin</strong> — List, edit, and delete existing events from the AdminPage</li>
+      <li>💳 <strong>Donation receipts</strong> — Generate and email a PDF receipt for each donation</li>
+      <li>🔔 <strong>Push notifications</strong> — Use Firebase Cloud Messaging to notify devotees of new events</li>
+      <li>📱 <strong>PWA with offline support</strong> — Add a service worker so the website loads offline</li>
+      <li>🌐 <strong>SEO improvements</strong> — Add structured data (JSON-LD) for the temple as a local business / place of worship</li>
+      <li>📊 <strong>Admin analytics dashboard</strong> — View donation totals, booking counts, and event engagement</li>
+    </ul>
+  </div>
+
+  <div class="section-card">
+    <h3>Quick Reference Contacts & Resources</h3>
+    <table class="info-table">
+      <tr><th>Resource</th><th>URL / Info</th></tr>
+      <tr><td>Firebase Console</td><td>https://console.firebase.google.com</td></tr>
+      <tr><td>Vercel Dashboard</td><td>https://vercel.com/dashboard</td></tr>
+      <tr><td>EmailJS Dashboard</td><td>https://www.emailjs.com/</td></tr>
+      <tr><td>Gmail App Passwords</td><td>https://myaccount.google.com/apppasswords</td></tr>
+      <tr><td>Temple Email</td><td>toorputirumala@gmail.com</td></tr>
+      <tr><td>Temple UPI ID</td><td>Q539768773@ybl</td></tr>
+      <tr><td>Temple Coordinates</td><td>16.9583° N, 82.0056° E</td></tr>
+    </table>
+  </div>
+
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <p>🪔 KT Document — Sridevi Bhoodevi Sametha Sri Prasanna Venkateswara Swamy Devasthanam Temple Website</p>
+  <p style="margin-top:4px;">Prepared: August 2026 &nbsp;|&nbsp; Project: TEMPLE-UI &nbsp;|&nbsp; Stack: React + Vite + Firebase + Vercel</p>
+</footer>
+
+</body>
+</html>
