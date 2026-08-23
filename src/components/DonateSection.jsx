@@ -269,14 +269,20 @@ const DonateSection = () => {
                   /* ── MOBILE: QR + single UPI button (same URL as QR encodes) ── */
                   <div className="mb-6">
 
-                    {/* QR code — same as desktop, tap-to-pay on mobile scanners */}
-                    <div className="relative mx-auto w-fit mb-4">
+                    {/* QR image — also tappable to open UPI directly */}
+                    <a
+                      href={upiUrl}
+                      onClick={e => { e.preventDefault(); window.location.href = upiUrl; }}
+                      className="relative mx-auto w-fit mb-2 block"
+                      style={{ textDecoration: 'none' }}
+                    >
                       <div
-                        className="p-3 rounded-2xl"
+                        className="p-3 rounded-2xl mx-auto"
                         style={{
                           background: '#fff',
                           border: '3px solid #f5c842',
                           boxShadow: '0 0 30px rgba(245,200,66,0.3)',
+                          width: 'fit-content',
                         }}
                       >
                         <img src={qrCodeUrl} alt="UPI QR Code" className="w-44 h-44 block" />
@@ -285,23 +291,25 @@ const DonateSection = () => {
                         <div key={i} className={`absolute ${pos} w-3.5 h-3.5 rounded-sm`}
                           style={{ background: '#f47728', opacity: 0.8 }} />
                       ))}
-                    </div>
+                    </a>
 
                     <p className="text-xs mb-3 text-center" style={{ color: 'rgba(255,240,200,0.4)' }}>
-                      Scan above — or tap below to open your UPI app
+                      Tap QR or button below to open your UPI app
                     </p>
 
-                    {/* Single button — plain upi:// URL, same as QR data */}
-                    <a
-                      href={upiUrl}
+                    {/* Button uses window.location.href to bypass browser upi:// blocking */}
+                    <button
+                      onClick={() => { window.location.href = upiUrl; }}
                       className="flex items-center justify-center gap-2.5 w-full py-4 rounded-2xl font-bold text-base transition-all active:scale-95"
                       style={{
                         background: 'linear-gradient(135deg, #f5c842 0%, #f47728 60%, #c45c00 100%)',
                         color: '#1a0a00',
                         boxShadow: '0 6px 24px rgba(244,119,40,0.5)',
                         fontFamily: "'Outfit', sans-serif",
-                        textDecoration: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
                         letterSpacing: '0.02em',
+                        width: '100%',
                       }}
                     >
                       <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -309,7 +317,7 @@ const DonateSection = () => {
                         <path d="M24 24L36 12L48 24L36 36Z" fill="#1a0a00" opacity="0.4"/>
                       </svg>
                       Pay ₹{formData.amount} via UPI
-                    </a>
+                    </button>
 
                     {/* Tap-to-copy UPI ID */}
                     <div
