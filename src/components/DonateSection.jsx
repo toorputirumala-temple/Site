@@ -265,51 +265,54 @@ const DonateSection = () => {
                 </p>
 
                 {isMobile() ? (
-                  /* ── MOBILE: Pay button ── */
-                  <div className="space-y-4 mb-6">
+                  /* ── MOBILE: Pay buttons ── */
+                  <div className="space-y-3 mb-6">
                     <p className="text-sm" style={{ color: 'rgba(255,240,200,0.55)' }}>
-                      Tap below to pay via any UPI app
+                      Tap below — choose <strong style={{ color: '#fff' }}>Paytm, PhonePe, GPay</strong> or any UPI app
                     </p>
 
-                    {/* Primary — standard UPI deep-link (works with Paytm, PhonePe, GPay, etc.) */}
+                    {/* Single universal UPI deep-link — opens system app chooser on Android */}
                     <a
                       href={`upi://pay?pa=${TEMPLE_UPI_ID}&pn=${encodeURIComponent(TEMPLE_NAME)}&am=${formData.amount}&cu=INR&tn=${encodeURIComponent('Donation to ' + TEMPLE_NAME)}`}
-                      className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-bold text-base transition-all"
+                      className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl font-bold text-base transition-all active:scale-95"
                       style={{
                         background: 'linear-gradient(135deg, #f5c842 0%, #f47728 60%, #c45c00 100%)',
                         color: '#1a0a00',
                         boxShadow: '0 6px 24px rgba(244,119,40,0.5)',
                         fontFamily: "'Outfit', sans-serif",
                         textDecoration: 'none',
+                        letterSpacing: '0.02em',
                       }}
                     >
-                      {/* UPI icon */}
-                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="24" height="24" rx="5" fill="#1a0a00" opacity="0.15"/>
-                        <path d="M6 12L10.5 7L15 12L10.5 17L6 12Z" fill="#1a0a00"/>
-                        <path d="M12 12L16.5 7L21 12L16.5 17L12 12Z" fill="#1a0a00" opacity="0.5"/>
+                      {/* BHIM UPI logo-style chevrons */}
+                      <svg width="24" height="24" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="38" height="38" rx="8" fill="#1a0a00" opacity="0.12"/>
+                        <path d="M10 19L18 10L26 19L18 28Z" fill="#1a0a00"/>
+                        <path d="M20 19L28 10L36 19L28 28Z" fill="#1a0a00" opacity="0.4"/>
                       </svg>
-                      Pay via UPI (₹{formData.amount})
+                      Pay ₹{formData.amount} via UPI
                     </a>
 
-                    {/* Paytm — Android intent (correct scheme, avoids risk policy block) */}
-                    <a
-                      href={`intent://pay?pa=${TEMPLE_UPI_ID}&pn=${encodeURIComponent(TEMPLE_NAME)}&am=${formData.amount}&cu=INR&tn=${encodeURIComponent('Donation to ' + TEMPLE_NAME)}#Intent;scheme=upi;package=net.one97.paytm;end`}
-                      className="flex items-center justify-center gap-3 w-full py-3.5 rounded-2xl font-bold text-sm transition-all"
+                    {/* Manual UPI ID copy box */}
+                    <div
+                      className="rounded-xl px-4 py-3 text-center"
                       style={{
-                        background: 'linear-gradient(135deg, #002970, #00BAF2)',
-                        color: '#fff',
-                        boxShadow: '0 6px 24px rgba(0,186,242,0.25)',
-                        fontFamily: "'Outfit', sans-serif",
-                        textDecoration: 'none',
+                        background: 'rgba(255,255,255,0.05)',
+                        border: '1px dashed rgba(245,200,66,0.3)',
                       }}
                     >
-                      {/* Paytm-style P icon */}
-                      <span style={{ fontFamily: 'serif', color: '#00BAF2', background: '#fff', borderRadius: '50%', width: 26, height: 26, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.85rem', fontWeight: 900 }}>
-                        P
-                      </span>
-                      {t.donate.payViaPaytm} (₹{formData.amount})
-                    </a>
+                      <p className="text-xs mb-1" style={{ color: 'rgba(255,240,200,0.45)', fontFamily: "'Outfit', sans-serif" }}>
+                        Or open Paytm / any app manually and send to
+                      </p>
+                      <p
+                        className="font-bold text-sm tracking-wide select-all"
+                        style={{ color: '#f5c842', fontFamily: 'monospace', letterSpacing: '0.05em' }}
+                        onClick={() => { navigator.clipboard?.writeText(TEMPLE_UPI_ID); }}
+                      >
+                        {TEMPLE_UPI_ID}
+                      </p>
+                      <p className="text-xs mt-0.5" style={{ color: 'rgba(255,240,200,0.3)' }}>tap to copy</p>
+                    </div>
                   </div>
                 ) : (
                   /* ── DESKTOP: QR code ── */
