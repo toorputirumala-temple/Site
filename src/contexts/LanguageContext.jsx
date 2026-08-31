@@ -78,12 +78,15 @@ export const translations = {
       processing: 'Processing...',
       continuePay: 'Continue to Pay',
       scanPay: 'Scan & Pay',
+      chooseApp: 'Select UPI App to Pay',
+      payViaPhonePe: 'Pay via PhonePe',
+      payViaGPay: 'Pay via Google Pay',
+      payViaPaytm: 'Pay via Paytm',
+      payViaAnyUpi: 'Pay via Any UPI App',
       amountLabel: 'Amount',
       qrNote: 'Scanning this QR will open your preferred UPI app (PhonePe, GPay, Paytm) with the amount pre-filled.',
-      payViaPaytm: 'Pay via Paytm',
-      openUpiApp: 'Open in any UPI App',
       done: 'Done',
-      successMsg: 'Details saved! Please scan the QR to pay.',
+      successMsg: 'Details saved! Please proceed to pay.',
       failMsg: 'Failed to process. Please try again.'
     }
   },
@@ -162,12 +165,15 @@ export const translations = {
       processing: 'ప్రాసెస్ అవుతోంది...',
       continuePay: 'చెల్లింపుకు కొనసాగండి',
       scanPay: 'స్కాన్ చేసి చెల్లించండి',
+      chooseApp: 'చెల్లింపు కోసం UPI యాప్‌ను ఎంచుకోండి',
+      payViaPhonePe: 'PhonePe ద్వారా చెల్లించండి',
+      payViaGPay: 'Google Pay ద్వారా చెల్లించండి',
+      payViaPaytm: 'Paytm ద్వారా చెల్లించండి',
+      payViaAnyUpi: 'ఏదైనా UPI యాప్‌లో చెల్లించండి',
       amountLabel: 'మొత్తం',
       qrNote: 'ఈ QR స్కాన్ చేయడం ద్వారా మీ ఫోన్లోని UPI యాప్ (PhonePe, GPay, Paytm) తెరుచుకుంటుంది.',
-      payViaPaytm: 'Paytm ద్వారా చెల్లించండి',
-      openUpiApp: 'ఏదైనా UPI యాప్‌లో తెరవండి',
       done: 'పూర్తయింది',
-      successMsg: 'వివరాలు భద్రపరచబడ్డాయి! దయచేసి QR స్కాన్ చేసి చెల్లించండి.',
+      successMsg: 'వివరాలు భద్రపరచబడ్డాయి! దయచేసి చెల్లింపును కొనసాగించండి.',
       failMsg: 'ప్రయత్నం విఫలమైంది. దయచేసి మళ్లీ ప్రయత్నించండి.'
     }
   }
