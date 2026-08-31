@@ -46,8 +46,8 @@ const DonateSection = () => {
     }
   };
 
-  const webPayUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}/pay?amount=${formData.amount}&name=${encodeURIComponent(formData.name || '')}&mobile=${encodeURIComponent(formData.mobile || '')}`;
-  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(webPayUrl)}`;
+  const upiPayUrl = `upi://pay?pa=${TEMPLE_UPI_ID}&pn=${encodeURIComponent(TEMPLE_NAME)}&am=${formData.amount}&cu=INR`;
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(upiPayUrl)}`;
 
   const handleDownloadQr = async () => {
     try {
@@ -299,42 +299,38 @@ const DonateSection = () => {
                   ))}
                 </div>
 
-                {/* Mobile Web Direct Pay Button */}
-                <div className="flex flex-col gap-2 mb-3">
-                  <button
-                    type="button"
-                    onClick={() => { window.location.href = webPayUrl; }}
-                    className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-xs transition-all active:scale-95 cursor-pointer shadow-md"
-                    style={{
-                      background: 'linear-gradient(135deg, #f5c842 0%, #f47728 100%)',
-                      color: '#1a0a00',
-                    }}
-                  >
-                    <span>⚡</span> Open Web Payment Gateway on this Phone
-                  </button>
-
-                  {/* Save QR to photos */}
-                  <button
-                    type="button"
-                    onClick={handleDownloadQr}
-                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs transition-all active:scale-95 cursor-pointer bg-white/10 border border-amber-400/40 text-amber-200 hover:bg-white/15"
-                  >
-                    <span>📥</span> {t.donate.saveQr}
-                  </button>
-                </div>
+                {/* Save QR button */}
+                <button
+                  type="button"
+                  onClick={handleDownloadQr}
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-bold text-xs mb-3 transition-all active:scale-95 cursor-pointer shadow-md"
+                  style={{
+                    background: 'linear-gradient(135deg, #f5c842, #f47728)',
+                    color: '#1a0a00',
+                  }}
+                >
+                  <span>📥</span> {t.donate.saveQr}
+                </button>
 
                 {/* Supported App Badges */}
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <span className="text-[11px] px-2 py-0.5 rounded-md bg-[#5f259f]/40 border border-[#5f259f] text-purple-200 font-semibold">PhonePe</span>
-                  <span className="text-[11px] px-2 py-0.5 rounded-md bg-blue-900/40 border border-blue-400 text-blue-200 font-semibold">Google Pay</span>
-                  <span className="text-[11px] px-2 py-0.5 rounded-md bg-[#002e6e]/60 border border-[#00b9f5] text-cyan-200 font-semibold">Paytm</span>
-                  <span className="text-[11px] px-2 py-0.5 rounded-md bg-amber-900/40 border border-amber-500 text-amber-200 font-semibold">BHIM</span>
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <span className="text-[10px] px-2 py-0.5 rounded-md bg-[#5f259f]/40 border border-[#9c4ddd] text-purple-200 font-bold">PhonePe</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-md bg-blue-900/40 border border-blue-400 text-blue-200 font-bold">GPay</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-md bg-sky-900/40 border border-sky-400 text-sky-200 font-bold">Paytm</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-md bg-amber-900/40 border border-amber-500 text-amber-200 font-bold">BHIM</span>
                 </div>
 
-                {/* Scan Info */}
-                <p className="text-xs text-amber-200/70 mb-3 leading-relaxed font-medium">
-                  Scan this QR code with <strong>Google Lens, iPhone Camera, or Any QR Scanner</strong> to open the payment page in your browser.
-                </p>
+                {/* How to pay instruction */}
+                <div
+                  className="w-full rounded-xl px-3 py-2.5 mb-3 text-left"
+                  style={{ background: 'rgba(245,200,66,0.06)', border: '1px solid rgba(245,200,66,0.18)' }}
+                >
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-amber-300 mb-1.5">How to Pay</p>
+                  <p className="text-[11px] text-orange-100/80 leading-relaxed">
+                    📸 Open your UPI App → Tap <strong>"Scan QR"</strong> → Point at this QR<br/>
+                    📥 Or <strong>Save QR</strong> → Open UPI App → Scan from Gallery
+                  </p>
+                </div>
 
                 {/* ── 1-TAP COPY UPI ID ── */}
                 <div

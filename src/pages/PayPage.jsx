@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import RotatingFlowers from '../components/RotatingFlowers';
@@ -8,26 +8,13 @@ const TEMPLE_NAME   = "Sri Venkateswara Swamy Aalaya Sankshema Sangham";
 
 const PayPage = () => {
   const [searchParams] = useSearchParams();
-  const amount = searchParams.get('amount') || '101';
-  const donorName = searchParams.get('name') || '';
+  const amount     = searchParams.get('amount')  || '101';
+  const donorName  = searchParams.get('name')    || '';
   const donorMobile = searchParams.get('mobile') || '';
 
-  const [showDirectQr, setShowDirectQr] = useState(false);
-
-  const rawUpiUrl = `upi://pay?pa=${TEMPLE_UPI_ID}&pn=${encodeURIComponent(TEMPLE_NAME)}&am=${amount}&cu=INR`;
-  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(rawUpiUrl)}`;
-
-  const handleAppPay = (appType) => {
-    let target = rawUpiUrl;
-    if (appType === 'phonepe') {
-      target = `phonepe://pay?pa=${TEMPLE_UPI_ID}&pn=${encodeURIComponent(TEMPLE_NAME)}&am=${amount}&cu=INR`;
-    } else if (appType === 'gpay') {
-      target = `gpay://upi/pay?pa=${TEMPLE_UPI_ID}&pn=${encodeURIComponent(TEMPLE_NAME)}&am=${amount}&cu=INR`;
-    } else if (appType === 'paytm') {
-      target = `paytmmp://pay?pa=${TEMPLE_UPI_ID}&pn=${encodeURIComponent(TEMPLE_NAME)}&am=${amount}&cu=INR`;
-    }
-    window.location.href = target;
-  };
+  // ── QR encodes UPI pay URL directly (works when scanned by UPI app or phone camera)
+  const upiPayUrl = `upi://pay?pa=${TEMPLE_UPI_ID}&pn=${encodeURIComponent(TEMPLE_NAME)}&am=${amount}&cu=INR`;
+  const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(upiPayUrl)}`;
 
   const handleDownloadQr = async () => {
     try {
@@ -36,224 +23,185 @@ const PayPage = () => {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Temple_QR_₹${amount}.png`;
+      a.download = `Temple_QR_Rs${amount}.png`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       window.URL.revokeObjectURL(url);
-      toast.success('QR Code saved to Gallery!');
-    } catch (e) {
+      toast.success('QR Code saved! Open your UPI app and scan from Gallery.');
+    } catch {
       window.open(qrCodeUrl, '_blank');
     }
   };
 
+  const handleCopyUpi = () => {
+    navigator.clipboard?.writeText(TEMPLE_UPI_ID);
+    toast.success('UPI ID copied! Paste it in any UPI app to pay.');
+  };
+
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4 relative overflow-hidden bg-gradient-to-b from-[#1a0a00] via-[#2d1200] to-[#120500]">
-      {/* Background decoration */}
-      <RotatingFlowers tintColor="rgba(245,200,66,0.15)" />
+    <div
+      className="min-h-screen w-full flex items-center justify-center p-4 relative overflow-hidden"
+      style={{ background: 'linear-gradient(170deg, #1a0a00 0%, #2d1200 50%, #120500 100%)' }}
+    >
+      <RotatingFlowers tintColor="rgba(245,200,66,0.12)" />
 
       <div
-        className="w-full max-w-md rounded-3xl overflow-hidden shadow-2xl relative z-10 p-6 sm:p-8"
+        className="w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl relative z-10"
         style={{
-          background: 'linear-gradient(165deg, rgba(35,15,5,0.95) 0%, rgba(20,8,0,0.98) 100%)',
-          border: '1px solid rgba(245,200,66,0.35)',
-          boxShadow: '0 25px 70px rgba(0,0,0,0.8), 0 0 0 1px rgba(245,200,66,0.15) inset',
+          background: 'linear-gradient(160deg, rgba(35,15,5,0.97) 0%, rgba(18,7,0,0.99) 100%)',
+          border: '1px solid rgba(245,200,66,0.3)',
+          boxShadow: '0 30px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(245,200,66,0.1) inset',
         }}
       >
-        {/* Gold top accent line */}
-        <div className="h-1.5 w-full absolute top-0 left-0" style={{ background: 'linear-gradient(90deg, #c8860a, #f5c842, #f47728, #f5c842, #c8860a)' }} />
+        {/* Gold top bar */}
+        <div className="h-1.5 w-full" style={{ background: 'linear-gradient(90deg, #c8860a, #f5c842, #f47728, #f5c842, #c8860a)' }} />
 
-        {/* Temple Salutation & Header */}
-        <div className="text-center mt-2 mb-6">
-          <p className="text-xs font-bold tracking-[0.25em] uppercase text-[#f5c842] mb-1" style={{ fontFamily: "'Outfit', sans-serif" }}>
-            ॥ ॐ నమో వేంకటేశాయ ॥
+        <div className="px-6 pt-6 pb-3 text-center">
+          {/* Deity greeting */}
+          <p
+            className="text-xs font-bold tracking-[0.2em] uppercase mb-1"
+            style={{ color: '#f5c842', fontFamily: "'Outfit', sans-serif" }}
+          >
+            ॥ ఓం నమో వేంకటేశాయ ॥
           </p>
           <h1
-            className="text-xl sm:text-2xl font-black mb-1"
+            className="text-lg sm:text-xl font-black leading-tight mb-0.5"
             style={{
-              fontFamily: "'Yatra One', sans-serif",
+              fontFamily: "'Yatra One', 'Outfit', sans-serif",
               background: 'linear-gradient(135deg, #f5c842, #f47728)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             }}
           >
-            శ్రీ ప్రసన్న వేంకటేశ్వర స్వామి దేవస్థానం
+            శ్రీ ప్రసన్న వేంకటేశ్వర స్వామి
           </h1>
-          <p className="text-xs text-orange-200/70 tracking-wider">
+          <p className="text-xs text-orange-200/60 tracking-wider mb-4">
             Toorpu Tirumala • Balabhadrapuram
           </p>
-        </div>
 
-        {/* Donation Amount Badge */}
-        <div
-          className="rounded-2xl p-4 mb-6 text-center"
-          style={{
-            background: 'linear-gradient(135deg, rgba(245,200,66,0.12), rgba(244,119,40,0.08))',
-            border: '1px solid rgba(245,200,66,0.3)',
-          }}
-        >
-          <p className="text-xs uppercase tracking-widest text-amber-300 font-semibold mb-1">
-            Donation Amount
-          </p>
-          <div className="text-3xl sm:text-4xl font-extrabold text-white flex items-center justify-center gap-1">
-            <span className="text-[#f5c842]">₹</span>
-            <span>{amount}</span>
-          </div>
-          {donorName && (
-            <p className="text-xs text-orange-100/80 mt-1 font-medium">
-              Donor: <span className="text-white font-semibold">{donorName}</span> {donorMobile ? `(${donorMobile})` : ''}
+          {/* Amount badge */}
+          <div
+            className="rounded-2xl py-3 px-4 mb-5"
+            style={{
+              background: 'linear-gradient(135deg, rgba(245,200,66,0.1), rgba(244,119,40,0.07))',
+              border: '1px solid rgba(245,200,66,0.25)',
+            }}
+          >
+            <p className="text-[11px] uppercase tracking-widest text-amber-300/80 font-semibold mb-0.5">
+              Donation Amount
             </p>
-          )}
+            <div className="text-4xl font-extrabold text-white flex items-center justify-center gap-1">
+              <span className="text-[#f5c842] text-3xl">₹</span>
+              <span>{amount}</span>
+            </div>
+            {donorName && (
+              <p className="text-xs text-orange-100/70 mt-1 font-medium">
+                {donorName}{donorMobile ? ` · ${donorMobile}` : ''}
+              </p>
+            )}
+          </div>
         </div>
 
-        {/* ── UPI APP LAUNCH BUTTONS ── */}
-        <div className="space-y-3 mb-6">
-          <p className="text-xs font-semibold uppercase tracking-wider text-amber-200/80 text-center mb-2">
-            Select your UPI App to Pay
-          </p>
-
-          {/* PhonePe */}
-          <button
-            type="button"
-            onClick={() => handleAppPay('phonepe')}
-            className="flex items-center justify-between w-full px-4 py-3.5 rounded-2xl font-bold text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-lg"
+        {/* ── QR CODE ── */}
+        <div className="px-6 pb-4 flex flex-col items-center">
+          <div
+            className="p-3 rounded-2xl bg-white mb-3 relative"
             style={{
-              background: '#5f259f',
-              color: '#ffffff',
-              border: '1px solid rgba(255,255,255,0.2)',
+              border: '3px solid #f5c842',
+              boxShadow: '0 0 40px rgba(245,200,66,0.3), 0 0 0 1px rgba(245,200,66,0.15)',
             }}
           >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-xl bg-white flex items-center justify-center font-black text-[#5f259f] text-lg shadow-sm">
-                पे
-              </div>
-              <span className="text-sm font-semibold">Pay via PhonePe</span>
-            </div>
-            <span className="text-xs opacity-80 font-normal">Open App ➔</span>
-          </button>
+            <img
+              src={qrCodeUrl}
+              alt="UPI QR Code"
+              className="w-52 h-52 block"
+              style={{ display: 'block' }}
+            />
+          </div>
 
-          {/* Google Pay */}
-          <button
-            type="button"
-            onClick={() => handleAppPay('gpay')}
-            className="flex items-center justify-between w-full px-4 py-3.5 rounded-2xl font-bold text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-lg"
+          {/* Supported app logos row */}
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <span className="text-[10px] px-2 py-0.5 rounded-md bg-[#5f259f]/40 border border-[#9c4ddd] text-purple-200 font-bold">PhonePe</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-md bg-blue-900/40 border border-blue-400 text-blue-200 font-bold">GPay</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-md bg-sky-900/40 border border-sky-400 text-sky-200 font-bold">Paytm</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-md bg-amber-900/40 border border-amber-500 text-amber-200 font-bold">BHIM</span>
+            <span className="text-[10px] px-2 py-0.5 rounded-md bg-green-900/40 border border-green-500 text-green-200 font-bold">CRED</span>
+          </div>
+
+          {/* ── HOW TO PAY INSTRUCTIONS ── */}
+          <div
+            className="w-full rounded-2xl px-4 py-3.5 mb-4 text-left"
             style={{
-              background: '#ffffff',
-              color: '#1f2937',
-              border: '1px solid rgba(245,200,66,0.3)',
+              background: 'rgba(245,200,66,0.06)',
+              border: '1px solid rgba(245,200,66,0.2)',
             }}
           >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-xl bg-[#f0f4f9] flex items-center justify-center font-bold text-[#4285F4] text-base shadow-sm">
-                G
-              </div>
-              <span className="text-sm font-semibold text-gray-800">Pay via Google Pay</span>
+            <p className="text-[11px] font-bold uppercase tracking-widest text-amber-300 mb-2">
+              How to Pay
+            </p>
+            <div className="space-y-2">
+              {[
+                { icon: '📸', text: 'Open your UPI app (PhonePe / GPay / Paytm / BHIM)' },
+                { icon: '🔍', text: 'Tap "Scan QR" inside the app' },
+                { icon: '✅', text: 'Point your camera at this QR code and confirm payment' },
+              ].map((step, i) => (
+                <div key={i} className="flex items-start gap-2">
+                  <span className="text-sm flex-shrink-0">{step.icon}</span>
+                  <p className="text-xs text-orange-100/80 leading-snug">{step.text}</p>
+                </div>
+              ))}
             </div>
-            <span className="text-xs text-gray-500 font-normal">Open App ➔</span>
-          </button>
+          </div>
 
-          {/* Paytm */}
+          {/* ── SAVE QR BUTTON ── */}
           <button
             type="button"
-            onClick={() => handleAppPay('paytm')}
-            className="flex items-center justify-between w-full px-4 py-3.5 rounded-2xl font-bold text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-lg"
-            style={{
-              background: '#002e6e',
-              color: '#ffffff',
-              border: '1px solid rgba(0,185,245,0.4)',
-            }}
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-xl bg-white flex items-center justify-center font-bold text-[#00b9f5] text-xs shadow-sm">
-                Paytm
-              </div>
-              <span className="text-sm font-semibold">Pay via Paytm</span>
-            </div>
-            <span className="text-xs opacity-80 font-normal">Open App ➔</span>
-          </button>
-
-          {/* Any UPI App */}
-          <button
-            type="button"
-            onClick={() => handleAppPay('generic')}
-            className="flex items-center justify-between w-full px-4 py-3.5 rounded-2xl font-bold text-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-lg"
+            onClick={handleDownloadQr}
+            className="w-full flex items-center justify-center gap-2 py-3 rounded-2xl font-bold text-sm mb-3 transition-all active:scale-95 hover:opacity-90 cursor-pointer"
             style={{
               background: 'linear-gradient(135deg, #f5c842 0%, #f47728 100%)',
               color: '#1a0a00',
+              boxShadow: '0 4px 20px rgba(244,119,40,0.4)',
             }}
           >
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-xl bg-[#1a0a00] flex items-center justify-center font-bold text-[#f5c842] text-xs shadow-sm">
-                UPI
-              </div>
-              <span className="text-sm font-bold">Pay via Any UPI App</span>
-            </div>
-            <span className="text-xs opacity-90 font-medium">BHIM / CRED ➔</span>
+            <span>📥</span> Save QR to Gallery
           </button>
-        </div>
 
-        {/* ── TOGGLE DIRECT QR CODE ── */}
-        <div className="border-t border-amber-900/60 pt-4 mb-4 text-center">
-          <button
-            type="button"
-            onClick={() => setShowDirectQr(prev => !prev)}
-            className="text-xs font-semibold text-amber-300 underline underline-offset-4 hover:text-amber-200 transition-colors cursor-pointer"
+          <p className="text-[11px] text-amber-200/60 text-center mb-4 px-2 leading-relaxed">
+            Save QR → Open UPI App → Scan from Gallery
+          </p>
+
+          {/* ── COPY UPI ID ── */}
+          <div
+            onClick={handleCopyUpi}
+            className="w-full rounded-2xl px-4 py-3 text-center cursor-pointer hover:bg-white/10 transition-colors mb-4"
+            style={{
+              background: 'rgba(255,255,255,0.04)',
+              border: '1px dashed rgba(245,200,66,0.35)',
+            }}
           >
-            {showDirectQr ? '▲ Hide QR Code' : '▼ Show QR Code / Scan with Camera'}
-          </button>
+            <p className="text-[11px] text-amber-200/50 mb-0.5">Temple Official UPI ID</p>
+            <p
+              className="font-bold text-sm tracking-wider"
+              style={{ color: '#f5c842', fontFamily: 'monospace' }}
+            >
+              {TEMPLE_UPI_ID}
+            </p>
+            <p className="text-[11px] text-amber-300/70 mt-0.5">📋 Tap to copy UPI ID</p>
+          </div>
 
-          {showDirectQr && (
-            <div className="mt-4">
-              <div
-                className="p-3 rounded-2xl mx-auto w-fit relative bg-white"
-                style={{
-                  border: '3px solid #f5c842',
-                  boxShadow: '0 0 30px rgba(245,200,66,0.3)',
-                }}
-              >
-                <img src={qrCodeUrl} alt="UPI QR Code" className="w-44 h-44 block" />
-              </div>
-              <button
-                type="button"
-                onClick={handleDownloadQr}
-                className="mt-3 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-400 text-amber-200 text-xs font-semibold hover:bg-amber-500/30 transition-all cursor-pointer"
-              >
-                📥 Save QR to Gallery
-              </button>
-            </div>
-          )}
-        </div>
-
-        {/* ── 1-TAP COPY UPI ID ── */}
-        <div
-          className="rounded-xl px-4 py-2.5 text-center mb-6 cursor-pointer hover:bg-white/10 transition-colors"
-          style={{
-            background: 'rgba(255,255,255,0.04)',
-            border: '1px dashed rgba(245,200,66,0.3)',
-          }}
-          onClick={() => {
-            navigator.clipboard?.writeText(TEMPLE_UPI_ID);
-            toast.success('UPI ID copied to clipboard!');
-          }}
-        >
-          <p className="text-xs text-amber-200/50 mb-0.5" style={{ fontFamily: "'Outfit', sans-serif" }}>
-            Temple Official UPI ID
-          </p>
-          <p className="font-bold text-sm text-[#f5c842] font-mono tracking-wider">
-            {TEMPLE_UPI_ID}
-          </p>
-          <p className="text-[11px] text-amber-300/70 mt-0.5">📋 tap to copy UPI ID</p>
-        </div>
-
-        {/* Back to Temple Website */}
-        <div className="text-center">
+          {/* Back link */}
           <Link
             to="/"
-            className="inline-flex items-center gap-1.5 text-xs text-orange-300 hover:text-white transition-colors underline underline-offset-4"
+            className="text-xs text-orange-300/70 hover:text-white transition-colors underline underline-offset-4"
           >
             ← Back to Temple Website
           </Link>
         </div>
+
+        {/* Gold bottom bar */}
+        <div className="h-1.5 w-full mt-2" style={{ background: 'linear-gradient(90deg, #c8860a, #f5c842, #f47728, #f5c842, #c8860a)' }} />
       </div>
     </div>
   );

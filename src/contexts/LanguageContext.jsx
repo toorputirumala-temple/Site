@@ -81,7 +81,7 @@ export const translations = {
       amountLabel: 'Amount',
       saveQr: 'Save QR to Photos / Gallery',
       qrInstructions: 'Scan this QR using PhonePe, Google Pay, Paytm, or BHIM.',
-      galleryTip: '💡 On Mobile: Save QR ➔ Open your UPI App ➔ Scan from Gallery',
+      galleryTip: 'On Mobile: Save QR ➔ Open your UPI App ➔ Scan from Gallery',
       orCopyUpi: 'Or Pay Directly to UPI ID',
       copyUpiBtn: 'Copy UPI ID',
       templeUpi: 'Temple Official UPI ID',
