@@ -31,23 +31,42 @@ const DonateSection = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await addDoc(collection(db, 'donations'), {
-        ...formData,
-        amount: parseFloat(formData.amount),
-        timestamp: serverTimestamp(),
-      });
-      setStep(2);
-      toast.success(t.donate.successMsg);
+      if (db) {
+        await addDoc(collection(db, 'donations'), {
+          ...formData,
+          amount: parseFloat(formData.amount) || 0,
+          timestamp: serverTimestamp(),
+        }).catch(err => console.warn('Firestore write warning:', err));
+      }
     } catch (err) {
-      console.error(err);
-      toast.error(t.donate.failMsg);
+      console.warn('Donation submit warning:', err);
     } finally {
       setLoading(false);
+      setStep(2);
+      toast.success(t.donate.successMsg);
     }
   };
 
   const upiUrl    = `upi://pay?pa=${TEMPLE_UPI_ID}&pn=${encodeURIComponent(TEMPLE_NAME)}&am=${formData.amount}&cu=INR`;
   const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(upiUrl)}`;
+
+  const handleDownloadQr = async () => {
+    try {
+      const response = await fetch(qrCodeUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Temple_QR_₹${formData.amount || '0'}.png`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+      toast.success('QR Code saved to gallery/downloads!');
+    } catch (e) {
+      window.open(qrCodeUrl, '_blank');
+    }
+  };
 
   const handlePayViaApp = async (appType) => {
     // 1. Auto-save QR code to device gallery/downloads
