@@ -42,18 +42,13 @@ const ContactPage = ({ id }) => {
             
             {/* Contact Card */}
             <div className="bg-white rounded-3xl p-8 shadow-xl border border-amber-200">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-amber-100 border border-amber-300 flex items-center justify-center text-2xl">
-                  📍
-                </div>
-                <div>
-                  <h3 className="text-2xl font-extrabold text-[#800808]" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                    {t.nav.contact}
-                  </h3>
-                  <p className="text-xs text-amber-700 font-bold uppercase tracking-wider">
-                    {lang === 'en' ? 'Address & Location' : 'ఆలయ స్థాన వివరాలు'}
-                  </p>
-                </div>
+              <div className="mb-4">
+                <h3 className="text-2xl font-extrabold text-[#800808]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                  {t.nav.contact}
+                </h3>
+                <p className="text-xs text-amber-700 font-bold uppercase tracking-wider">
+                  {lang === 'en' ? 'Address & Location' : 'ఆలయ స్థాన వివరాలు'}
+                </p>
               </div>
               <p className="text-gray-700 text-base md:text-lg leading-relaxed font-medium">
                 {t.contact.address}
@@ -62,18 +57,13 @@ const ContactPage = ({ id }) => {
 
             {/* Facilities Card */}
             <div className="bg-white rounded-3xl p-8 shadow-xl border border-indigo-100">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-2xl">
-                  🏛️
-                </div>
-                <div>
-                  <h3 className="text-2xl font-extrabold text-[#182856]" style={{ fontFamily: "'Outfit', sans-serif" }}>
-                    {t.events.facilities}
-                  </h3>
-                  <p className="text-xs text-indigo-600 font-bold uppercase tracking-wider">
-                    {lang === 'en' ? 'Temple Amenities' : 'ఆలయ వసతులు'}
-                  </p>
-                </div>
+              <div className="mb-4">
+                <h3 className="text-2xl font-extrabold text-[#182856]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                  {t.events.facilities}
+                </h3>
+                <p className="text-xs text-indigo-600 font-bold uppercase tracking-wider">
+                  {lang === 'en' ? 'Temple Amenities' : 'ఆలయ వసతులు'}
+                </p>
               </div>
               <p className="text-gray-700 text-base md:text-lg leading-relaxed font-medium mb-5">
                 {t.events.facilitiesText}

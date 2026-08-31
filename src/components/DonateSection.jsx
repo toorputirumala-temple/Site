@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import CloseIcon from '@mui/icons-material/Close';
 import { useLanguage } from '../contexts/LanguageContext';
 
-const TEMPLE_UPI_ID  = "Q539768773@ybl";
+const TEMPLE_UPI_ID  = "Q910582112@ybl";
 const TEMPLE_NAME    = "Sri Prasanna Venkateswara Swamy Temple";
 
 /* Quick-amount presets */
