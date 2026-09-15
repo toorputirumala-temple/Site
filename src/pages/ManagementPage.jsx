@@ -3,6 +3,13 @@ import bottomBorder from "../assets/title-img-orange.svg";
 import RotatingFlowers from "../components/RotatingFlowers";
 import { useLanguage } from "../contexts/LanguageContext";
 
+// Import images
+import member1 from "../images/role_testator.png";
+import member2 from "../images/role_chairman.png";
+import member3 from "../images/role_vice_chairman.png";
+import member4 from "../images/role_treasurer.png";
+import member5 from "../images/role_member.png";
+
 const roleTranslations = {
   en: {
     Testator: "Testator",
@@ -20,10 +27,18 @@ const roleTranslations = {
   },
 };
 
+const roleImages = {
+  Testator: member1,
+  Chairman: member2,
+  ViceChairman: member3,
+  Treasurer: member4,
+  Member: member5,
+};
+
 /* ─────────────────────────────────────────────────────────────
    TeamMember card component
 ───────────────────────────────────────────────────────────── */
-const TeamMember = ({ member, delay, lang }) => {
+const TeamMember = ({ member, delay, lang, index }) => {
   const ref = useRef();
   const [visible, setVisible] = useState(false);
 
@@ -54,6 +69,16 @@ const TeamMember = ({ member, delay, lang }) => {
   const badge = roleColor[member.role] ?? "bg-gray-100 text-gray-700 border-gray-300";
   const displayName = lang === "te" ? member.nameTe : member.nameEn;
   const displayRole = roleTranslations[lang]?.[member.role] ?? member.role;
+  
+  const avatarImg = roleImages[member.role] || member5;
+  
+  // Apply hue rotation for members to match the blue/purple variations in the screenshot
+  let filterClass = "";
+  if (member.role === "Member") {
+    if (index === 6) filterClass = "hue-rotate-60"; // Blue
+    else if (index === 7) filterClass = "hue-rotate-180"; // Purple
+    else if (index === 8) filterClass = "hue-rotate-90"; // Just to give another variation if needed
+  }
 
   return (
     <div
@@ -68,13 +93,12 @@ const TeamMember = ({ member, delay, lang }) => {
       {/* Avatar area */}
       <div className="w-full h-48 sm:h-52 bg-gradient-to-b from-gray-200 via-gray-300 to-gray-400
                       flex items-center justify-center relative overflow-hidden group">
-        <div className="absolute w-32 h-32 rounded-full bg-white/30 blur-xl" />
-        <div className="w-24 h-24 rounded-full bg-gray-400/60 border-2 border-white/80
-                        flex items-center justify-center shadow-inner relative z-10">
-          <svg className="w-14 h-14 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-          </svg>
-        </div>
+        <div className="absolute w-40 h-40 rounded-full bg-white/30 blur-xl" />
+        <img 
+          src={avatarImg} 
+          alt={displayRole}
+          className={`w-36 h-36 sm:w-40 sm:h-40 rounded-full object-cover shadow-md relative z-10 ${filterClass}`}
+        />
       </div>
 
       {/* Name & Role footer */}
@@ -170,6 +194,7 @@ const ManagementPage = ({ id }) => {
           <TeamMember
             key={`committee-${index}`}
             member={member}
+            index={index}
             delay={index * 120}
             lang={lang}
           />
