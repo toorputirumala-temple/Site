@@ -13,7 +13,6 @@ const VIDEOS = [
 
 const VideoPage = ({ id }) => {
   const [current, setCurrent] = useState(0);
-  const [poster, setPoster] = useState('');
   const videoRef = useRef(null);
 
   // Force muted as a property (React's `muted` prop doesn't render the
@@ -29,20 +28,6 @@ const VideoPage = ({ id }) => {
   }, []);
 
   const playNext = useCallback(() => {
-    // Capture the last frame of the finished video to show while the
-    // next one loads.
-    const v = videoRef.current;
-    if (v && v.videoWidth) {
-      try {
-        const canvas = document.createElement('canvas');
-        canvas.width = v.videoWidth;
-        canvas.height = v.videoHeight;
-        canvas.getContext('2d').drawImage(v, 0, 0);
-        setPoster(canvas.toDataURL('image/jpeg', 0.7));
-      } catch {
-        setPoster('');
-      }
-    }
     setCurrent((prev) => (prev + 1) % VIDEOS.length);
   }, []);
 
@@ -60,10 +45,9 @@ const VideoPage = ({ id }) => {
           no controls, and shows the previous video's last frame while the
           next one loads */}
       <video
+        key={VIDEOS[current]}
         ref={setVideoRef}
         className="absolute inset-0 w-full h-full object-cover"
-        src={VIDEOS[current]}
-        poster={poster}
         autoPlay
         muted
         playsInline
@@ -71,7 +55,9 @@ const VideoPage = ({ id }) => {
         onEnded={playNext}
         onError={playNext}
         onCanPlay={handleCanPlay}
-      />
+      >
+        <source src={VIDEOS[current]} type="video/mp4" />
+      </video>
 
       {/* Subtle dark overlay for readability */}
       <div
