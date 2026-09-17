@@ -25,13 +25,29 @@ const VideoPage = ({ id }) => {
       el.muted = true;
       el.setAttribute('playsinline', '');
       el.setAttribute('muted', '');
+      el.src = VIDEOS[current];
+      el.load();
     }
-  }, []);
+  }, [current]);
 
   const playNext = useCallback(() => {
     setCurrent((prev) => (prev + 1) % VIDEOS.length);
     setAutoplayFailed(false); // Reset on next video
   }, []);
+
+  React.useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.src = VIDEOS[current];
+      videoRef.current.load();
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn('Autoplay prevented:', err);
+          setAutoplayFailed(true);
+        });
+      }
+    }
+  }, [current]);
 
   const handleCanPlay = useCallback(() => {
     if (videoRef.current) {
@@ -55,7 +71,6 @@ const VideoPage = ({ id }) => {
           no controls, and shows the previous video's last frame while the
           next one loads */}
       <video
-        key={VIDEOS[current]}
         ref={setVideoRef}
         className="absolute inset-0 w-full h-full object-cover"
         autoPlay
@@ -65,9 +80,7 @@ const VideoPage = ({ id }) => {
         onEnded={playNext}
         onError={playNext}
         onCanPlay={handleCanPlay}
-      >
-        <source src={VIDEOS[current]} type="video/mp4" />
-      </video>
+      />
 
       {/* Safari Autoplay Fallback Button */}
       {autoplayFailed && (
