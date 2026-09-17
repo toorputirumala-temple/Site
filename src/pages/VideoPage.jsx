@@ -20,7 +20,12 @@ const VideoPage = ({ id }) => {
   // attribute, and Chrome blocks autoplay unless the element is muted).
   const setVideoRef = useCallback((el) => {
     videoRef.current = el;
-    if (el) el.muted = true;
+    if (el) {
+      el.defaultMuted = true;
+      el.muted = true;
+      el.setAttribute('playsinline', '');
+      el.setAttribute('muted', '');
+    }
   }, []);
 
   const playNext = useCallback(() => {
@@ -55,7 +60,6 @@ const VideoPage = ({ id }) => {
           no controls, and shows the previous video's last frame while the
           next one loads */}
       <video
-        key={current}
         ref={setVideoRef}
         className="absolute inset-0 w-full h-full object-cover"
         src={VIDEOS[current]}
