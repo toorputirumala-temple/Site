@@ -9,6 +9,7 @@ import DetailsPage from './DetailsPage'
 import ManagementPage from './ManagementPage'
 import DonateSection from '../components/DonateSection'
 import VideoPage from './VideoPage'
+import QuerySection from '../components/QuerySection'
 
 const Index = () => {
   return (
@@ -21,6 +22,7 @@ const Index = () => {
       <ManagementPage id="management"/>
       <GalleryPage id="gallery" />
       <ContactPage id="contact" />
+      <QuerySection />
       <Footer/>
       <DonateSection />
     </div>
