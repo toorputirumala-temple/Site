@@ -8,12 +8,14 @@ import PayPage from './pages/PayPage'
 import Header from './components/Header'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReviewModal from './components/ReviewModal';
 
 function App() {
 
   return (
     <Router>
       <ToastContainer position="top-right" autoClose={3000} />
+      <ReviewModal />
       <Routes>
         <Route path='/' element={<Index/>}></Route>
         <Route path='/admin' element={<AdminPage/>}></Route>

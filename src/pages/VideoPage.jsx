@@ -13,7 +13,6 @@ const VIDEOS = [
 
 const VideoPage = ({ id }) => {
   const [current, setCurrent] = useState(0);
-  const [autoplayFailed, setAutoplayFailed] = useState(false);
   const videoRef = useRef(null);
 
   // Force muted as a property (React's `muted` prop doesn't render the
@@ -32,7 +31,6 @@ const VideoPage = ({ id }) => {
 
   const playNext = useCallback(() => {
     setCurrent((prev) => (prev + 1) % VIDEOS.length);
-    setAutoplayFailed(false); // Reset on next video
   }, []);
 
   React.useEffect(() => {
@@ -43,7 +41,6 @@ const VideoPage = ({ id }) => {
       if (playPromise !== undefined) {
         playPromise.catch((err) => {
           console.warn('Autoplay prevented:', err);
-          setAutoplayFailed(true);
         });
       }
     }
@@ -55,7 +52,6 @@ const VideoPage = ({ id }) => {
       if (playPromise !== undefined) {
         playPromise.catch((err) => {
           console.warn('Autoplay prevented:', err);
-          setAutoplayFailed(true);
         });
       }
     }
@@ -82,23 +78,6 @@ const VideoPage = ({ id }) => {
         onCanPlay={handleCanPlay}
       />
 
-      {/* Safari Autoplay Fallback Button */}
-      {autoplayFailed && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-          <button
-            onClick={() => {
-              videoRef.current?.play();
-              setAutoplayFailed(false);
-            }}
-            className="flex items-center gap-2 px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-full border border-white/50 backdrop-blur-md transition-all"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-            </svg>
-            <span className="text-lg font-medium tracking-wider">Tap to Play Video</span>
-          </button>
-        </div>
-      )}
 
       {/* Subtle dark overlay for readability */}
       <div

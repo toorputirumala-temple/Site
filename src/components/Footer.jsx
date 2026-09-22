@@ -1,6 +1,7 @@
 import React from "react";
 import RotatingFlowers from "./RotatingFlowers";
 import { useLanguage } from "../contexts/LanguageContext";
+import AverageRating from "./AverageRating";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -13,6 +14,7 @@ const Footer = () => {
     >
       {/* Rotating flower background */}
       <RotatingFlowers tintColor="rgba(255,190,80,0.55)" />
+      
       {/* Contact Info */}
       <div className="flex flex-col items-center gap-1 mb-3 text-center">
         <div className="flex items-center gap-2 text-orange-200 text-sm font-sans">
@@ -34,6 +36,9 @@ const Footer = () => {
           </a>
         </div>
       </div>
+
+      {/* Average Overall Rating */}
+      <AverageRating />
 
       {/* Copyright */}
       <div className="text-orange-400 font-sans px-6 py-2 text-center">
